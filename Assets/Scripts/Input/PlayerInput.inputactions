@@ -85,7 +85,7 @@
             ]
         },
         {
-            "name": "TrickState",
+            "name": "PlayerTrickState",
             "id": "997b277b-9480-41a1-ac4a-47bbada963a8",
             "actions": [
                 {
@@ -211,6 +211,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PlayerPaddle",
+            "id": "ca65f1b2-8874-4a75-904a-93a0174189ca",
+            "actions": [
+                {
+                    "name": "Paddle",
+                    "type": "Button",
+                    "id": "f2171b36-0b2e-4542-ad01-010ea2926908",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e1b670dd-4114-442b-9fdb-8685d41e1a15",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Paddle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "30c014b5-4bf8-4d0d-8d76-d534e11ad2ad",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Paddle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

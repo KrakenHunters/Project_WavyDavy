@@ -2,9 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : Menu
 {
-    [SerializeField] private GameObject _pauseMenu;
     public UnityEvent OnPause;
     public UnityEvent OnResume;
     private bool _isPaused;
@@ -12,13 +11,14 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         _isPaused = false;
-        _pauseMenu.gameObject.SetActive(_isPaused);
+       _startActive = false;
+        DisableScreens();
     }
 
     public void OnTogglePauseMenu()
     {
         _isPaused = !_isPaused;
-        _pauseMenu.gameObject.SetActive(_isPaused); 
+        _currentMenu.gameObject.SetActive(_isPaused); 
 
         if (_isPaused)
         {
@@ -46,15 +46,5 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("01_Shop");
     }
 
-    public void OnQuitGame()
-    {
-
-        SceneManager.LoadScene("00_MainMenu");
-/*#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-*/    }
 
 }
