@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using static UnityEditor.Rendering.ShadowCascadeGUI;
 
 [RequireComponent(typeof(InputManager),typeof(PlayerHitHandler))]
 public class PlayerController : MonoBehaviour
 {
     private InputManager inputManager;
-    [SerializeField]
-    private float speed;
 
-    public Vector2 MovementDirection { get; private set; }
     public GameEvent Event;
 
+    public GamePhase currentGamePhase{ get; private set; }
+
+    public Transform phase1StartPos;
+    public Transform phase2StartPos;
+    public Transform phase3StartPos;
+    public float speed;
+
+    [HideInInspector]
+    public BaseState currentState;
 
     private void OnEnable()
     {
@@ -26,24 +34,21 @@ public class PlayerController : MonoBehaviour
 
     private void SetPhase(GamePhase gameState)
     {
-        switch (gameState)
-        {
-            case GamePhase.Phase1:
-                inputManager.EnablePlayerPaddle();
-                break;
-            case GamePhase.Phase2:
-                inputManager.EnablePlayerMovement();
-                break;
-            case GamePhase.Phase3:
-                //inputManager.EnablePlayerTrickState();
-                break;
-        }
+        currentGamePhase = gameState;
+        currentState?.HandleTransition();
+
+    }
+
+    public void ChangeState(BaseState newState)
+    {
+        StartCoroutine(WaitFixedFrame(newState));
     }
     // Start is called before the first frame update
     void Start()
     {
         inputManager = GetComponent<InputManager>();
-        inputManager.EnablePlayerMovement(); //Move this
+
+        ChangeState(new PaddleState());
     }
 
     // Update is called once per frame
@@ -69,20 +74,34 @@ public class PlayerController : MonoBehaviour
             inputManager.EnablePlayerTrickState();
         }
 
-        Debug.Log(inputManager.Movement);
+        currentState?.StateUpdate();
 
-        HandleCharacterMovement();
+        HandleMove(inputManager.Movement);
+
     }
 
-    //Move this to movement state!
-    void HandleCharacterMovement() 
+    private void FixedUpdate() => currentState?.StateFixedUpdate();
+
+    public void HandleMove(Vector2 dir)
     {
-        MovementDirection = inputManager.Movement.normalized;
-        transform.position = transform.position + (Vector3)MovementDirection * speed * Time.deltaTime;
-
+        currentState?.HandleMovement(dir);
     }
 
+    public void HandlePaddle()
+    {
+        currentState?.HandlePaddling();
+    }
 
+    private IEnumerator WaitFixedFrame(BaseState newState)
+    {
 
+        yield return new WaitForFixedUpdate();
+        currentState?.ExitState();
+        currentState = newState;
+        currentState.player = this;
+        currentState.inputManager = this.inputManager;
+        currentState.EnterState();
+
+    }
 
 }

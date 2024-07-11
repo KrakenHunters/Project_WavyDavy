@@ -7,13 +7,15 @@ using UnityEngine.TextCore.Text;
 public class WaveScript : MonoBehaviour
 {
     private PlayerController _character;
+    private InputManager _inputManager;
     private BoxCollider2D _boxCollider;
 
-    [SerializeField]
     private float backwardForce;
 
     [SerializeField]
     private float reducedBackwardForce;
+    [SerializeField]
+    private float startBackwardForce;
 
     public GameEvent Event;
 
@@ -39,6 +41,7 @@ public class WaveScript : MonoBehaviour
                 {
                     _animator.SetTrigger("Phase2To1");
                 }
+                backwardForce = 0f;
                 break;
             case GamePhase.Phase2:
                 if (currentPhase == GamePhase.Phase1)
@@ -49,22 +52,25 @@ public class WaveScript : MonoBehaviour
                 {
                     _animator.SetTrigger("Phase3To2");
                 }
+                backwardForce = startBackwardForce;
                 break;
             case GamePhase.Phase3:
                 _animator.SetTrigger("Phase2To3");
+                backwardForce = startBackwardForce;
                 break;
         }
         currentPhase = newPhase;
     }
     void Awake()
     {
+        backwardForce = 0f;
         _animator = GetComponent<Animator>();
         _boxCollider = GetComponent<BoxCollider2D>();
     }
     void ApplyBackwardForce()
     {
         float currentBackwardForce = backwardForce;
-        if (_character.MovementDirection.x > 0)
+        if (_inputManager.Movement.x > 0 && currentPhase != GamePhase.Phase1)
         {
             currentBackwardForce = reducedBackwardForce;
         }
@@ -95,6 +101,7 @@ public class WaveScript : MonoBehaviour
         if (collision.GetComponent<PlayerController>())
         {
             _character = collision.GetComponent<PlayerController>();
+            _inputManager = collision.GetComponent<InputManager>();
             ApplyBackwardForce();
             // Constrain the character within the wave collider
             // Constrain the character within the wave collider

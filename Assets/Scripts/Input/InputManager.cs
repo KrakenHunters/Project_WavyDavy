@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
    PlayerInput _action;
-   //PlayerController _player;
+   PlayerController _player;
 
     Vector2 _movement;
     public Vector2 Movement
@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
     }
     void Awake()
     {
-        //_player = GetComponent<PlayerController>();
+        _player = GetComponent<PlayerController>();
         _action = new PlayerInput();
     }
 
@@ -71,14 +71,14 @@ public class InputManager : MonoBehaviour
         DisablePlayerMovement();
         DisablePlayerTrickState();
 
-        _action.PlayerPaddle.Paddle.performed += (val) => Debug.Log("Paddle");
+        _action.PlayerPaddle.Paddle.performed += (val) => _player.HandlePaddle();
 
         _action.PlayerPaddle.Enable();
     }
 
     private void DisablePlayerPaddle()
     {
-        _action.PlayerPaddle.Paddle.performed -= (val) => Debug.Log("Paddle");
+        _action.PlayerPaddle.Paddle.performed -= (val) => _player.HandlePaddle();
 
         _action.PlayerPaddle.Disable();
     }
