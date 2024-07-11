@@ -3,6 +3,8 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "GameEvent", menuName = "GameEvent", order = 0)]
 public class GameEvent : ScriptableObject
 {
+
+    public UnityEvent<GamePhase> OnChangeGameState;
     public UnityEvent<GameObject> OnFlowBarAbove;
     public UnityEvent<GameObject> OnFlowBarBelow;
 

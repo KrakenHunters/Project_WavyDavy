@@ -83,6 +83,13 @@ public class InputManager : MonoBehaviour
         _action.PlayerPaddle.Disable();
     }
 
+    public void DisableAllInput()
+    {
+        DisablePlayerMovement();
+        DisablePlayerPaddle();
+        DisablePlayerTrickState();
+    }
+
     private void OnEnable()
     {
         _action.Enable();

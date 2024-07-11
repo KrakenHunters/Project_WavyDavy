@@ -15,9 +15,50 @@ public class WaveScript : MonoBehaviour
     [SerializeField]
     private float reducedBackwardForce;
 
+    public GameEvent Event;
 
-    void Start()
+    private Animator _animator;
+    private GamePhase currentPhase;
+
+    private void OnEnable()
     {
+        Event.OnChangeGameState.AddListener(SetPhase);
+    }
+
+    private void OnDisable()
+    {
+        Event.OnChangeGameState.RemoveListener(SetPhase);
+    }
+
+    private void SetPhase(GamePhase newPhase)
+    {
+        switch (newPhase)
+        {
+            case GamePhase.Phase1:
+                if (currentPhase == GamePhase.Phase2)
+                {
+                    _animator.SetTrigger("Phase2To1");
+                }
+                break;
+            case GamePhase.Phase2:
+                if (currentPhase == GamePhase.Phase1)
+                {
+                    _animator.SetTrigger("Phase1To2");
+                }
+                else if (currentPhase == GamePhase.Phase3)
+                {
+                    _animator.SetTrigger("Phase3To2");
+                }
+                break;
+            case GamePhase.Phase3:
+                _animator.SetTrigger("Phase2To3");
+                break;
+        }
+        currentPhase = newPhase;
+    }
+    void Awake()
+    {
+        _animator = GetComponent<Animator>();
         _boxCollider = GetComponent<BoxCollider2D>();
     }
     void ApplyBackwardForce()
@@ -45,15 +86,15 @@ public class WaveScript : MonoBehaviour
 
     // Call this method whenever we need to disable or enable the collider on the wave
     public void EnableBoxCollider(bool enable)
-    { 
-        _boxCollider.enabled = enable; 
+    {
+        _boxCollider.enabled = enable;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.GetComponent<PlayerController>())
         {
-            _character = collision.GetComponent <PlayerController>();
+            _character = collision.GetComponent<PlayerController>();
             ApplyBackwardForce();
             // Constrain the character within the wave collider
             // Constrain the character within the wave collider
