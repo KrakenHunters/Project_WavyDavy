@@ -17,7 +17,7 @@ public class WaterObject : MonoBehaviour , IHitable
 
     public virtual void OnHit() 
     {
-        Event.OnHit.Invoke(gameObject);
+        Event.OnHitObject.Invoke(gameObject);
     }
 }
 

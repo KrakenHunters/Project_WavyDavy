@@ -418,7 +418,7 @@ MonoBehaviour:
   phase1Zoom: 6
   phase2Zoom: 8
   phase3Zoom: 10
-  zoomSpeed: 1
+  zoomSpeed: 1.8
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!114 &370021460
 MonoBehaviour:
@@ -850,6 +850,58 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &976024002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 976024004}
+  - component: {fileID: 976024003}
+  m_Layer: 0
+  m_Name: '[FlowManager]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &976024003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976024002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1de82df55b4d24c8e27514b0aad992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
+  maxFlowPhase1: 100
+  maxFlowPhase2: 200
+  maxFlowPhase3: 300
+  aboveThreshold: 0.85
+  belowThreshold: 0.15
+  flowDecreaseSpeed: 10
+  thresholdDuration: 3
+--- !u!4 &976024004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976024002}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.1615396, y: 1.1246613, z: -0.08877091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1651,3 +1703,4 @@ SceneRoots:
   - {fileID: 1063890567}
   - {fileID: 962613765}
   - {fileID: 2076072335}
+  - {fileID: 976024004}

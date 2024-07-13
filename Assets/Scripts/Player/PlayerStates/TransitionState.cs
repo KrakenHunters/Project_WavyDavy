@@ -28,7 +28,8 @@ public class TransitionState : BaseState
     }
     public override void ExitState()
     {
-
+        Debug.Log("FinishedTransition");
+        player.Event.OnFinishTransition.Invoke();
     }
 
     public override void StateFixedUpdate()

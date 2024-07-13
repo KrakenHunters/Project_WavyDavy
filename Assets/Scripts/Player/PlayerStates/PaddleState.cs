@@ -26,8 +26,7 @@ public class PaddleState : BaseState
 
     public override void HandlePaddling()
     {
-        Debug.Log("Paddle");
-
+        player.Event.OnGainFlow.Invoke(4f);
     }
 
     public override void HandleTransition()
