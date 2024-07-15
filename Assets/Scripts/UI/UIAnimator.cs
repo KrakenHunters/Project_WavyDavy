@@ -9,7 +9,7 @@ public class UIAnimator : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private Ease ease = Ease.Linear;
 
-    private Vector3 startPos;
+    private Vector2 startPos;
     private RectTransform rectTransform;
     private Tween currentTween;
 
@@ -21,9 +21,10 @@ public class UIAnimator : MonoBehaviour
 
     public void MoveAnimate()
     {
-        if (currentTween != null) currentTween.Kill();
+        if (currentTween.IsActive())
+            return;
 
-        if (rectTransform.anchoredPosition == targetPos)
+        if (rectTransform.anchoredPosition != startPos)
             currentTween = rectTransform.DOAnchorPos(startPos, duration).SetEase(ease);
         else
             currentTween = rectTransform.DOAnchorPos(targetPos, duration).SetEase(ease);
@@ -31,7 +32,8 @@ public class UIAnimator : MonoBehaviour
 
     public void GrowAnimate()
     {
-       if (currentTween != null) currentTween.Kill();
+        if (currentTween.IsActive())
+            return;
 
         if (rectTransform.localScale == Vector3.one)
             currentTween = rectTransform.DOScale(Vector3.zero, duration).SetEase(ease);

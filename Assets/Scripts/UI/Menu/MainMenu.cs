@@ -12,10 +12,6 @@ public class MainMenu : Menu
     [SerializeField]
     private GameObject controlsMenu;
 
-    [Header("Start Buttons")]
-    [SerializeField]
-    private Button _loadGame;
-
     [Header("Mute button")]
     [SerializeField] private Image MuteButtonImage;
     [SerializeField] private Sprite MuteSprite;
@@ -36,8 +32,6 @@ public class MainMenu : Menu
 
     private void Start()
     {
-        //_loadGame.interactable = false;// use this to disable the button 
-        //Ui settings
         _startActive = true;
         DisableScreens();
     }
