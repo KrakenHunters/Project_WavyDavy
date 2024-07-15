@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainMenu : Menu
 {
     [SerializeField]
-    private GameObject popupMenu;
+    private GameObject exhibitionMenu;
     [SerializeField]
     private GameObject creditsMenu;
     [SerializeField]
@@ -33,23 +33,11 @@ public class MainMenu : Menu
     private void Start()
     {
         _startActive = true;
-        DisableScreens();
+       
     }
 
-
-    protected override void DisableScreens()
-    {
-        base.DisableScreens();
-        creditsMenu.SetActive(false);
-        controlsMenu.SetActive(false);
-        popupMenu.SetActive(false);
-    }
-
-    public void OnPlay() => SceneManager.LoadScene("02_ForestScene");
-
-    public void OnTogglePopUpMenu() => popupMenu.SetActive(!popupMenu.activeSelf);
-    public void OnToggleCredits() => creditsMenu.SetActive(!creditsMenu.activeSelf);
-    public void OnToggleControls() => controlsMenu.SetActive(!controlsMenu.activeSelf);
+    public void OnPlay_01() => SceneManager.LoadScene("01_Career");
+    public void OnPlay_02() => SceneManager.LoadScene("02_Exhibition");
 
 
     public void OnToggleMute()

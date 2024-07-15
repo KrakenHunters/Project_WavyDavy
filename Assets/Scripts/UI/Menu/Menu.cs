@@ -11,17 +11,6 @@ public class Menu : MonoBehaviour
 
     protected bool _isMusted;
 
-    private void Awake()
-    {
-        DisableScreens();
-    }
-
-    //Screen Management
-    protected virtual void DisableScreens()
-    {
-        _currentMenu.SetActive(_startActive);
-    }
-
     //Menu Management
 
     public void OnToggleCurrentMenu() => _currentMenu.SetActive(!_currentMenu.activeSelf);

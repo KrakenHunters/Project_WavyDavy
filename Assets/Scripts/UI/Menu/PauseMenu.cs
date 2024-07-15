@@ -12,7 +12,7 @@ public class PauseMenu : Menu
     {
         _isPaused = false;
        _startActive = false;
-        DisableScreens();
+       
     }
 
     public void OnTogglePauseMenu()
