@@ -57,7 +57,7 @@ public class FlowManager : MonoBehaviour
         StartCoroutine(FlowDecrease());
     }
 
-     private IEnumerator FlowDecrease()
+    private IEnumerator FlowDecrease()
     {
         while (true)
         {
@@ -113,7 +113,7 @@ public class FlowManager : MonoBehaviour
             yield return null;
         }
 
-        if (isAboveThreshold && nextPhase != GamePhase.Trick)
+        if (isAboveThreshold && nextPhase != GamePhase.Trick) //Remove the trick condition later
         {
             Event.OnChangeGameState.Invoke(nextPhase);
         }
@@ -155,6 +155,7 @@ public class FlowManager : MonoBehaviour
                 break;
             case GamePhase.Trick:
                 //Disable UI
+                previousPhase = GamePhase.Phase3;
                 break;
         }
 
@@ -166,6 +167,7 @@ public class FlowManager : MonoBehaviour
     {
         currentFlow += flowAmount;
         currentFlow = Mathf.Min(currentFlow, maxFlow); // Ensure currentFlow doesn't exceed maxFlow
+        currentFlow = Mathf.Max(currentFlow, 0f);
     }
 
 
