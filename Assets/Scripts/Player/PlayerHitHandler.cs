@@ -1,17 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHitHandler : MonoBehaviour
 {
-   Collider hitCollider;
-
-    private void Awake()
-    {
-        hitCollider = GetComponent<Collider>();
-    }
-
-    private void OnTriggerEnter(Collider other)
+/*    private Collider _hitCollider; // do we need this Renee?
+    private void Awake() => _hitCollider = GetComponent<Collider>();
+*/
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent<IHitable>(out IHitable obstacle))
         {

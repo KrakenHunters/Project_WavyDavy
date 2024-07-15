@@ -57,12 +57,7 @@ public class FlowManager : MonoBehaviour
         StartCoroutine(FlowDecrease());
     }
 
-    private void Update()
-    {
-        Debug.Log("CurrentFlow: " + currentFlow);
-    }
-
-    private IEnumerator FlowDecrease()
+     private IEnumerator FlowDecrease()
     {
         while (true)
         {
