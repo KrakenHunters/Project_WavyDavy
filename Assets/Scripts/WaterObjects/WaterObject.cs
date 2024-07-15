@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class WaterObject : MonoBehaviour , IHitable
 {
-    [SerializeField] protected float _speed = 1f;
-
-    [SerializeField] protected float flow;
+    [SerializeField] private float _speed = 1f;
+    [SerializeField] private float flow;
+    [SerializeField] private float deadZone = -25f;
 
     public GameEvent Event;
 
-    private void Update()
+    public float Flow
     {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+      get => flow;
+      private set => flow = value;
+    }
+
+    private void FixedUpdate()
+    {
+        //transform.Translate(Vector3.down * _speed * Time.deltaTime);
+       // transform.position += Vector3.left * _speed * Time.deltaTime;
+
+       transform.Translate(Vector3.left * _speed * Time.fixedDeltaTime);
+        if (transform.position.x < deadZone)
+        {
+          Event.OnReachDeadZone.Invoke(this);
+        }
     }
 
     public virtual void OnHit() 
