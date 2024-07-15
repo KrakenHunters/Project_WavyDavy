@@ -1,9 +1,13 @@
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using Utilities;
 
 public class TrickManager : Singleton<TrickManager>
 {
     [SerializeField] private TrickSO[] tricks;
+    [SerializeField] private float trickBeginTime;
+    [SerializeField] private float trickPressTime;
 
     private List<TrickCombo> buttonPressed = new List<TrickCombo>();
     private TrickSO currentTrick;
@@ -13,14 +17,34 @@ public class TrickManager : Singleton<TrickManager>
     private readonly List<TrickSO> leftTricks = new();
     private readonly List<TrickSO> rightTricks = new();
 
-    private bool isTrickActive;
-    private bool isTrickComplete;
-    private bool isTrickFailed;
-    private int currentTrickIndex;
+    private bool _isTrickActive;
+    private bool _isTrickComplete;
+    private bool _isTrickFailed;
+    private int _currentTrickIndex;
+
+    private CountdownTimer _trickBeginTimer;
+    private CountdownTimer _trickPressTimer;
 
     private void Start()
     {
+        _trickBeginTimer = new CountdownTimer(trickBeginTime);
+        _trickPressTimer = new CountdownTimer(trickPressTime);
+        
+        _trickBeginTimer.OnTimerStop += CheckBeginTime;
+        _trickBeginTimer.OnTimerStop += () => _trickBeginTimer.Start();
+
+
+
         ProccessTricks();
+    }
+
+   private void CheckBeginTime()
+    {
+
+    }
+    private void CheckPressTime()
+    {
+
     }
 
     public void ProccessTricks()
@@ -51,12 +75,13 @@ public class TrickManager : Singleton<TrickManager>
     public void AddButton(TrickCombo move)
     {
         buttonPressed.Add(move);
-        CheckCombo();
     }
+
 
     private void Update()
     {
-        // Debug only: delete later
+
+        //Debug only delete later
         if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
         {
             AddButton(TrickCombo.UP);
@@ -74,10 +99,7 @@ public class TrickManager : Singleton<TrickManager>
             AddButton(TrickCombo.RIGHT);
         }
 
-        if (isTrickActive)
-        {
-            TrackActiveTrick();
-        }
+
     }
 
     public void CheckCombo()
@@ -91,61 +113,39 @@ public class TrickManager : Singleton<TrickManager>
                 buttonPressed.RemoveAt(0);
                 return;
             }
-            isTrickActive = true;
+            _isTrickActive = true;
             currentTrick = trick;
-            currentTrickIndex = 1;
-            Debug.Log($"The trick is: {trick.trickName}");
+            Debug.Log($" the trick is ..... {trick.trickName}");
         }
+
     }
 
-    private void TrackActiveTrick()
+    private void TrackActiveTrick(TrickSO trick)
     {
-        while (isTrickActive)
+        while (_isTrickActive)
         {
-            if (currentTrickIndex >= currentTrick.trickCombo.Count)
+            while (trick.trickCombo[_currentTrickIndex] == buttonPressed[_currentTrickIndex])
             {
-                CompleteTrick();
-                return;
+                if (buttonPressed.Count > _currentTrickIndex + 1)
+                {
+                    _currentTrickIndex++;
+                    if (_currentTrickIndex == trick.trickCombo.Count)
+                    {
+                        _isTrickComplete = true;
+                        _isTrickActive = false;
+                        currentTrick = null;
+                        Debug.Log("Trick Complete");
+                    }
+                }
             }
-
-            if (buttonPressed.Count <= currentTrickIndex || buttonPressed[currentTrickIndex] != currentTrick.trickCombo[currentTrickIndex])
+            if (buttonPressed[_currentTrickIndex] != trick.trickCombo[_currentTrickIndex])
             {
-                FailTrick();
-                return;
-            }
-
-            currentTrickIndex++;
-
-            if (currentTrickIndex == currentTrick.trickCombo.Count)
-            {
-                CompleteTrick();
+                _isTrickFailed = true;
+                _isTrickActive = false;
+                currentTrick = null;
+                Debug.Log("Trick Failed");
             }
         }
-    }
-
-    private void CompleteTrick()
-    {
-        isTrickComplete = true;
-        isTrickActive = false;
-        Debug.Log("Trick Complete");
-        ResetTrick();
-    }
-
-    private void FailTrick()
-    {
-        isTrickFailed = true;
-        isTrickActive = false;
-        Debug.Log("Trick Failed");
-        ResetTrick();
-    }
-
-    private void ResetTrick()
-    {
-        currentTrick = null;
-        buttonPressed.Clear();
-        currentTrickIndex = 0;
-        isTrickComplete = false;
-        isTrickFailed = false;
     }
 
     private List<TrickSO> FindTrickGroup()
@@ -164,9 +164,9 @@ public class TrickManager : Singleton<TrickManager>
                 return null;
         }
     }
-
     private TrickSO FindTrickCombo(List<TrickSO> trickGroup)
     {
+        _currentTrickIndex = 1;
         foreach (TrickSO trick in trickGroup)
         {
             if (buttonPressed[1] == trick.trickCombo[1])
