@@ -18,20 +18,10 @@ public class TrickManager : Singleton<TrickManager>
 
     private CountdownTimer _trickBeginTimer;
 
-    private CountdownTimer _trickBeginTimer;
-    private CountdownTimer _trickPressTimer;
-
     private void Start()
     {
         _trickBeginTimer = new CountdownTimer(trickBeginTime);
     }
-
-    public void AddButton(TrickCombo move)
-    {
-        playerPressedCombo.Add(move);
-        CheckMatchingCombos();
-    }
-
 
     private void Update()
     {
@@ -53,6 +43,12 @@ public class TrickManager : Singleton<TrickManager>
         {
             AddButton(TrickCombo.RIGHT);
         }
+    }
+
+    public void AddButton(TrickCombo move)
+    {
+        playerPressedCombo.Add(move);
+        CheckMatchingCombos();
     }
 
     public void CheckMatchingCombos()
