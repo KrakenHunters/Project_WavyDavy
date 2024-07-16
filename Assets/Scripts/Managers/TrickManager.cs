@@ -1,26 +1,22 @@
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
+using System.Collections.Generic;
 using Utilities;
 
 public class TrickManager : Singleton<TrickManager>
 {
     [SerializeField] private TrickSO[] tricks;
     [SerializeField] private float trickBeginTime;
-    [SerializeField] private float trickPressTime;
 
-    private List<TrickCombo> buttonPressed = new List<TrickCombo>();
+    private List<TrickCombo> playerPressedCombo = new List<TrickCombo>();
+    private List<TrickSO> possibleTrickCombos = new List<TrickSO>();
+
     private TrickSO currentTrick;
-
-    private readonly List<TrickSO> upTricks = new();
-    private readonly List<TrickSO> downTricks = new();
-    private readonly List<TrickSO> leftTricks = new();
-    private readonly List<TrickSO> rightTricks = new();
 
     private bool _isTrickActive;
     private bool _isTrickComplete;
     private bool _isTrickFailed;
-    private int _currentTrickIndex;
+
+    private CountdownTimer _trickBeginTimer;
 
     private CountdownTimer _trickBeginTimer;
     private CountdownTimer _trickPressTimer;
@@ -28,53 +24,12 @@ public class TrickManager : Singleton<TrickManager>
     private void Start()
     {
         _trickBeginTimer = new CountdownTimer(trickBeginTime);
-        _trickPressTimer = new CountdownTimer(trickPressTime);
-        
-        _trickBeginTimer.OnTimerStop += CheckBeginTime;
-        _trickBeginTimer.OnTimerStop += () => _trickBeginTimer.Start();
-
-
-
-        ProccessTricks();
-    }
-
-   private void CheckBeginTime()
-    {
-
-    }
-    private void CheckPressTime()
-    {
-
-    }
-
-    public void ProccessTricks()
-    {
-        foreach (TrickSO trick in tricks)
-        {
-            switch (trick.trickCombo[0])
-            {
-                case TrickCombo.UP:
-                    upTricks.Add(trick);
-                    break;
-                case TrickCombo.DOWN:
-                    downTricks.Add(trick);
-                    break;
-                case TrickCombo.LEFT:
-                    leftTricks.Add(trick);
-                    break;
-                case TrickCombo.RIGHT:
-                    rightTricks.Add(trick);
-                    break;
-                default:
-                    Debug.LogWarning($"Missing trick in SO {trick}");
-                    break;
-            }
-        }
     }
 
     public void AddButton(TrickCombo move)
     {
-        buttonPressed.Add(move);
+        playerPressedCombo.Add(move);
+        CheckMatchingCombos();
     }
 
 
@@ -98,84 +53,63 @@ public class TrickManager : Singleton<TrickManager>
         {
             AddButton(TrickCombo.RIGHT);
         }
-
-
     }
 
-    public void CheckCombo()
+    public void CheckMatchingCombos()
     {
-        List<TrickSO> trickGroup = FindTrickGroup();
-        if (buttonPressed.Count > 1)
+        possibleTrickCombos.Clear();
+        bool hasMatch = false;  
+        foreach (TrickSO trick in tricks)
         {
-            TrickSO trick = FindTrickCombo(trickGroup);
-            if (trick == null)
+            for(int i = 0; i < playerPressedCombo.Count; i++)
             {
-                buttonPressed.RemoveAt(0);
-                return;
-            }
-            _isTrickActive = true;
-            currentTrick = trick;
-            Debug.Log($" the trick is ..... {trick.trickName}");
-        }
-
-    }
-
-    private void TrackActiveTrick(TrickSO trick)
-    {
-        while (_isTrickActive)
-        {
-            while (trick.trickCombo[_currentTrickIndex] == buttonPressed[_currentTrickIndex])
-            {
-                if (buttonPressed.Count > _currentTrickIndex + 1)
+                if (trick.trickCombo[i] == playerPressedCombo[i])
                 {
-                    _currentTrickIndex++;
-                    if (_currentTrickIndex == trick.trickCombo.Count)
-                    {
-                        _isTrickComplete = true;
-                        _isTrickActive = false;
-                        currentTrick = null;
-                        Debug.Log("Trick Complete");
-                    }
+                    hasMatch = true;
+                }
+                else
+                {
+                    hasMatch = false;
+                    break;
                 }
             }
-            if (buttonPressed[_currentTrickIndex] != trick.trickCombo[_currentTrickIndex])
+            if (hasMatch)
             {
-                _isTrickFailed = true;
-                _isTrickActive = false;
-                currentTrick = null;
-                Debug.Log("Trick Failed");
+                possibleTrickCombos.Add(trick);
             }
+        }
+                Debug.Log("Possible tricks: " + possibleTrickCombos.Count);
+        if (possibleTrickCombos.Count == 1 && CheckCombosAreEqual(possibleTrickCombos[0].trickCombo , playerPressedCombo))
+        {
+            currentTrick = possibleTrickCombos[0];
+            _isTrickActive = true;
+            possibleTrickCombos.Clear();
+            playerPressedCombo.Clear();
+            Debug.Log("Trick: " + currentTrick.trickName + " is Complete");
+        } else if (possibleTrickCombos.Count == 0)
+        {
+            possibleTrickCombos.Clear();
+            playerPressedCombo.Clear();
+            Debug.Log("Combo Faild");
         }
     }
 
-    private List<TrickSO> FindTrickGroup()
+    private bool CheckCombosAreEqual(List<TrickCombo> combo1, List<TrickCombo> combo2)
     {
-        switch (buttonPressed[0])
+        if (combo1.Count != combo2.Count)
         {
-            case TrickCombo.UP:
-                return upTricks;
-            case TrickCombo.DOWN:
-                return downTricks;
-            case TrickCombo.LEFT:
-                return leftTricks;
-            case TrickCombo.RIGHT:
-                return rightTricks;
-            default:
-                return null;
+            return false;
         }
-    }
-    private TrickSO FindTrickCombo(List<TrickSO> trickGroup)
-    {
-        _currentTrickIndex = 1;
-        foreach (TrickSO trick in trickGroup)
+        for (int i = 0; i < combo1.Count; i++)
         {
-            if (buttonPressed[1] == trick.trickCombo[1])
+            if (combo1[i] != combo2[i])
             {
-                return trick;
+                return false;
             }
         }
-        return null;
+        return true;
     }
+
 }
 
 public enum TrickCombo

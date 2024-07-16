@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trickName: Meow
   points: 100
-  trickCombo: 00000000010000000200000003000000
+  trickCombo: 01000000010000000200000003000000
