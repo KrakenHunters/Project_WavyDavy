@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using Utilities;
@@ -27,6 +27,19 @@ public class Spawner : MonoBehaviour
     private bool flipSpawn;
     private CountdownTimer countdownTimer;
 
+    private void OnEnable()
+    {
+        Event.OnChangeGameState.AddListener(SetGamePhase);
+        Event.OnReachDeadZone.AddListener(SortObject); 
+    }
+
+    private void OnDisable()
+    {
+        Event.OnChangeGameState.RemoveListener(SetGamePhase);
+        Event.OnReachDeadZone.RemoveListener(SortObject); 
+    }
+
+
     private void Start()
     {
         //InvokeRepeating(nameof(Spawn), 0, spawnRate);// same as below but more expensive
@@ -40,9 +53,38 @@ public class Spawner : MonoBehaviour
 
     private void Update() => countdownTimer.Tick(Time.deltaTime);
 
+    private void SetGamePhase(GamePhase newPhase)
+    {
+        currentPhase = newPhase;
+
+        switch (currentPhase)
+        {
+            case GamePhase.Trick:
+                phasePosIndex = 0;  // Trick
+                break;
+            case GamePhase.Phase1:
+                phasePosIndex = 0;  // Phase 1
+                break;
+            case GamePhase.Phase2:
+                phasePosIndex = 2;  // Phase 2
+                break;
+            case GamePhase.Phase3:
+                phasePosIndex = 3;  // Phase 3
+                break;
+            default:
+                phasePosIndex = 0; 
+                break;
+        }
+    }
+
     private void Spawn()
     {
         //add logic to spawn based on phase here
+        if (currentPhase == GamePhase.Phase1 || GameManager.Instance.currentGamePhase == GamePhase.Trick)
+        {
+            // no spawning in Phase 1& trick
+            return;
+        }
 
         WaterObject objToSpawn = flipSpawn ? GetWaveObject() : GetObstacleObject(); // change later based on phase
         flipSpawn = !flipSpawn;//remove made for debuging
@@ -53,25 +95,16 @@ public class Spawner : MonoBehaviour
 
     private Vector3 GetSpawnPos() // change based on phase
     {
-        Vector3 spawnPos;
+        List<Vector3> possiblePositions = new List<Vector3>();
 
-        switch (currentPosIndex)
-        {
-            case 0:
-                spawnPos = topSpawnPos.position;
-                break;
-            case 1:
-                spawnPos = middleSpawnPos.position;
-                break;
-            case 2:
-                spawnPos = bottomSpawnPos.position;
-                break;
-            default:
-                spawnPos = topSpawnPos.position;
-                break;
-        }
+        if (phasePosIndex > 0) possiblePositions.Add(bottomSpawnPos.position);
+        if (phasePosIndex > 1) possiblePositions.Add(middleSpawnPos.position);
+        if (phasePosIndex > 2) possiblePositions.Add(topSpawnPos.position);
 
-        currentPosIndex = (currentPosIndex + 1) % phasePosIndex;
+        if (possiblePositions.Count == 0)
+            return Vector3.zero; 
+        Vector3 spawnPos = possiblePositions[currentPosIndex % possiblePositions.Count];
+        currentPosIndex++;
         return spawnPos;
     }
 
@@ -129,6 +162,6 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void OnEnable() => Event.OnReachDeadZone.AddListener(SortObject);
-    private void OnDisable() => Event.OnReachDeadZone.RemoveListener(SortObject);
+    //private void OnEnable() => Event.OnReachDeadZone.AddListener(SortObject);
+    //private void OnDisable() => Event.OnReachDeadZone.RemoveListener(SortObject);
 }
