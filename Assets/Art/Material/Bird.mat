@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wave
+  m_Name: Bird
   m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9abff21ed1eb07942b098947b464af2d, type: 3}
+        m_Texture: {fileID: 2800000, guid: e34c7d47a9033674f82a1d4cf72d03b8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 1, y: 0}
     - _MaskTex:
