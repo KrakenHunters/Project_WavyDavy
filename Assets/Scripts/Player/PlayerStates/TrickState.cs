@@ -11,6 +11,7 @@ public class TrickState : BaseState
     {
         inputManager.EnablePlayerTrickState();
         trickTimer = new CountdownTimer(trickManager.trickBeginTime);
+        trickTimer.Start();
         trickManager.StartTrick();
     }
 
@@ -28,12 +29,10 @@ public class TrickState : BaseState
     {
         trickTimer.Tick(Time.deltaTime);
         player.Event.OnTrickRunning.Invoke(trickTimer.Progress);
-
         if (trickTimer.IsFinished)
         {
-            trickManager.EndTrick();
-            trickTimer.Reset();
             player.Event.OnTrickFail?.Invoke(trickManager);
+            trickManager.EndTrick();
         }
 
     }

@@ -51,7 +51,9 @@ public class TransitionState : BaseState
                     break;
                 case GamePhase.Phase3:
                     player.ChangeState(new MovementState());
-                    //inputManager.EnablePlayerTrickState();
+                    break;
+                case GamePhase.Trick:
+                    player.ChangeState(new TrickState());
                     break;
             }
 
