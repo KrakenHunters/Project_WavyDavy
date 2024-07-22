@@ -35,6 +35,8 @@ public class FlowManager : MonoBehaviour
     private FlowUIHandler flowUIHandler;
 
     private Coroutine thresholdCoroutine;
+    private float previousFlow;
+    private bool wasPhaseTrick;
 
     private void OnEnable()
     {
@@ -133,10 +135,15 @@ public class FlowManager : MonoBehaviour
     private void RestartCoroutine()
     {
         StartCoroutine(FlowDecrease());
+        if(previousPhase == GamePhase.Phase3)
+        {
+            StopAllCoroutines();
+        }
     }
 
     private void ResetFlow(GamePhase newPhase)
     {
+        previousFlow = currentFlow;
         StopAllCoroutines();
         switch (newPhase)
         {
@@ -154,12 +161,14 @@ public class FlowManager : MonoBehaviour
                 break;
             case GamePhase.Phase3:
                 maxFlow = maxFlowPhase3;
-                currentFlow = maxFlow / 2;
+                currentFlow = wasPhaseTrick ? previousFlow : maxFlow / 2 ;
+                wasPhaseTrick = false;
                 previousPhase = GamePhase.Phase2;
                 nextPhase = GamePhase.Trick;
                 break;
             case GamePhase.Trick:
                 //Disable UI
+                wasPhaseTrick = true;
                 previousPhase = GamePhase.Phase3;
                 break;
         }

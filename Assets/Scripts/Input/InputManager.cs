@@ -3,8 +3,10 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+
    PlayerInput _action;
    PlayerController _player;
+
 
     Vector2 _movement;
     public Vector2 Movement
@@ -48,20 +50,21 @@ public class InputManager : MonoBehaviour
     {
         DisablePlayerPaddle();
         DisablePlayerMovement();
-        _action.PlayerTrickState.Up.performed += (val) => Debug.Log("Up");
-        _action.PlayerTrickState.Down.performed += (val) => Debug.Log("Down");
-        _action.PlayerTrickState.Left.performed += (val) => Debug.Log("Left");
-        _action.PlayerTrickState.Right.performed += (val) => Debug.Log("Right");
+        _action.PlayerTrickState.Up.performed += (val) =>   _player.HandleTrickInput(TrickCombo.UP);
+        _action.PlayerTrickState.Down.performed += (val) => _player.HandleTrickInput(TrickCombo.DOWN);
+        _action.PlayerTrickState.Left.performed += (val) => _player.HandleTrickInput(TrickCombo.LEFT);
+        _action.PlayerTrickState.Right.performed += (val) => _player.HandleTrickInput(TrickCombo.RIGHT);
 
         _action.PlayerTrickState.Enable();
     }
 
+
     private void DisablePlayerTrickState()
     {
-        _action.PlayerTrickState.Up.performed -= (val) => Debug.Log("Up");
-        _action.PlayerTrickState.Down.performed -= (val) => Debug.Log("Down");
-        _action.PlayerTrickState.Left.performed -= (val) => Debug.Log("Left");
-        _action.PlayerTrickState.Right.performed -= (val) => Debug.Log("Right");
+        _action.PlayerTrickState.Up.performed -= (val) =>   _player.HandleTrickInput(TrickCombo.UP);
+        _action.PlayerTrickState.Down.performed -= (val) => _player.HandleTrickInput(TrickCombo.DOWN);
+        _action.PlayerTrickState.Left.performed -= (val) => _player.HandleTrickInput(TrickCombo.LEFT);
+        _action.PlayerTrickState.Right.performed -= (val) => _player.HandleTrickInput(TrickCombo.RIGHT);
 
         _action.PlayerTrickState.Disable();
     }

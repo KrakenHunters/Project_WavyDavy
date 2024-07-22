@@ -20,44 +20,39 @@ public class TrickManager : Singleton<TrickManager>
 
     private TrickSO currentTrick;
 
-    private bool _isTrickComplete;
-    private bool _isTrickFailed;
-
     public CountdownTimer _trickTimer;
-
-
 
     private void OnEnable()
     {
         _trickTimer = new CountdownTimer(trickBeginTime);
         Event.OnChangeGameState.AddListener(CheckState);
+        Event.OnPlayerInput += AddButton;
     }
     private void OnDisable()
     {
         Event.OnChangeGameState.RemoveListener(CheckState);
+        Event.OnPlayerInput -= AddButton;
     }
 
-    private void CheckState(GamePhase phase)
+    private void CheckState(GamePhase phase)  //move to trickState  in player states
     {
-        currentPhase = phase;
-        if (currentPhase == GamePhase.Trick)
-        {
-            StartTrick();
-            currentPhase = GamePhase.Phase1;// change this later switch to a new phase ( default phase)
-        }
+        if(phase == GamePhase.Trick)
+       StartTrick();
     }
 
     private void StartTrick()
     {
         OnTrickStart?.Invoke();
+
         _trickTimer.Start();
+
+        CheckMatchingCombos();
     }
 
     private void EndTrick()
     {
         _trickTimer.Stop();
-        
-        Debug.Log("Trick Ended");
+        GameManager.Instance.Event.OnChangeGameState.Invoke(GamePhase.Phase3);  
     }
 
     private void Update()
@@ -68,23 +63,6 @@ public class TrickManager : Singleton<TrickManager>
             EndTrick();
            _trickTimer.Reset();
            OnTrickFail?.Invoke();
-        }
-        //Debug only delete later
-        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
-        {
-            AddButton(TrickCombo.UP);
-        }
-        if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S))
-        {
-            AddButton(TrickCombo.DOWN);
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
-        {
-            AddButton(TrickCombo.LEFT);
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))
-        {
-            AddButton(TrickCombo.RIGHT);
         }
     }
 
@@ -118,7 +96,7 @@ public class TrickManager : Singleton<TrickManager>
                     break;
                 }
             }
-            if (hasMatch)
+            if (hasMatch || playerPressedCombo.Count == 0)
             {
                 possibleTrickCombos.Add(trick);
             }
@@ -139,7 +117,6 @@ public class TrickManager : Singleton<TrickManager>
             playerPressedCombo.Clear();
             Debug.Log("Combo Faild");
             OnTrickFail?.Invoke();
-
             EndTrick();
         }
     }

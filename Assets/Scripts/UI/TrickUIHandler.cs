@@ -22,53 +22,53 @@ public class TrickUIHandler : MonoBehaviour
     private void OnEnable()
     {
         trickManager.OnPlayerInput += UpdateUI;
-        trickManager.OnTrickStart += ToggleUIPanel;
-        trickManager.OnTrickFail += OnTrickEnd;
+
+        trickManager.OnTrickStart += ToggleOnUIPanel;
+        trickManager.OnTrickStart += ResetUI;
+
+        trickManager.OnTrickComplete += ToggleUIOffPanel;
+        trickManager.OnTrickFail += ToggleUIOffPanel;
     }
 
     private void OnDisable()
     {
-        trickManager.OnPlayerInput -= UpdateUI;
-        trickManager.OnTrickStart -= ToggleUIPanel;
-        trickManager.OnTrickFail -= OnTrickEnd;
+
     }
 
     private void Start()
     {
         trickTimeSlider.maxValue = trickManager.MaxTrickTime;
         trickTimeSlider.value = trickManager.MaxTrickTime; // Initialize slider to max value
-        trickTime.text = trickManager.MaxTrickTime.ToString("F2"); // Initialize text to max value
+        trickTime.text = ((int)trickManager.MaxTrickTime).ToString();
+
     }
 
     private void Update()
     {
-        if (trickManager._trickTimer != null)
+        if (trickManager._trickTimer != null && trickManager._trickTimer.IsRunning)
         {
             // Update the text and slider with the current timer progress
             float remainingTime = trickManager._trickTimer.Progress * trickManager.MaxTrickTime;
-            trickTime.text = ((int)(remainingTime)).ToString("F2");
+            trickTime.text = ((int)remainingTime).ToString();
             trickTimeSlider.value = remainingTime;
         }
     }
 
     private void Initialize()
     {
-        ToggleUIPanel(); // Ensure UI is in the correct state initially
         foreach (TrickSO trick in trickManager.tricks)
         {
             SpawnTrickUIBox(trick);
         }
     }
 
-    public void ToggleUIPanel()
+    public void ToggleOnUIPanel()
     {
-        trickUI.SetActive(!trickUI.activeSelf);
+        trickUI.SetActive(true);
     }
-
-    private void OnTrickEnd()
+    public void ToggleUIOffPanel()
     {
-        ResetUI();
-        ToggleUIPanel();
+        trickUI.SetActive(false);
     }
 
     public void SpawnTrickUIBox(TrickSO trickSO)

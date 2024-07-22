@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using static UnityEditor.Rendering.ShadowCascadeGUI;
@@ -93,6 +94,13 @@ public class PlayerController : MonoBehaviour
     {
         currentState?.HandlePaddling();
     }
+
+    public void HandleTrickInput(TrickCombo direction)
+    {
+       Event.OnPlayerInput?.Invoke(direction);
+    }
+
+
 
     private IEnumerator WaitFixedFrame(BaseState newState)
     {

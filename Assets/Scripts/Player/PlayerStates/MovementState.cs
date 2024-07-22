@@ -28,7 +28,6 @@ public class MovementState : BaseState
 
     public override void HandleMovement(Vector2 direction)
     {
-        Debug.Log("Moving");
         _direction = direction;
     }
 

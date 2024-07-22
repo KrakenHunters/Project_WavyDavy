@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 [CreateAssetMenu(fileName = "GameEvent", menuName = "GameEvent", order = 0)]
@@ -13,7 +12,7 @@ public class GameEvent : ScriptableObject
 
 
     // Flow Events
-    public UnityEvent<float> OnHitObject;     
+    public UnityEvent<float> OnHitObject;
     public UnityEvent<WaterObject> OnReachDeadZone;
 
     //public UnityEvent<GameObject> OnLoseFlow;
@@ -28,7 +27,10 @@ public class GameEvent : ScriptableObject
 
     public UnityEvent OnUIUpdate;
 
+
+    public UnityAction<TrickCombo> OnPlayerInput;
+
 }
 
 
-      
+
