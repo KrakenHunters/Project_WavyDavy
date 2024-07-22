@@ -57,7 +57,12 @@ public class WaveScript : MonoBehaviour
             case GamePhase.Phase3:
                 _animator.SetTrigger("Phase2To3");
                 backwardForce = startBackwardForce;
-                break;
+            break;
+            case GamePhase.Trick:
+                //_animator.SetTrigger("Phase3ToTrick");
+                backwardForce = 0;
+            break;
+
         }
         currentPhase = newPhase;
     }
