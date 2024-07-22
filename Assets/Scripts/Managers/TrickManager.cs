@@ -2,17 +2,14 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using Utilities;
+using UnityEngine.Events;
 
-public class TrickManager : Singleton<TrickManager>
+public class TrickManager : MonoBehaviour
 {
     public GameEvent Event;
-    public event Action OnPlayerInput;
-    public event Action OnTrickStart;
-    public event Action OnTrickFail;
-    public event Action OnTrickComplete;
 
     public TrickSO[] tricks;
-    [SerializeField] private float trickBeginTime;
+    public float trickBeginTime;
     public float MaxTrickTime { get { return trickBeginTime; } }
     public GamePhase currentPhase = GamePhase.Phase1;
     public List<TrickSO> possibleTrickCombos = new List<TrickSO>();
@@ -20,57 +17,34 @@ public class TrickManager : Singleton<TrickManager>
 
     private TrickSO currentTrick;
 
-    public CountdownTimer _trickTimer;
 
     private void OnEnable()
     {
-        _trickTimer = new CountdownTimer(trickBeginTime);
-        Event.OnChangeGameState.AddListener(CheckState);
         Event.OnPlayerInput += AddButton;
     }
     private void OnDisable()
     {
-        Event.OnChangeGameState.RemoveListener(CheckState);
         Event.OnPlayerInput -= AddButton;
     }
 
-    private void CheckState(GamePhase phase)  //move to trickState  in player states
+    public void StartTrick()
     {
-        if(phase == GamePhase.Trick)
-       StartTrick();
-    }
-
-    private void StartTrick()
-    {
-        OnTrickStart?.Invoke();
-
-        _trickTimer.Start();
+        Debug.Log("Start Trick");
+        Event.OnTrickStart?.Invoke(this);
 
         CheckMatchingCombos();
     }
 
-    private void EndTrick()
+    public void EndTrick()
     {
-        _trickTimer.Stop();
-        GameManager.Instance.Event.OnChangeGameState.Invoke(GamePhase.Phase3);  
-    }
-
-    private void Update()
-    {
-        _trickTimer.Tick(Time.deltaTime);
-        if (_trickTimer.IsFinished)
-        {
-            EndTrick();
-           _trickTimer.Reset();
-           OnTrickFail?.Invoke();
-        }
+        Event.OnChangeGameState.Invoke(GamePhase.Phase3);  
     }
 
     public void AddButton(TrickCombo move)
     {
         playerPressedCombo.Add(move);
         CheckMatchingCombos();
-        OnPlayerInput?.Invoke();
+        Event.OnTrickInput?.Invoke(this);
     }
 
     public void CheckMatchingCombos()
@@ -108,7 +82,7 @@ public class TrickManager : Singleton<TrickManager>
             possibleTrickCombos.Clear();
             playerPressedCombo.Clear();
             Debug.Log("Trick: " + currentTrick.trickName + " is Complete");
-            OnTrickComplete?.Invoke();
+            Event.OnTrickComplete?.Invoke(this);
             EndTrick();
         }
         else if (possibleTrickCombos.Count == 0)
@@ -116,7 +90,7 @@ public class TrickManager : Singleton<TrickManager>
             possibleTrickCombos.Clear();
             playerPressedCombo.Clear();
             Debug.Log("Combo Faild");
-            OnTrickFail?.Invoke();
+            Event.OnTrickFail?.Invoke(this);
             EndTrick();
         }
     }

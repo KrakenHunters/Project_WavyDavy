@@ -9,25 +9,22 @@ public class TrickUIHandler : MonoBehaviour
     [SerializeField] private GameObject trickUIParent;
     [SerializeField] private TMPro.TextMeshProUGUI trickTime;
     [SerializeField] private Slider trickTimeSlider;
-
-    private TrickManager trickManager;
     private Dictionary<TrickSO, TrickUISetup> trickDictionary = new();
 
-    private void Awake()
-    {
-        trickManager = TrickManager.Instance;
-        Initialize();
-    }
+    private float maxTimer;
+    [SerializeField] private GameEvent Event;
 
     private void OnEnable()
     {
-        trickManager.OnPlayerInput += UpdateUI;
+        Event.OnTrickInput += UpdateUI;
 
-        trickManager.OnTrickStart += ToggleOnUIPanel;
-        trickManager.OnTrickStart += ResetUI;
+        Event.OnTrickStart += ToggleOnUIPanel;
+        Event.OnTrickStart += ResetUI;
 
-        trickManager.OnTrickComplete += ToggleUIOffPanel;
-        trickManager.OnTrickFail += ToggleUIOffPanel;
+        Event.OnTrickRunning += UpdateTimer;
+
+        Event.OnTrickComplete += ToggleUIOffPanel;
+        Event.OnTrickFail += ToggleUIOffPanel;
     }
 
     private void OnDisable()
@@ -37,36 +34,37 @@ public class TrickUIHandler : MonoBehaviour
 
     private void Start()
     {
-        trickTimeSlider.maxValue = trickManager.MaxTrickTime;
+
+    }
+
+    private void UpdateTimer(float timer)
+    {
+        float remainingTime = timer * maxTimer;
+        trickTime.text = ((int)remainingTime).ToString();
+        trickTimeSlider.value = remainingTime;
+    }
+
+    private void Initialize(TrickManager trickManager)
+    {
+        foreach (TrickSO trick in trickManager.tricks)
+        {
+            SpawnTrickUIBox(trick);
+
+        }
+
+        maxTimer = trickManager.MaxTrickTime;
+        trickTimeSlider.maxValue = maxTimer;
         trickTimeSlider.value = trickManager.MaxTrickTime; // Initialize slider to max value
         trickTime.text = ((int)trickManager.MaxTrickTime).ToString();
 
     }
 
-    private void Update()
-    {
-        if (trickManager._trickTimer != null && trickManager._trickTimer.IsRunning)
-        {
-            // Update the text and slider with the current timer progress
-            float remainingTime = trickManager._trickTimer.Progress * trickManager.MaxTrickTime;
-            trickTime.text = ((int)remainingTime).ToString();
-            trickTimeSlider.value = remainingTime;
-        }
-    }
-
-    private void Initialize()
-    {
-        foreach (TrickSO trick in trickManager.tricks)
-        {
-            SpawnTrickUIBox(trick);
-        }
-    }
-
-    public void ToggleOnUIPanel()
+    public void ToggleOnUIPanel(TrickManager trickManager)
     {
         trickUI.SetActive(true);
     }
-    public void ToggleUIOffPanel()
+
+    public void ToggleUIOffPanel(TrickManager trickManager)
     {
         trickUI.SetActive(false);
     }
@@ -79,7 +77,7 @@ public class TrickUIHandler : MonoBehaviour
         trickUISetup.SetupTrick(trickSO);
     }
 
-    private void UpdateUI()
+    private void UpdateUI(TrickManager trickManager)
     {
         foreach (TrickSO trick in trickManager.tricks)
         {
@@ -90,7 +88,7 @@ public class TrickUIHandler : MonoBehaviour
         }
     }
 
-    public void ResetUI()
+    public void ResetUI(TrickManager trickManager)
     {
         foreach (TrickSO trick in trickManager.tricks)
         {

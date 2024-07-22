@@ -10,6 +10,7 @@ using static UnityEditor.Rendering.ShadowCascadeGUI;
 public class PlayerController : MonoBehaviour
 {
     private InputManager inputManager;
+    private TrickManager trickManager;
 
     public GameEvent Event;
 
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         inputManager = GetComponent<InputManager>();
-
+        trickManager = GetComponent<TrickManager>();
         ChangeState(new PaddleState());
     }
 
@@ -109,6 +110,7 @@ public class PlayerController : MonoBehaviour
         currentState?.ExitState();
         currentState = newState;
         currentState.player = this;
+        currentState.trickManager = trickManager;
         currentState.inputManager = this.inputManager;
         currentState.EnterState();
 

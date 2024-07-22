@@ -30,6 +30,15 @@ public class GameEvent : ScriptableObject
 
     public UnityAction<TrickCombo> OnPlayerInput;
 
+
+    public UnityAction<TrickManager> OnTrickInput;
+    public UnityAction<TrickManager> OnTrickStart;
+    public UnityAction<TrickManager> OnTrickFail;
+    public UnityAction<float> OnTrickRunning;
+    public UnityAction<TrickManager> OnTrickComplete;
+
+
+
 }
 
 
