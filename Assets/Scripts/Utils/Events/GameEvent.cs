@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 [CreateAssetMenu(fileName = "GameEvent", menuName = "GameEvent", order = 0)]
@@ -31,7 +32,7 @@ public class GameEvent : ScriptableObject
     public UnityAction<TrickCombo> OnPlayerInput;
 
 
-    public UnityAction<TrickManager> OnTrickInput;
+    public UnityAction<List<TrickSO>> OnTrickInput;
     public UnityAction<TrickManager> OnTrickStart;
     public UnityAction<TrickManager> OnTrickFail;
     public UnityAction<float> OnTrickRunning;

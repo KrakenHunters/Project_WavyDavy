@@ -77,14 +77,14 @@ public class TrickUIHandler : MonoBehaviour
         trickUISetup.SetupTrick(trickSO);
     }
 
-    private void UpdateUI(TrickManager trickManager)
+    private void UpdateUI(List<TrickSO> possibleTricks)
     {
-        foreach (TrickSO trick in trickManager.tricks)
+        foreach (KeyValuePair<TrickSO, TrickUISetup> trickValues in trickDictionary)
         {
-            if (trickManager.possibleTrickCombos.Contains(trick))
-                trickDictionary[trick].gameObject.SetActive(true);
+            if(possibleTricks.Contains(trickValues.Key))
+                trickValues.Value.gameObject.SetActive(true);
             else
-                trickDictionary[trick].gameObject.SetActive(false);
+                trickValues.Value.gameObject.SetActive(false);
         }
     }
 

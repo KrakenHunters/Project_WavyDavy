@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Tricks;
 using Utilities;
 using UnityEngine.Events;
 
@@ -10,7 +12,10 @@ public class TrickManager : MonoBehaviour
 
     public TrickSO[] tricks;
     public float trickBeginTime;
-    public float MaxTrickTime { get { return trickBeginTime; } }
+
+    public float MaxTrickTime => trickBeginTime;
+
+
     public GamePhase currentPhase = GamePhase.Phase1;
     public List<TrickSO> possibleTrickCombos = new List<TrickSO>();
     private List<TrickCombo> playerPressedCombo = new List<TrickCombo>();
@@ -39,23 +44,45 @@ public class TrickManager : MonoBehaviour
     {
         Debug.Log("Start Trick");
         Event.OnTrickStart?.Invoke(this);
-
-        CheckMatchingCombos();
+        CheckMatchCombos();
+        //CheckMatchingCombos();
     }
 
     public void EndTrick()
     {
+        playerPressedCombo.Clear();
         Event.OnChangeGameState.Invoke(GamePhase.Phase3);  
     }
 
     public void AddButton(TrickCombo move)
     {
         playerPressedCombo.Add(move);
-        CheckMatchingCombos();
-        Event.OnTrickInput?.Invoke(this);
+        CheckMatchCombos();
+        //CheckMatchingCombos();
+        Event.OnTrickInput?.Invoke(this.possibleTrickCombos);
     }
 
-    public void CheckMatchingCombos()
+    public void CheckMatchCombos()
+    {
+        possibleTrickCombos.Clear();
+        foreach (TrickSO trick in tricks)
+        {
+            TrickResult result = trick.Evaluate(playerPressedCombo);
+            if(result == TrickResult.Possible)
+                possibleTrickCombos.Add(trick);
+            if (result == TrickResult.Complete)
+            {
+                Event.OnTrickComplete?.Invoke(this); //add some way of checking for whether trick done or not
+                EndTrick();
+            }
+        }
+        if (possibleTrickCombos.Count == 0)
+        {
+            Event.OnTrickFail?.Invoke(this);
+            EndTrick();
+        }
+    }
+    public void CheckMatchingCombos() //Way too long and hard codes how you set up your trick detection.
     {
         possibleTrickCombos.Clear();
         bool hasMatch = false;
