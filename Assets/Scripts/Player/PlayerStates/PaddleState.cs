@@ -26,7 +26,7 @@ public class PaddleState : BaseState
 
     public override void HandlePaddling()
     {
-        player.Event.OnGainFlow.Invoke(4f);
+        player.Event.OnHitObject.Invoke(player.paddleSpeed);
     }
 
     public override void HandleTransition()

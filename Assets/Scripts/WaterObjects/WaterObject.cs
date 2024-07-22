@@ -30,7 +30,8 @@ public class WaterObject : MonoBehaviour , IHitable
 
     public virtual void OnHit() 
     {
-        Event.OnHitObject.Invoke(gameObject);
+        Event.OnHitObject.Invoke(flow);
+        Event.OnReachDeadZone.Invoke(this);
     }
 }
 

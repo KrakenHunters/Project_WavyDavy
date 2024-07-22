@@ -47,7 +47,6 @@ public class Spawner : MonoBehaviour
         countdownTimer = new CountdownTimer(spawnRate);
         countdownTimer.OnTimerStart += Spawn;
         countdownTimer.OnTimerStop += () => countdownTimer.Start();
-
         countdownTimer.Start();
     }
 
@@ -80,7 +79,7 @@ public class Spawner : MonoBehaviour
     private void Spawn()
     {
         //add logic to spawn based on phase here
-        if (currentPhase == GamePhase.Phase1 || GameManager.Instance.currentGamePhase == GamePhase.Trick)
+        if (currentPhase == GamePhase.Phase1 || currentPhase == GamePhase.Trick)
         {
             // no spawning in Phase 1& trick
             return;
@@ -161,7 +160,4 @@ public class Spawner : MonoBehaviour
             ReturnObstacleObject(waterObject);
         }
     }
-
-    //private void OnEnable() => Event.OnReachDeadZone.AddListener(SortObject);
-    //private void OnDisable() => Event.OnReachDeadZone.RemoveListener(SortObject);
 }

@@ -70,6 +70,7 @@ namespace Utilities
             initialTime = newTime;
             Reset();
         }
+
     }
 
     public class StopwatchTimer : Timer
@@ -85,7 +86,6 @@ namespace Utilities
         }
 
         public void Reset() => Time = 0;
-
-        public float GetTime() => Time;
+        public float GetTime() => Time;  
     }
 }

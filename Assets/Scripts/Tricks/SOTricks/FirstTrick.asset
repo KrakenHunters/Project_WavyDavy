@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: FirstTrick
   m_EditorClassIdentifier: 
   trickName: Meow
+  icon: {fileID: 0}
   points: 100
-  trickCombo: 00000000010000000200000003000000
+  trickCombo: 000000000100000002000000

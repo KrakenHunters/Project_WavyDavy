@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public Transform phase2StartPos;
     public Transform phase3StartPos;
     public float speed;
+    public float paddleSpeed;
 
     [HideInInspector]
     public BaseState currentState;
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             inputManager.EnablePlayerTrickState();
+            GameManager.Instance.Event.OnChangeGameState.Invoke(GamePhase.Trick);
         }
 
         currentState?.StateUpdate();

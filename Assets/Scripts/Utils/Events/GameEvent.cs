@@ -13,11 +13,11 @@ public class GameEvent : ScriptableObject
 
 
     // Flow Events
-    public UnityEvent<GameObject> OnHitObject;     
+    public UnityEvent<float> OnHitObject;     
     public UnityEvent<WaterObject> OnReachDeadZone;
 
     //public UnityEvent<GameObject> OnLoseFlow;
-    public UnityEvent<float> OnGainFlow;
+    //public UnityEvent<float> OnGainFlow;
 
     public UnityEvent OnStartTrick;
     public UnityEvent<bool> OnEndTrick;
