@@ -17,7 +17,7 @@ public class TrickState : BaseState
 
     public override void ExitState()
     {
-
+        trickTimer.Reset();
     }
 
     public override void StateFixedUpdate()
