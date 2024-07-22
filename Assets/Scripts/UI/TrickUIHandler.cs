@@ -44,7 +44,7 @@ public class TrickUIHandler : MonoBehaviour
         trickTimeSlider.value = remainingTime;
     }
 
-    private void Initialize(TrickManager trickManager)
+    public void Initialize(TrickManager trickManager)
     {
         foreach (TrickSO trick in trickManager.tricks)
         {

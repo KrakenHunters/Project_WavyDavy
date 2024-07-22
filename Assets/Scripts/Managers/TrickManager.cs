@@ -17,6 +17,9 @@ public class TrickManager : MonoBehaviour
 
     private TrickSO currentTrick;
 
+    [SerializeField]
+    private TrickUIHandler trickUIHandler;
+
 
     private void OnEnable()
     {
@@ -25,6 +28,11 @@ public class TrickManager : MonoBehaviour
     private void OnDisable()
     {
         Event.OnPlayerInput -= AddButton;
+    }
+
+    private void Awake()
+    {
+        trickUIHandler.Initialize(this);
     }
 
     public void StartTrick()
