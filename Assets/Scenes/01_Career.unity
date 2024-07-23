@@ -1704,12 +1704,12 @@ MonoBehaviour:
   _phase1StartPos: {fileID: 1063890567}
   _phase2StartPos: {fileID: 962613765}
   _phase3StartPos: {fileID: 2076072335}
-  _speed: 4
+  _speed: 6
   _paddleSpeed: 6
   _phase2MaxHeight: 2
   _phase3MaxHeight: 4
-  _maxInclineAngle: 20
-  _inclineSpeed: 30
+  _maxInclineAngle: 10
+  _inclineSpeed: 20
 --- !u!114 &520606960
 MonoBehaviour:
   m_ObjectHideFlags: 0

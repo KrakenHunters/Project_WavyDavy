@@ -11,10 +11,10 @@ public class MovementState : BaseState
     private float speedVelocity = 0f;
 
     private float upSpeedSmoothTime = 0.5f; // Smooth time for up speed transition
-    private float downSpeedSmoothTime = 0.3f; // Smooth time for down speed transition
+    private float downSpeedSmoothTime = 0.5f; // Smooth time for down speed transition
 
-    private float upToDownSmoothTime = 0.5f; // Smooth time for transitioning from up to down
-    private float downToUpSmoothTime = 0.2f; // Smooth time for transitioning from down to up
+    private float upToDownSmoothTime = 0.5f; // Smooth time for rotation transitioning from up to down
+    private float downToUpSmoothTime = 0.3f; // Smooth time for rotation transitioning from down to up
 
     private bool isMovingUp = false;
     private bool isMovingDown = false;
@@ -102,7 +102,6 @@ public class MovementState : BaseState
 
         // Smoothly transition to the target speed
         currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedVelocity, speedSmoothTime);
-
         // Apply vertical movement
         Vector3 verticalMovement = (isMovingUp ? Vector3.up : (isMovingDown ? Vector3.down : Vector3.zero)) * currentSpeed * Time.deltaTime;
 
@@ -125,14 +124,14 @@ public class MovementState : BaseState
 
     public override void HandleMovement()
     {
-        Debug.Log("Up");
+        currentSpeed = currentSpeed/4f;
         queuedMoveUp = true;
         queuedMoveDown = false;
     }
 
     public override void HandleStopMovement()
     {
-        Debug.Log("Down");
+        currentSpeed = currentSpeed / 4f;
         queuedMoveDown = true;
         queuedMoveUp = false;
     }
