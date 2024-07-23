@@ -16,7 +16,8 @@ public abstract class BaseState
     public virtual void ExitState() { }
     public virtual void StateFixedUpdate() { }
     public virtual void StateUpdate() { }
-    public virtual void HandleMovement(Vector2 dir) { }
+    public virtual void HandleMovement() { }
+    public virtual void HandleStopMovement() { }
     public virtual void HandlePaddling() { }
 
     public virtual void HandleTransition() 

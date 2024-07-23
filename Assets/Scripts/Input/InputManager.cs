@@ -36,13 +36,16 @@ public class InputManager : MonoBehaviour
         DisablePlayerPaddle();
         DisablePlayerTrickState();
 
-        _action.PlayerMovement.Movement.performed += (val) => _movement = val.ReadValue<Vector2>();
+        _action.PlayerMovement.Movement.performed += (val) => _player.HandleMove();
+        _action.PlayerMovement.Movement.canceled += (val) => _player.HandleStopMove();
+
         _action.PlayerMovement.Enable();
     }
 
     private void DisablePlayerMovement()
     {
-        _action.PlayerMovement.Movement.performed -= (val) => _movement = val.ReadValue<Vector2>();
+        _action.PlayerMovement.Movement.performed -= (val) => _player.HandleMove();
+        _action.PlayerMovement.Movement.canceled -= (val) => _player.HandleStopMove();
         _action.PlayerMovement.Disable();
     }
 

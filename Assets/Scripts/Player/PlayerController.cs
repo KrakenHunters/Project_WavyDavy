@@ -15,15 +15,29 @@ public class PlayerController : MonoBehaviour
     public GameEvent Event;
 
     public GamePhase currentGamePhase{ get; private set; }
+    public BaseState currentState { get; private set; }
 
-    public Transform phase1StartPos;
-    public Transform phase2StartPos;
-    public Transform phase3StartPos;
-    public float speed;
-    public float paddleSpeed;
 
-    [HideInInspector]
-    public BaseState currentState;
+    [SerializeField] private Transform _phase1StartPos;
+    [SerializeField] private Transform _phase2StartPos;
+    [SerializeField] private Transform _phase3StartPos;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _paddleSpeed;
+    [SerializeField] private float _phase2MaxHeight;
+    [SerializeField] private float _phase3MaxHeight;
+    [SerializeField] private float _maxInclineAngle = 20f; // Maximum angle for inclination
+    [SerializeField] private float _inclineSpeed = 45f; // Speed of inclination change
+
+    public Transform phase1StartPos { get => _phase1StartPos; private set => _phase1StartPos = value; }
+    public Transform phase2StartPos { get => _phase2StartPos; private set => _phase2StartPos = value; }
+    public Transform phase3StartPos { get => _phase3StartPos; private set => _phase3StartPos = value; }
+    public float speed { get => _speed; private set => _speed = value; }
+    public float paddleSpeed { get => _paddleSpeed; private set => _paddleSpeed = value; }
+    public float phase2MaxHeight { get => _phase2MaxHeight; private set => _phase2MaxHeight = value; }
+    public float phase3MaxHeight { get => _phase3MaxHeight; private set => _phase3MaxHeight = value; }
+    public float maxInclineAngle { get => _maxInclineAngle; private set => _maxInclineAngle = value; }
+    public float inclineSpeed { get => _inclineSpeed; private set => _inclineSpeed = value; }
+
 
     private void OnEnable()
     {
@@ -79,17 +93,20 @@ public class PlayerController : MonoBehaviour
         }
 
         currentState?.StateUpdate();
-
-        HandleMove(inputManager.Movement);
-
     }
 
     private void FixedUpdate() => currentState?.StateFixedUpdate();
 
-    public void HandleMove(Vector2 dir)
+    public void HandleMove()
     {
-        currentState?.HandleMovement(dir);
+        currentState?.HandleMovement();
     }
+
+    public void HandleStopMove()
+    {
+        currentState?.HandleStopMovement();
+    }
+
 
     public void HandlePaddle()
     {

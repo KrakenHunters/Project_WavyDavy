@@ -1638,8 +1638,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3, y: -4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1675,7 +1675,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.13515949}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1686,7 +1686,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2.4597208}
   m_EdgeRadius: 0
 --- !u!114 &520606959
 MonoBehaviour:
@@ -1701,11 +1701,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  phase1StartPos: {fileID: 1063890567}
-  phase2StartPos: {fileID: 962613765}
-  phase3StartPos: {fileID: 2076072335}
-  speed: 5
-  paddleSpeed: 4
+  _phase1StartPos: {fileID: 1063890567}
+  _phase2StartPos: {fileID: 962613765}
+  _phase3StartPos: {fileID: 2076072335}
+  _speed: 4
+  _paddleSpeed: 6
+  _phase2MaxHeight: 2
+  _phase3MaxHeight: 4
+  _maxInclineAngle: 20
+  _inclineSpeed: 30
 --- !u!114 &520606960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1744,7 +1748,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!114 &520606962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1933,7 +1937,7 @@ Transform:
   m_GameObject: {fileID: 962613764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -2, z: 0}
+  m_LocalPosition: {x: -5, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2032,7 +2036,7 @@ Transform:
   m_GameObject: {fileID: 1063890566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -4, z: 0}
+  m_LocalPosition: {x: -5, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2470,7 +2474,6 @@ GameObject:
   - component: {fileID: 1345683861}
   - component: {fileID: 1345683864}
   - component: {fileID: 1345683865}
-  - component: {fileID: 1345683866}
   - component: {fileID: 1345683867}
   m_Layer: 0
   m_Name: waves
@@ -2567,51 +2570,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &1345683866
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345683860}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.4661541, y: -1.8287668}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 36.666668, y: 16.966667}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 29.279896, y: 11.731375}
-  m_EdgeRadius: 0
 --- !u!114 &1345683867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2624,8 +2582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e32c5dc5a21204fa372e6a50c7b663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reducedBackwardForce: 0.5
-  startBackwardForce: 2
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &1351527173
 GameObject:
@@ -3832,7 +3788,7 @@ Transform:
   m_GameObject: {fileID: 2076072334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
