@@ -112,6 +112,14 @@ public class MovementState : BaseState
             verticalMovement.y = maxHeight - player.transform.position.y;
         }
 
+        // Check if player is exceeding maxHeight
+        if (player.transform.position.y + verticalMovement.y < -5f)
+        {
+            // Limit vertical movement to maxHeight
+            verticalMovement.y = -5f - player.transform.position.y;
+        }
+
+
         player.transform.position += verticalMovement;
 
         // Apply inclination
