@@ -45,7 +45,7 @@ public class TransitionState : BaseState
 
         if ((targetPos - player.transform.position).sqrMagnitude > 0.01f)
         {
-            player.transform.position = Vector3.MoveTowards(player.transform.position, targetPos, player.speed * Time.deltaTime);
+            player.transform.position = Vector3.MoveTowards(player.transform.position, targetPos, player.normalSpeed * Time.fixedDeltaTime);
         }
         else
         {

@@ -1638,7 +1638,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3, y: -4, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -1701,14 +1701,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
+  normalSpeedPhase2: 2
+  normalSpeedPhase3: 3
+  pumpSpeedPhase2: 4
+  pumpSpeedPhase3: 7
   _phase1StartPos: {fileID: 1063890567}
   _phase2StartPos: {fileID: 962613765}
   _phase3StartPos: {fileID: 2076072335}
-  _speed: 6
   _paddleSpeed: 6
-  _phase2MaxHeight: 2
+  _phase2MaxHeight: 1
   _phase3MaxHeight: 4
-  _maxInclineAngle: 10
+  _maxInclineAngle: 20
+  _maxInclineBoostAngle: 10
   _inclineSpeed: 20
 --- !u!114 &520606960
 MonoBehaviour:
@@ -1722,6 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a819a64fd60252e49b151796d4bc2410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHoldTime: 2
 --- !u!50 &520606961
 Rigidbody2D:
   serializedVersion: 4
@@ -1737,7 +1742,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1890,6 +1895,9 @@ MonoBehaviour:
   wavePrefab: {fileID: 3337187609884236854, guid: 1640bbd8c8d29a648a8b2641b9f0298b, type: 3}
   obstaclePrefab: {fileID: 6563733163459200441, guid: c049d2567e78f8345bbb70509110f469, type: 3}
   spawnRate: 0.5
+  minSpawnRate: 0
+  maxSpawnRate: 0
+  difficultyRampDuration: 0
   topSpawnPos: {fileID: 1385221539}
   middleSpawnPos: {fileID: 1902838680}
   bottomSpawnPos: {fileID: 1277420489}
@@ -4081,6 +4089,10 @@ PrefabInstance:
     - target: {fileID: 8694882226303544816, guid: 1640bbd8c8d29a648a8b2641b9f0298b, type: 3}
       propertyPath: m_Name
       value: Wave
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694882226303544816, guid: 1640bbd8c8d29a648a8b2641b9f0298b, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8694882226303544816, guid: 1640bbd8c8d29a648a8b2641b9f0298b, type: 3}
       propertyPath: m_IsActive
