@@ -251,7 +251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &58463084
 Transform:
   m_ObjectHideFlags: 0
@@ -1392,9 +1392,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 370021461}
-  phase1Zoom: 6
-  phase2Zoom: 8
-  phase3Zoom: 10
+  phase1Zoom: 4
+  phase2Zoom: 6
+  phase3Zoom: 9
   zoomSpeed: 1.8
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!114 &370021460
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_Follow: {fileID: 520606957}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 10
+    OrthographicSize: 6
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -1462,7 +1462,7 @@ Transform:
   m_GameObject: {fileID: 370021458}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -5.58, z: -10}
+  m_LocalPosition: {x: 0, y: -5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1497,7 +1497,7 @@ Transform:
   m_GameObject: {fileID: 378563672}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0.51, z: -1.75}
+  m_LocalPosition: {x: 0.3, y: -0.33, z: -1.75}
   m_LocalScale: {x: 19.019663, y: 9.0593195, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1855,7 +1855,7 @@ Transform:
   m_GameObject: {fileID: 520606954}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -5.58, z: 0}
+  m_LocalPosition: {x: 0, y: -5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1919,14 +1919,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  normalSpeedPhase2: 2
-  normalSpeedPhase3: 3
-  pumpSpeedPhase2: 4
-  pumpSpeedPhase3: 7
+  pumpSpeedPhase2: 6
+  pumpSpeedPhase3: 8
   _phase1StartPos: {fileID: 1063890567}
   _phase2StartPos: {fileID: 962613765}
   _phase3StartPos: {fileID: 2076072335}
-  _paddleSpeed: 6
+  _paddleSpeed: 0.1
   _phase2MaxHeight: 1
   _phase3MaxHeight: 4
   _maxInclineAngle: 20
@@ -2206,7 +2204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf18faf1b662974092ffb3336d38712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavePrefab: {fileID: 3337187609884236854, guid: 1640bbd8c8d29a648a8b2641b9f0298b, type: 3}
+  wavePrefab: {fileID: 946550667}
   obstaclePrefab: {fileID: 6563733163459200441, guid: c049d2567e78f8345bbb70509110f469, type: 3}
   spawnRate: 0.5
   minSpawnRate: 0
@@ -2225,7 +2223,7 @@ Transform:
   m_GameObject: {fileID: 812188910}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.44, y: -1.76, z: -0.08877091}
+  m_LocalPosition: {x: 26.44, y: -4.9, z: -0.08877091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2234,6 +2232,17 @@ Transform:
   - {fileID: 1277420489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &946550667 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3337187609884236854, guid: 1640bbd8c8d29a648a8b2641b9f0298b, type: 3}
+  m_PrefabInstance: {fileID: 1712427092284188139}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90836bf8a47faef49a2be3412906e906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &962613764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,7 +2268,7 @@ Transform:
   m_GameObject: {fileID: 962613764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -2, z: 0}
+  m_LocalPosition: {x: -5, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2296,12 +2305,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  maxFlowPhase1: 100
-  maxFlowPhase2: 200
-  maxFlowPhase3: 300
+  maxFlowPhase1: 2
+  maxFlowPhase2: 6
+  maxFlowPhase3: 10
   aboveThreshold: 0.85
   belowThreshold: 0.15
-  flowDecreaseSpeed: 10
+  flowDecreaseSpeed: 0.1
   thresholdDuration: 3
   flowUIHandler: {fileID: 976024005}
 --- !u!4 &976024004
@@ -2358,7 +2367,7 @@ Transform:
   m_GameObject: {fileID: 1063890566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -5.58, z: 0}
+  m_LocalPosition: {x: 0, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2499,7 +2508,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 6
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2524,7 +2533,7 @@ Transform:
   m_GameObject: {fileID: 1222957704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4425888, y: -0.7579813, z: -10}
+  m_LocalPosition: {x: -0.00031089783, y: -4.76698, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3587,7 +3596,7 @@ Transform:
   m_GameObject: {fileID: 1540673363}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1627, y: -1, z: -1.31}
+  m_LocalPosition: {x: 0.1627, y: -1.51, z: -1.31}
   m_LocalScale: {x: 21.728788, y: 8.917337, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3772,7 +3781,7 @@ Transform:
   m_GameObject: {fileID: 1717688019}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3831, y: -1.17, z: -0.23}
+  m_LocalPosition: {x: -0.3831, y: -0.67, z: -0.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4424,7 +4433,7 @@ Transform:
   m_GameObject: {fileID: 2076072334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

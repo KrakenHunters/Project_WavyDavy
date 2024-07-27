@@ -107,7 +107,7 @@ public class Spawner : MonoBehaviour
             return;
         }
 
-        WaterObject objToSpawn = flipSpawn ? GetWaveObject() : GetObstacleObject(); // change later based on phase
+        WaterObject objToSpawn = /*flipSpawn ? GetWaveObject() : */GetObstacleObject(); // change later based on phase
         flipSpawn = !flipSpawn;//remove made for debuging
         Vector3 spawnPos = GetSpawnPos();//change based on type 
         objToSpawn.transform.position = spawnPos;

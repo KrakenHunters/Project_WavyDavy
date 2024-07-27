@@ -20,11 +20,11 @@ public class WaterObject : MonoBehaviour , IHitable
     {
         //transform.Translate(Vector3.down * _speed * Time.deltaTime);
        // transform.position += Vector3.left * _speed * Time.deltaTime;
-
-       transform.Translate(Vector3.left * _speed * Time.fixedDeltaTime);
+ 
+        transform.Translate(Vector3.left * _speed * Time.fixedDeltaTime);
         if (transform.position.x < deadZone)
         {
-          Event.OnReachDeadZone.Invoke(this);
+            Event.OnReachDeadZone.Invoke(this);
         }
     }
 

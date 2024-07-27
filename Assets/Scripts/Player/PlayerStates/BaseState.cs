@@ -21,6 +21,8 @@ public abstract class BaseState
     public virtual void HandleStopPumping() { }
     public virtual void HandlePaddling() { }
 
+    public virtual void HitObject() { }
+
     public virtual void HandleTransition() 
     {
         player.ChangeState(new TransitionState());

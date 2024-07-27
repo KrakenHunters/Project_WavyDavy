@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowManager : MonoBehaviour
+public class FlowManager : Singleton<FlowManager>
 {
     public GameEvent Event;
 
     private float maxFlow;
-    private float currentFlow;
     private GamePhase nextPhase;
     private GamePhase? previousPhase;
 
+    public float currentFlow { get; private set; }
 
     [SerializeField]
     private float maxFlowPhase1;
@@ -42,6 +42,8 @@ public class FlowManager : MonoBehaviour
     {
         Event.OnChangeGameState.AddListener(ResetFlow);
         Event.OnHitObject.AddListener(AddFlow);
+        Event.OnIncreaseFlow.AddListener(AddFlow);
+
         Event.OnFinishTransition.AddListener(RestartCoroutine);
     }
 
@@ -49,6 +51,8 @@ public class FlowManager : MonoBehaviour
     {
         Event.OnChangeGameState.RemoveListener(ResetFlow);
         Event.OnHitObject.RemoveListener(AddFlow);
+        Event.OnIncreaseFlow.RemoveListener(AddFlow);
+
         Event.OnFinishTransition.RemoveListener(RestartCoroutine);
     }
 
@@ -62,7 +66,13 @@ public class FlowManager : MonoBehaviour
     }
 
 
-    private void Update() => flowUIHandler.UpdateFlowUI(currentFlow);
+    private void Update()
+    {
+        flowUIHandler.UpdateFlowUI(currentFlow);
+
+
+    }
+
 
     private IEnumerator FlowDecrease()
     {
