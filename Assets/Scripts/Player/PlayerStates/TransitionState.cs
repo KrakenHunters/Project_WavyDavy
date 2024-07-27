@@ -4,6 +4,9 @@ public class TransitionState : BaseState
 {
     private Vector3 targetPos;
     private bool correctPos;
+
+    private float inclineVelocity = 0f;
+
     public override void EnterState()
     {
         base.EnterState();
@@ -35,9 +38,14 @@ public class TransitionState : BaseState
     public override void StateFixedUpdate()
     {
         base.StateFixedUpdate();
+
+        float targetInclineAngle = 0f;
+        float currentInclineAngle = Mathf.SmoothDamp(player.transform.rotation.z, targetInclineAngle, ref inclineVelocity, 0.5f);
+        player.transform.rotation = Quaternion.Euler(0f, 0f, currentInclineAngle);
+
         if ((targetPos - player.transform.position).sqrMagnitude > 0.01f)
         {
-            player.transform.position = Vector3.MoveTowards(player.transform.position, targetPos, player.speed * Time.deltaTime);
+            player.transform.position = Vector3.MoveTowards(player.transform.position, targetPos, player.normalSpeed * Time.fixedDeltaTime);
         }
         else
         {

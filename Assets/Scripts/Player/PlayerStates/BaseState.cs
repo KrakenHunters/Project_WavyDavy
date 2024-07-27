@@ -17,6 +17,8 @@ public abstract class BaseState
     public virtual void StateFixedUpdate() { }
     public virtual void StateUpdate() { }
     public virtual void HandleMovement(Vector2 dir) { }
+    public virtual void HandlePumping() { }
+    public virtual void HandleStopPumping() { }
     public virtual void HandlePaddling() { }
 
     public virtual void HandleTransition() 

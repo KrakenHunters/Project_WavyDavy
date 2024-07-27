@@ -12,7 +12,11 @@ public class Spawner : MonoBehaviour
 
     [Header("Spawn Settings")]
     [SerializeField] private float spawnRate;
+    [SerializeField] private float minSpawnRate;
+    [SerializeField] private float maxSpawnRate;
+    [SerializeField] private float difficultyRampDuration;
 
+    [Header("Spawn positions")]
     [SerializeField] private Transform topSpawnPos;
     [SerializeField] private Transform middleSpawnPos;
     [SerializeField] private Transform bottomSpawnPos;
@@ -26,6 +30,8 @@ public class Spawner : MonoBehaviour
     private int currentPosIndex;
     private bool flipSpawn;
     private CountdownTimer countdownTimer;
+
+    private float nextSpawnTime;
 
     private void OnEnable()
     {
@@ -50,7 +56,23 @@ public class Spawner : MonoBehaviour
         countdownTimer.Start();
     }
 
-    private void Update() => countdownTimer.Tick(Time.deltaTime);
+    private void Update()
+    {
+        countdownTimer.Tick(Time.deltaTime);
+
+        if (Time.time >= nextSpawnTime)
+        {
+            Spawn();
+            AdjustSpawnRateBasedOnFlow();
+            nextSpawnTime = Time.time + spawnRate;
+        }
+    }
+
+    private void AdjustSpawnRateBasedOnFlow()
+    {
+        float gameProgress = Mathf.Clamp01(Time.timeSinceLevelLoad / difficultyRampDuration);
+        spawnRate = Mathf.Lerp(maxSpawnRate, minSpawnRate, gameProgress);
+    }
 
     private void SetGamePhase(GamePhase newPhase)
     {
@@ -101,10 +123,9 @@ public class Spawner : MonoBehaviour
         if (phasePosIndex > 2) possiblePositions.Add(topSpawnPos.position);
 
         if (possiblePositions.Count == 0)
-            return Vector3.zero; 
-        Vector3 spawnPos = possiblePositions[currentPosIndex % possiblePositions.Count];
-        currentPosIndex++;
-        return spawnPos;
+            return Vector3.zero;
+
+        return possiblePositions[Random.Range(0, possiblePositions.Count)];
     }
 
     private WaterObject GetWaveObject()

@@ -7,8 +7,9 @@ public class InputManager : MonoBehaviour
    PlayerInput _action;
    PlayerController _player;
 
-
     Vector2 _movement;
+
+    private bool _isKeyboardInput = false;
     public Vector2 Movement
     {
         get
@@ -28,7 +29,6 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-
     }
 
     public void EnablePlayerMovement()
@@ -36,12 +36,24 @@ public class InputManager : MonoBehaviour
         DisablePlayerPaddle();
         DisablePlayerTrickState();
 
-        _action.PlayerMovement.Movement.performed += (val) => _movement = val.ReadValue<Vector2>();
+        _action.PlayerMovement.Pump.performed += (val) => _player.HandlePump();
+        _action.PlayerMovement.Pump.canceled += (val) => _player.HandleStopPump();
+
+        _action.PlayerMovement.Movement.performed += (val) => HandleMovement(val.ReadValue<Vector2>());
+
         _action.PlayerMovement.Enable();
+    }
+
+    private void HandleMovement(Vector2 input)
+    {
+            _movement = input;
     }
 
     private void DisablePlayerMovement()
     {
+        _action.PlayerMovement.Pump.performed -= (val) => _player.HandlePump();
+        _action.PlayerMovement.Pump.canceled -= (val) => _player.HandleStopPump();
+
         _action.PlayerMovement.Movement.performed -= (val) => _movement = val.ReadValue<Vector2>();
         _action.PlayerMovement.Disable();
     }
