@@ -118,7 +118,7 @@ public class MovementState : BaseState
     {
         if (speed > player.normalSpeed && !isPumping)
         {
-            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.05f * Time.deltaTime);
+            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.08f * Time.deltaTime);
         }
 
 
