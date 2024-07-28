@@ -81,7 +81,6 @@ public class FlowManager : MonoBehaviour
     {
         flowUIHandler.UpdateFlowUI(currentFlow);
         Event.OnFlowChange.Invoke(currentFlow);
-        Debug.Log(currentFlow);
     }
 
 
@@ -89,14 +88,14 @@ public class FlowManager : MonoBehaviour
     {
         while (true)
         {
-            if (currentFlow > minFlowPhase1)
+            if (currentFlow > minFlow)
             {
                 currentFlow -= flowDecreaseSpeed * (maxFlow - minFlow) * Time.deltaTime;
                 currentFlow = Mathf.Max(currentFlow, minFlow); // Ensure currentFlow doesn't go below minFlow
 
             }
 
-            if (currentFlow > maxFlow * aboveThreshold && nextPhase != GamePhase.Trick)
+            if (currentFlow > (maxFlow - (maxFlow - minFlow) * (1-aboveThreshold)) && nextPhase != GamePhase.Trick)
             {
                 if (thresholdCoroutine == null)
                 {
@@ -127,7 +126,7 @@ public class FlowManager : MonoBehaviour
         float timer = 0f;
         while (timer < thresholdDuration)
         {
-            if (isAboveThreshold && currentFlow <= maxFlow * aboveThreshold)
+            if (isAboveThreshold && currentFlow <= (maxFlow - (maxFlow - minFlow) * (1 - aboveThreshold)))
             {
                 yield break;
             }

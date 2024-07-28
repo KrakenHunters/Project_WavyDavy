@@ -85,6 +85,8 @@ public class MovementState : BaseState
             {
                 speed = 0f;
                 targetAngle = 0f;
+                player.Event.OnIncreaseFlow.Invoke(-0.5f);
+
                 //TransitionToCrashState and get back one phase
             }
 
@@ -92,11 +94,6 @@ public class MovementState : BaseState
         else
         {
             resetTimer += Time.fixedDeltaTime;
-
-            if (speed > player.normalSpeed)
-            {
-                player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.5f * Time.fixedDeltaTime);
-            }
 
             if (playerHeight >= maxHeight)
             {
@@ -119,6 +116,11 @@ public class MovementState : BaseState
     }
     public override void StateUpdate()
     {
+        if (speed > player.normalSpeed && !isPumping)
+        {
+            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.05f * Time.deltaTime);
+        }
+
 
     }
 

@@ -286,7 +286,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""e1b670dd-4114-442b-9fdb-8685d41e1a15"",
+                    ""id"": ""b6b06b8d-e59e-4716-baa7-4e3bef2d3d49"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -297,8 +297,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""30c014b5-4bf8-4d0d-8d76-d534e11ad2ad"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""id"": ""9ce10986-1900-443f-9faf-8949d2530c6f"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -1927,7 +1927,7 @@ MonoBehaviour:
   _phase1StartPos: {fileID: 1063890567}
   _phase2StartPos: {fileID: 962613765}
   _phase3StartPos: {fileID: 2076072335}
-  _paddleSpeed: 0.1
+  _paddleSpeed: 0.05
   _phase2MaxHeight: 1
   _phase3MaxHeight: 4
   _maxInclineAngle: 20
@@ -2315,7 +2315,7 @@ MonoBehaviour:
   minFlowPhase2: 1.5
   aboveThreshold: 0.9
   belowThreshold: 0.15
-  flowDecreaseSpeed: 0.15
+  flowDecreaseSpeed: 0.05
   thresholdDuration: 3
   flowUIHandler: {fileID: 976024005}
 --- !u!4 &976024004
