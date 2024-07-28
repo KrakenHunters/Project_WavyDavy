@@ -3,13 +3,14 @@ using UnityEngine;
 public class TransitionState : BaseState
 {
     private Vector3 targetPos;
-    private bool correctPos;
 
     private float inclineVelocity = 0f;
 
     public override void EnterState()
     {
         base.EnterState();
+
+        player.normalSpeed = 3f;
 
         switch (player.currentGamePhase)
         {
@@ -31,7 +32,6 @@ public class TransitionState : BaseState
     }
     public override void ExitState()
     {
-        Debug.Log("FinishedTransition");
         player.Event.OnFinishTransition.Invoke();
     }
 

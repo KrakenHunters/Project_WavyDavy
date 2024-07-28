@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90836bf8a47faef49a2be3412906e906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
-  flow: -35
+  _speedMod: 2
+  flow: -0.5
   deadZone: -25
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}

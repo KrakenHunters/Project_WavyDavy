@@ -77,7 +77,7 @@ public class MovementState : BaseState
                 pumpHoldTime += Time.fixedDeltaTime;
                 // Flow Animation
                 // Add Flow to the meter
-                speed = Mathf.Lerp(speed, player.normalSpeed * player.pumpSpeed, pumpHoldTime / timeToMaxPump);
+                speed = Mathf.Lerp(speed, player.pumpSpeed, pumpHoldTime / timeToMaxPump);
                 targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineBoostAngle * (speed / player.pumpSpeed), pumpHoldTime / timeToMaxPump);
             }
 
@@ -89,37 +89,19 @@ public class MovementState : BaseState
             }
 
         }
-        /*        else if (_direction.x < 0)
-                {
-                    resetTimer = 0f;
-                    speed = Mathf.Lerp(speed, player.normalSpeed, _direction.x);
-                    targetAngle = _direction.x * -player.maxInclineAngle;
-
-                    if (isPumping && speed > player.normalSpeed)
-                    {
-                        pumpHoldTime += Time.fixedDeltaTime;
-
-                        // Flow Animation
-                        // Add Flow to the meter
-                        speed = Mathf.Lerp(speed, player.pumpSpeed, pumpHoldTime / timeToMaxPump);
-                        targetAngle = Mathf.Lerp(currentAngle, player.maxInclineBoostAngle * (speed / player.pumpSpeed), pumpHoldTime / timeToMaxPump);
-                    }
-                }
-        */
         else
         {
             resetTimer += Time.fixedDeltaTime;
-            if (resetTimer >= timeToReturnSpeed)
+
+            if (speed > player.normalSpeed)
             {
-                speed = player.normalSpeed; // ensure speed exactly matches normalSpeed after the time period
-                resetTimer = 0f; // reset timer if needed for other purposes
+                player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.5f * Time.fixedDeltaTime);
             }
 
             if (playerHeight >= maxHeight)
             {
                 speed = 0f;
                 targetAngle = 0f;
-
             }
             else
             {

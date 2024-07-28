@@ -12,9 +12,8 @@ public class Spawner : MonoBehaviour
 
     [Header("Spawn Settings")]
     [SerializeField] private float spawnRate;
-    [SerializeField] private float minSpawnRate;
-    [SerializeField] private float maxSpawnRate;
-    [SerializeField] private float difficultyRampDuration;
+    [SerializeField] private float maxSpawnInterval;
+    [SerializeField] private float minSpawnInterval;
 
     [Header("Spawn positions")]
     [SerializeField] private Transform topSpawnPos;
@@ -27,7 +26,6 @@ public class Spawner : MonoBehaviour
     private List<WaterObject> availableObstacles = new();
     private GamePhase currentPhase;
     private int phasePosIndex = 3;// change by currentPhase
-    private int currentPosIndex;
     private bool flipSpawn;
     private CountdownTimer countdownTimer;
 
@@ -36,13 +34,16 @@ public class Spawner : MonoBehaviour
     private void OnEnable()
     {
         Event.OnChangeGameState.AddListener(SetGamePhase);
-        Event.OnReachDeadZone.AddListener(SortObject); 
+        Event.OnReachDeadZone.AddListener(SortObject);
+        Event.OnFlowChange.AddListener(AdjustSpawnRateBasedOnFlow);
     }
 
     private void OnDisable()
     {
         Event.OnChangeGameState.RemoveListener(SetGamePhase);
-        Event.OnReachDeadZone.RemoveListener(SortObject); 
+        Event.OnReachDeadZone.RemoveListener(SortObject);
+        Event.OnFlowChange.RemoveListener(AdjustSpawnRateBasedOnFlow);
+
     }
 
 
@@ -63,15 +64,13 @@ public class Spawner : MonoBehaviour
         if (Time.time >= nextSpawnTime)
         {
             Spawn();
-            AdjustSpawnRateBasedOnFlow();
             nextSpawnTime = Time.time + spawnRate;
         }
     }
 
-    private void AdjustSpawnRateBasedOnFlow()
+    private void AdjustSpawnRateBasedOnFlow(float currentFlow)
     {
-        float gameProgress = Mathf.Clamp01(Time.timeSinceLevelLoad / difficultyRampDuration);
-        spawnRate = Mathf.Lerp(maxSpawnRate, minSpawnRate, gameProgress);
+        spawnRate = Mathf.Lerp(maxSpawnInterval, minSpawnInterval, currentFlow / 3f); 
     }
 
     private void SetGamePhase(GamePhase newPhase)

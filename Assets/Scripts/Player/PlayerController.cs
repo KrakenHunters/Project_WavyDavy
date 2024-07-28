@@ -16,12 +16,14 @@ public class PlayerController : MonoBehaviour
     public GamePhase currentGamePhase{ get; private set; }
     public BaseState currentState { get; private set; }
 
-    public float normalSpeed { get; private set; }
+    public float normalSpeed { get; set; }
     public float pumpSpeed { get; private set; }
 
     [SerializeField] private float pumpSpeedPhase2 = 4f;
     [SerializeField] private float pumpSpeedPhase3 = 7f;
 
+    [SerializeField] private float normalSpeedPhase2 = 2f;
+    [SerializeField] private float normalSpeedPhase3 = 3f;
 
     [SerializeField] private Transform _phase1StartPos;
     [SerializeField] private Transform _phase2StartPos;
@@ -68,9 +70,11 @@ public class PlayerController : MonoBehaviour
         {
             case GamePhase.Phase2:
                 pumpSpeed = pumpSpeedPhase2;
+                normalSpeed = normalSpeedPhase2;
                 break;
             case GamePhase.Phase3:
                 pumpSpeed = pumpSpeedPhase3;
+                normalSpeed = normalSpeedPhase3;
                 break;
         }
 
@@ -98,8 +102,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        normalSpeed = FlowManager.Instance.currentFlow;
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             inputManager.EnablePlayerPaddle();

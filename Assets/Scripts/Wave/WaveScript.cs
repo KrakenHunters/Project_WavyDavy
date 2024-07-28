@@ -10,14 +10,27 @@ public class WaveScript : MonoBehaviour
     private Animator _animator;
     private GamePhase currentPhase;
 
+    private float animationSpeed;
+
     private void OnEnable()
     {
         Event.OnChangeGameState.AddListener(SetPhase);
+        Event.OnFlowChange.AddListener(FlowChange);
     }
 
     private void OnDisable()
     {
         Event.OnChangeGameState.RemoveListener(SetPhase);
+    }
+
+    private void Update()
+    {
+        _animator.speed = animationSpeed; //Check if needs any multiplier
+    }
+
+    private void FlowChange(float currentFlow)
+    {
+        animationSpeed = currentFlow;
     }
 
     private void SetPhase(GamePhase newPhase)

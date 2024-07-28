@@ -1565,7 +1565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530a4a9863cf39b4b84e6cc763c5dc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.05
+  animationConvert: 0.1
+  Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &381343523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,6 +1922,8 @@ MonoBehaviour:
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
   pumpSpeedPhase2: 6
   pumpSpeedPhase3: 8
+  normalSpeedPhase2: 2
+  normalSpeedPhase3: 3
   _phase1StartPos: {fileID: 1063890567}
   _phase2StartPos: {fileID: 962613765}
   _phase3StartPos: {fileID: 2076072335}
@@ -2174,7 +2177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530a4a9863cf39b4b84e6cc763c5dc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.1
+  animationConvert: 0.2
+  Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &812188910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,10 +2210,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wavePrefab: {fileID: 946550667}
   obstaclePrefab: {fileID: 6563733163459200441, guid: c049d2567e78f8345bbb70509110f469, type: 3}
-  spawnRate: 0.5
-  minSpawnRate: 0
-  maxSpawnRate: 0
-  difficultyRampDuration: 0
+  spawnRate: 3
+  maxSpawnInterval: 5
+  minSpawnInterval: 1
   topSpawnPos: {fileID: 1385221539}
   middleSpawnPos: {fileID: 1902838680}
   bottomSpawnPos: {fileID: 1277420489}
@@ -2305,12 +2308,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  maxFlowPhase1: 2
-  maxFlowPhase2: 6
-  maxFlowPhase3: 10
-  aboveThreshold: 0.85
+  maxFlowPhase1: 1
+  maxFlowPhase2: 2
+  maxFlowPhase3: 3
+  minFlowPhase1: 0.1
+  minFlowPhase2: 1.5
+  aboveThreshold: 0.9
   belowThreshold: 0.15
-  flowDecreaseSpeed: 0.1
+  flowDecreaseSpeed: 0.15
   thresholdDuration: 3
   flowUIHandler: {fileID: 976024005}
 --- !u!4 &976024004
@@ -3664,7 +3669,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530a4a9863cf39b4b84e6cc763c5dc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.8
+  animationConvert: 0.3
+  Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &1582674711
 GameObject:
   m_ObjectHideFlags: 3
@@ -3969,7 +3975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530a4a9863cf39b4b84e6cc763c5dc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSpeed: 0.05
+  animationConvert: 0.05
+  Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &1826593972
 GameObject:
   m_ObjectHideFlags: 0

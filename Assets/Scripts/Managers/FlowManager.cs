@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowManager : Singleton<FlowManager>
+public class FlowManager : MonoBehaviour
 {
     public GameEvent Event;
 
     private float maxFlow;
+    private float minFlow;
     private GamePhase nextPhase;
     private GamePhase? previousPhase;
 
@@ -19,6 +20,13 @@ public class FlowManager : Singleton<FlowManager>
     [SerializeField]
     private float maxFlowPhase3;
 
+    [SerializeField]
+    private float minFlowPhase1;
+    [SerializeField]
+    private float minFlowPhase2;
+
+
+
     [Range(0f, 1f)]
     [SerializeField]
     private float aboveThreshold;
@@ -28,6 +36,8 @@ public class FlowManager : Singleton<FlowManager>
 
     [SerializeField]
     private float flowDecreaseSpeed; // Speed at which flow decreases
+
+
     [SerializeField]
     private float thresholdDuration; // Duration to check if flow stays within threshold
 
@@ -59,7 +69,8 @@ public class FlowManager : Singleton<FlowManager>
     private void Start()
     {
         maxFlow = maxFlowPhase1;
-        currentFlow = 0f;
+        minFlow = minFlowPhase1;
+        currentFlow = minFlowPhase1;
         previousPhase = null;
         nextPhase = GamePhase.Phase2;
         StartCoroutine(FlowDecrease());
@@ -69,8 +80,8 @@ public class FlowManager : Singleton<FlowManager>
     private void Update()
     {
         flowUIHandler.UpdateFlowUI(currentFlow);
-
-
+        Event.OnFlowChange.Invoke(currentFlow);
+        Debug.Log(currentFlow);
     }
 
 
@@ -78,12 +89,11 @@ public class FlowManager : Singleton<FlowManager>
     {
         while (true)
         {
-            if (currentFlow > 0)
+            if (currentFlow > minFlowPhase1)
             {
-                currentFlow -= flowDecreaseSpeed * Time.deltaTime;
-                currentFlow = Mathf.Max(currentFlow, 0); // Ensure currentFlow doesn't go below 0
+                currentFlow -= flowDecreaseSpeed * (maxFlow - minFlow) * Time.deltaTime;
+                currentFlow = Mathf.Max(currentFlow, minFlow); // Ensure currentFlow doesn't go below minFlow
 
-                // Update UI here
             }
 
             if (currentFlow > maxFlow * aboveThreshold && nextPhase != GamePhase.Trick)
@@ -93,7 +103,7 @@ public class FlowManager : Singleton<FlowManager>
                     thresholdCoroutine = StartCoroutine(CheckThresholdDuration(true));
                 }
             }
-            else if (currentFlow < maxFlow * belowThreshold && previousPhase.HasValue)
+            else if (currentFlow < ((maxFlow - minFlow) * belowThreshold + minFlow) && previousPhase.HasValue)
             {
                 if (thresholdCoroutine == null)
                 {
@@ -121,7 +131,7 @@ public class FlowManager : Singleton<FlowManager>
             {
                 yield break;
             }
-            else if (!isAboveThreshold && currentFlow >= maxFlow * belowThreshold)
+            else if (!isAboveThreshold && currentFlow >= (maxFlow - minFlow) * belowThreshold + minFlow)
             {
                 yield break;
             }
@@ -159,19 +169,22 @@ public class FlowManager : Singleton<FlowManager>
         {
             case GamePhase.Phase1:
                 maxFlow = maxFlowPhase1;
-                currentFlow = 0f;
+                minFlow = minFlowPhase1;
+                currentFlow = minFlowPhase1;
                 previousPhase = null;
                 nextPhase = GamePhase.Phase2;
                 break;
             case GamePhase.Phase2:
                 maxFlow = maxFlowPhase2;
-                currentFlow = maxFlow / 2;
+                minFlow = minFlowPhase2;
+                currentFlow = (maxFlow - minFlow) / 2 + minFlow;
                 previousPhase = GamePhase.Phase1;
                 nextPhase = GamePhase.Phase3;
                 break;
             case GamePhase.Phase3:
                 maxFlow = maxFlowPhase3;
-                currentFlow = wasPhaseTrick ? previousFlow : maxFlow / 2 ;
+                minFlow = maxFlowPhase2;
+                currentFlow = wasPhaseTrick ? previousFlow : (maxFlow - minFlow) / 2 + minFlow;
                 wasPhaseTrick = false;
                 previousPhase = GamePhase.Phase2;
                 nextPhase = GamePhase.Trick;
@@ -182,7 +195,7 @@ public class FlowManager : Singleton<FlowManager>
                 previousPhase = GamePhase.Phase3;
                 break;
         }
-        flowUIHandler.SetMinMax(0f, maxFlow);
+        flowUIHandler.SetMinMax(minFlow, maxFlow);
 
         //Update UI here
 
@@ -192,7 +205,7 @@ public class FlowManager : Singleton<FlowManager>
     {
         currentFlow += flowAmount;
         currentFlow = Mathf.Min(currentFlow, maxFlow); // Ensure currentFlow doesn't exceed maxFlow
-        currentFlow = Mathf.Max(currentFlow, 0f);
+        currentFlow = Mathf.Max(currentFlow, minFlow);
     }
 
 

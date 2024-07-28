@@ -21,7 +21,6 @@ public class PaddleState : BaseState
     public override void StateUpdate()
     {
 
-
     }
 
     public override void HandlePaddling()
