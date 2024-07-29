@@ -1,7 +1,7 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 public class ScoreUIHandler : MonoBehaviour
 {
     [Header("Player UI Elements")]
@@ -13,7 +13,9 @@ public class ScoreUIHandler : MonoBehaviour
 
     [SerializeField] private float countSpeed;
 
-    private Tween countingTween; 
+
+    private float currentScore;
+    private Tween countingTween;
 
     private void Awake()
     {
@@ -23,8 +25,8 @@ public class ScoreUIHandler : MonoBehaviour
 
     public void UpdateScore(int score)
     {
-
-        Debug.Log("Score: " + score);
-        scoreText.text = $"Score: {score}";
+        countingTween = DOTween.To(() => currentScore, x => currentScore = x, score, countSpeed);// animate the score
     }
+
+    private void Update() => scoreText.text = $"Score: {(int)currentScore}";
 }

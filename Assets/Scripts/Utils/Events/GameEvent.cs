@@ -24,6 +24,7 @@ public class GameEvent : ScriptableObject
 
     public UnityEvent OnStartTrick;
     public UnityEvent<bool> OnEndTrick;
+    public UnityAction<bool> OnIsTrickPossible;
 
     public UnityEvent<GameObject> OnCelebration;
 
@@ -39,9 +40,8 @@ public class GameEvent : ScriptableObject
 
     public UnityAction<List<TrickSO>> OnTrickInput;
     public UnityAction<PlayerTrickHandler> OnTrickStart;
-    public UnityAction<PlayerTrickHandler> OnTrickFail;
     public UnityAction<float> OnTrickRunning;
-    public UnityAction<PlayerTrickHandler> OnTrickComplete;
+    public UnityAction<PlayerTrickHandler> OnTrickFinish;
 
 
     public UnityAction<PlayerTrickHandler> InitializeTrickUI;

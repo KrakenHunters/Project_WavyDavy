@@ -33,18 +33,16 @@ public class TrickUIHandler : MonoBehaviour
 
         Event.OnTrickRunning += UpdateTimer;
 
-        Event.OnTrickComplete += ToggleUIOffPanel;
-        Event.OnTrickFail += ToggleUIOffPanel;
+        Event.OnTrickFinish += ToggleUIOffPanel;
     }
 
     private void OnDisable()
     {
-        Event.OnTrickFail -= ToggleUIOffPanel;
         Event.OnTrickInput -= UpdateUI;
         Event.OnTrickStart -= ToggleOnUIPanel;
         Event.OnTrickStart -= ResetUI;
         Event.OnTrickRunning -= UpdateTimer;
-        Event.OnTrickComplete -= ToggleUIOffPanel;
+        Event.OnTrickFinish -= ToggleUIOffPanel;
     }
 
     private void UpdateTimer(float timer)
@@ -70,7 +68,7 @@ public class TrickUIHandler : MonoBehaviour
     public void ToggleOnUIPanel(PlayerTrickHandler x)
     {
         trickUI.SetActive(true);
-        Invoke(nameof(StartBlinking),5f);//remove later
+       // StartBlinking();//remove later
     }
 
     public void ToggleUIOffPanel(PlayerTrickHandler x)
@@ -91,7 +89,6 @@ public class TrickUIHandler : MonoBehaviour
                 trickUISetup.SetupTrick(trickSO);
             }
         }
-    
     }
 
 
@@ -108,7 +105,6 @@ public class TrickUIHandler : MonoBehaviour
     public void StopBlinking()
     {
         fadetween.Kill();
-        currentDuration = fadeDuration;
         trickUICanvasGroup.alpha = 1;
     }
 

@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
 {
 
     [field: SerializeField] public float GameTime { get; private set; }
+
     public GamePhase currentGamePhase { get; private set; }
 
     public GameEvent Event;
@@ -16,10 +17,13 @@ public class GameManager : Singleton<GameManager>
     private void OnEnable()
     {
         Event.OnChangeGameState.AddListener(ChangeGamePhase);
+        Event.OnFinishTransition.AddListener(Resume);
+
     }
     private void OnDisable()
     {
         Event.OnChangeGameState.RemoveListener(ChangeGamePhase);
+        Event.OnFinishTransition.RemoveListener(Resume);
     }
     private void Awake()
     {
@@ -36,6 +40,8 @@ public class GameManager : Singleton<GameManager>
 
     private void ChangeGamePhase(GamePhase nextPhase)
     {
+        countdownTimer.Pause();
+
         switch (nextPhase)
         {
             case GamePhase.Phase1:
@@ -57,7 +63,12 @@ public class GameManager : Singleton<GameManager>
     {
         countdownTimer.Tick(Time.deltaTime);
         Event.OnUpdateGameTimer?.Invoke(countdownTimer.Progress * GameTime);
-        // Debug.Log(countdownTimer.Progress * 100);
+    }
+
+    private void Resume()
+    {
+        if (currentGamePhase != GamePhase.Trick)
+            countdownTimer.Resume();
     }
 
 }

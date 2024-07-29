@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public float normalSpeed { get; set; }
     public float pumpSpeed { get; private set; }
+    public float currentFlow { get; private set; }
+    public bool canTrick { get; private set; }
 
     [SerializeField] private float pumpSpeedPhase2 = 4f;
     [SerializeField] private float pumpSpeedPhase3 = 7f;
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour
         Event.OnChangeGameState.AddListener(SetPhase);
         Event.OnHitObject.AddListener(HitObject);
         Event.OnFlowChange.AddListener(FlowChange);
+        Event.OnIsTrickPossible += (val)=> canTrick = val;
     }
 
     private void OnDisable()
@@ -62,6 +65,7 @@ public class PlayerController : MonoBehaviour
         Event.OnChangeGameState.RemoveListener(SetPhase);
         Event.OnHitObject.RemoveListener(HitObject);
         Event.OnFlowChange.RemoveListener(FlowChange);
+        Event.OnIsTrickPossible -= (val) => canTrick = val;
 
     }
 
@@ -119,13 +123,12 @@ public class PlayerController : MonoBehaviour
         currentState?.StateUpdate();
     }
 
-    private void FlowChange(float currentFlow)
+    private void FlowChange(float flow)
     {
         if (currentGamePhase == GamePhase.Phase1)
         {
-            finalPaddleSpeed = _paddleSpeed - _paddleSpeed * currentFlow;
+            finalPaddleSpeed = _paddleSpeed - _paddleSpeed * flow;
         }
-
     }
 
     private void FixedUpdate() => currentState?.StateFixedUpdate();

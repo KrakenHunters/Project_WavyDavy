@@ -109,6 +109,11 @@ public class MovementState : BaseState
 
             if (playerHeight >= maxHeight)
             {
+                Debug.Log(player.canTrick);
+                if (speed > player.normalSpeed && player.canTrick)
+                {
+                    player.Event.OnChangeGameState.Invoke(GamePhase.Trick);
+                }
                 speed = 0f;
                 targetAngle = 0f;
             }
@@ -147,7 +152,6 @@ public class MovementState : BaseState
     }
     public override void StateUpdate()
     {
-        Debug.Log(speed);
 
     }
 

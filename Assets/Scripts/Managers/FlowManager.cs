@@ -55,6 +55,8 @@ public class FlowManager : MonoBehaviour
         Event.OnIncreaseFlow.AddListener(AddFlow);
 
         Event.OnFinishTransition.AddListener(RestartCoroutine);
+
+        Event.OnTrickFinish += TrickCompleteCost;
     }
 
     private void OnDisable()
@@ -64,6 +66,9 @@ public class FlowManager : MonoBehaviour
         Event.OnIncreaseFlow.RemoveListener(AddFlow);
 
         Event.OnFinishTransition.RemoveListener(RestartCoroutine);
+
+        Event.OnTrickFinish -= TrickCompleteCost;
+
     }
 
     private void Start()
@@ -95,14 +100,19 @@ public class FlowManager : MonoBehaviour
 
             }
 
-            if (currentFlow > (maxFlow - (maxFlow - minFlow) * (1-aboveThreshold)) && nextPhase != GamePhase.Trick)
+            bool isAboveThreshold = currentFlow > (maxFlow - (maxFlow - minFlow) * (1 - aboveThreshold));
+            bool isBelowThreshold = currentFlow < ((maxFlow - minFlow) * belowThreshold + minFlow);
+
+            Event.OnIsTrickPossible.Invoke(isAboveThreshold && GameManager.Instance.currentGamePhase == GamePhase.Phase3);
+
+            if (isAboveThreshold && nextPhase != GamePhase.Trick)
             {
                 if (thresholdCoroutine == null)
                 {
                     thresholdCoroutine = StartCoroutine(CheckThresholdDuration(true));
                 }
             }
-            else if (currentFlow < ((maxFlow - minFlow) * belowThreshold + minFlow) && previousPhase.HasValue)
+            else if (isBelowThreshold && previousPhase.HasValue)
             {
                 if (thresholdCoroutine == null)
                 {
@@ -198,6 +208,19 @@ public class FlowManager : MonoBehaviour
 
         //Update UI here
 
+    }
+
+    private void TrickCompleteCost(PlayerTrickHandler trickHandler)
+    {
+        if(trickHandler.CurrentResult == Tricks.TrickResult.Complete)
+        {
+            AddFlow(-(maxFlow-minFlow) / 3f);
+            Debug.Log(-maxFlow / 3f);
+        }
+        else
+        {
+            AddFlow(-(maxFlow - minFlow) / 2f);
+        }
     }
 
     private void AddFlow(float flowAmount)

@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,6 +29,8 @@ public class GameTimerUIHandler : MonoBehaviour
     private void UpdateUI(float time)
     {
         gameSlider.value = time;
-        gameTimerText.text = $"Time Left: {(int)time}";
+        int minutes = Mathf.FloorToInt(time / 60f);
+        int seconds = Mathf.FloorToInt(time % 60f);
+        gameTimerText.text = minutes.ToString("00") + ":" + seconds.ToString("00"); ;
     }
 }

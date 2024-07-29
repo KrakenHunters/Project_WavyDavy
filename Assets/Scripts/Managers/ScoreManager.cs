@@ -9,12 +9,12 @@ public class ScoreManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Event.OnTrickComplete += AddScore;
+        Event.OnTrickFinish += AddScore;
     }
 
     private void OnDisable()
     {
-        Event.OnTrickComplete -= AddScore;
+        Event.OnTrickFinish -= AddScore;
     }
 
     void Start()
@@ -27,7 +27,10 @@ public class ScoreManager : MonoBehaviour
     }
     private void AddScore(PlayerTrickHandler pth)
     {
-        Score += pth.CurrentTrick.Points;
-        scoreUIHandler.UpdateScore(Score);
+        if (pth.CurrentResult == Tricks.TrickResult.Complete)
+        {
+            Score += pth.CurrentTrick.Points;
+            scoreUIHandler.UpdateScore(Score);
+        }
     }
 }

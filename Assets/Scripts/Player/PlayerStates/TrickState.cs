@@ -26,7 +26,7 @@ public class TrickState : BaseState
         player.Event.OnTrickRunning.Invoke(trickTimer.Progress);
         if (trickTimer.IsFinished)
         {
-            player.Event.OnTrickFail?.Invoke(trickManager);
+            player.Event.OnTrickFinish?.Invoke(trickManager);
             trickManager.EndTrick();
             Debug.Log("Trick Failed");
         }

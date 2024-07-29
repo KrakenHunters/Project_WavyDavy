@@ -1188,6 +1188,17 @@ Transform:
   - {fileID: 1277420489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &932670463 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7947095737766100786, guid: 800a17cfed418ef4ca0bf951abf60bfd, type: 3}
+  m_PrefabInstance: {fileID: 8644610506434466077}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &946550667 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3337187609884236854, guid: 1640bbd8c8d29a648a8b2641b9f0298b, type: 3}
@@ -1378,6 +1389,17 @@ Transform:
   - {fileID: 2078792058}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1198495478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8329356503156839760, guid: 800a17cfed418ef4ca0bf951abf60bfd, type: 3}
+  m_PrefabInstance: {fileID: 8644610506434466077}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1222957704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,6 +1649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1281558507}
   - component: {fileID: 1281558506}
+  - component: {fileID: 1281558508}
   m_Layer: 0
   m_Name: '[GameManager]'
   m_TagString: Untagged
@@ -1646,7 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222e5e3274c603045bb4a621df6e4303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GameTime>k__BackingField: 0
+  <GameTime>k__BackingField: 180
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!4 &1281558507
 Transform:
@@ -1663,6 +1686,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1281558508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281558505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07472b227713c484e8670cf847199f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSlider: {fileID: 932670463}
+  gameTimerText: {fileID: 1198495478}
+  Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &1345683860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,7 +2049,7 @@ MonoBehaviour:
   scoreText: {fileID: 985250415}
   opponentScoreText: {fileID: 1545840888}
   opponentImage: {fileID: 218436620}
-  countSpeed: 0
+  countSpeed: 0.5
 --- !u!114 &1485145306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3319,6 +3357,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2987290899144118141, guid: 2e03946b13942b345a6dc9719817804d, type: 3}
+      propertyPath: m_text
+      value: ptb :2000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3699,6 +3741,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7071953033746885589, guid: 800a17cfed418ef4ca0bf951abf60bfd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 7567441586733555881, guid: 800a17cfed418ef4ca0bf951abf60bfd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
