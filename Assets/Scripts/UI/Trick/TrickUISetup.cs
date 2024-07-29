@@ -17,7 +17,7 @@ public class TrickUISetup : MonoBehaviour
 
     public void SetupTrick(TrickSO trick)
     {
-       trickIcon.sprite = trick.icon;
+       trickIcon.sprite = trick.Icon;
        for (int i = 0; i < trick.trickCombo.Count; i++)
        {
            switch (trick.trickCombo[i])

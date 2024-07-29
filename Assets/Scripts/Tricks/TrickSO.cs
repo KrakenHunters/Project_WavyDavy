@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "trick", menuName = "New Trick")]
 public class TrickSO : ScriptableObject
 {
-    public string trickName;
-    public Sprite icon;
-    public int points;
+    public string TrickName;
+    public Sprite Icon;
+    public int Points;
     public List<TrickCombo> trickCombo;
     private TrickEvalStrategy _strategy;
 

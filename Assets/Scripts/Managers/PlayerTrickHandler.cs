@@ -16,7 +16,7 @@ public class PlayerTrickHandler : MonoBehaviour
     public List<TrickSO> possibleTrickCombos = new List<TrickSO>();
     private List<TrickCombo> playerPressedCombo = new List<TrickCombo>();
 
-    private TrickSO currentTrick;
+    public TrickSO CurrentTrick { get; private set; }
 
     [SerializeField]
     private TrickUIHandler trickUIHandler;
@@ -66,10 +66,11 @@ public class PlayerTrickHandler : MonoBehaviour
                 possibleTrickCombos.Add(trick);
             if (result == TrickResult.Complete)
             {
+                CurrentTrick = trick;
                 Event.OnTrickComplete?.Invoke(this); //add some way of checking for whether trick done or not
                 EndTrick();
                 //ADD POINTS
-                Debug.Log(trick.trickName + " is Complete");
+                Debug.Log(trick.TrickName + " is Complete");
             }
         }
         if (result == TrickResult.Failed && possibleTrickCombos.Count == 0)
