@@ -31,6 +31,8 @@ public class GameEvent : ScriptableObject
 
     public UnityEvent OnUIUpdate;
 
+    public UnityAction<float> OnSetGameTimer;
+    public UnityAction<float> OnUpdateGameTimer;
 
     public UnityAction<TrickCombo> OnPlayerInput;
 
