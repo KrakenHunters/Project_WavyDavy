@@ -13,7 +13,7 @@ public class MovementState : BaseState
     private float pumpHoldTime;
 
     private float maxHeight;
-    private float minHeight = -5f;
+    private float minHeight = -7.5f;
 
     private float timeToMaxPump;
     private float timeToMaxSpeed;
@@ -37,13 +37,13 @@ public class MovementState : BaseState
         {
             case GamePhase.Phase2:
                 maxHeight = player.phase2MaxHeight;
-                timeToMaxPump = 0.4f;
+                timeToMaxPump = 0.6f;
                 timeToMaxSpeed = 0.1f;
                 timeToReturnSpeed = 10f;
                 break;
             case GamePhase.Phase3:
                 maxHeight = player.phase3MaxHeight;
-                timeToMaxPump = 0.5f;
+                timeToMaxPump = 0.8f;
                 timeToMaxSpeed = 0.1f;
                 timeToReturnSpeed = 15f;
                 break;
@@ -62,13 +62,15 @@ public class MovementState : BaseState
         currentAngle = player.transform.rotation.eulerAngles.z;
         if (currentAngle > 180) currentAngle -= 360;
 
-
+        // Check the player's height
+        float playerHeight = player.transform.position.y;
 
         if (_direction.x > 0)
         {
             resetTimer = 0f;
             speed = Mathf.Lerp(speed, player.normalSpeed, _direction.x);
             targetAngle = _direction.x * -player.maxInclineAngle;
+
 
             if (isPumping)
             {
@@ -78,44 +80,47 @@ public class MovementState : BaseState
                 speed = Mathf.Lerp(speed, player.pumpSpeed, pumpHoldTime / timeToMaxPump);
                 targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineBoostAngle * (speed / player.pumpSpeed), pumpHoldTime / timeToMaxPump);
             }
-        }
-/*        else if (_direction.x < 0)
-        {
-            resetTimer = 0f;
-            speed = Mathf.Lerp(speed, player.normalSpeed, _direction.x);
-            targetAngle = _direction.x * -player.maxInclineAngle;
 
-            if (isPumping && speed > player.normalSpeed)
+            if (playerHeight <= minHeight)
             {
-                pumpHoldTime += Time.fixedDeltaTime;
+                speed = 0f;
+                targetAngle = 0f;
+                player.Event.OnIncreaseFlow.Invoke(-0.5f);
 
-                // Flow Animation
-                // Add Flow to the meter
-                speed = Mathf.Lerp(speed, player.pumpSpeed, pumpHoldTime / timeToMaxPump);
-                targetAngle = Mathf.Lerp(currentAngle, player.maxInclineBoostAngle * (speed / player.pumpSpeed), pumpHoldTime / timeToMaxPump);
+                //TransitionToCrashState and get back one phase
             }
+
         }
-*/        else
+        else
         {
             resetTimer += Time.fixedDeltaTime;
-            if (resetTimer >= timeToReturnSpeed)
+
+            if (playerHeight >= maxHeight)
             {
-                speed = player.normalSpeed; // ensure speed exactly matches normalSpeed after the time period
-                resetTimer = 0f; // reset timer if needed for other purposes
+                speed = 0f;
+                targetAngle = 0f;
+            }
+            else
+            {
+                speed = Mathf.Lerp(speed, player.normalSpeed, resetTimer / timeToReturnSpeed);
+                targetAngle = _direction.x * -player.maxInclineBoostAngle * speed / player.pumpSpeed;
             }
 
 
-            speed = Mathf.Lerp(speed, player.normalSpeed, resetTimer / timeToReturnSpeed);
-            Debug.Log(speed);
-            targetAngle = _direction.x * -player.maxInclineAngle;
         }
 
         player.transform.position += new Vector3(0, -_direction.x, 0) * speed * Time.fixedDeltaTime;
+
         player.transform.rotation = Quaternion.Euler(0, 0, targetAngle);
 
     }
     public override void StateUpdate()
     {
+        if (speed > player.normalSpeed && !isPumping)
+        {
+            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.08f * Time.deltaTime);
+        }
+
 
     }
 
@@ -130,6 +135,11 @@ public class MovementState : BaseState
         pumpHoldTime = 0f;
         isPumping = false;
         //Play Idle animation in loop
+    }
+
+    public override void HitObject()
+    {
+        isPumping = false;
     }
 
     public override void HandleMovement(Vector2 dir)

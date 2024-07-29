@@ -8,8 +8,6 @@ public class InputManager : MonoBehaviour
    PlayerController _player;
 
     Vector2 _movement;
-
-    private bool _isKeyboardInput = false;
     public Vector2 Movement
     {
         get
@@ -69,7 +67,7 @@ public class InputManager : MonoBehaviour
 
         _action.PlayerTrickState.Enable();
     }
-
+    
 
     private void DisablePlayerTrickState()
     {

@@ -16,6 +16,9 @@ public class GameEvent : ScriptableObject
     public UnityEvent<float> OnHitObject;
     public UnityEvent<WaterObject> OnReachDeadZone;
 
+    public UnityEvent<float> OnIncreaseFlow;
+    public UnityEvent<float> OnFlowChange;
+
     //public UnityEvent<GameObject> OnLoseFlow;
     //public UnityEvent<float> OnGainFlow;
 

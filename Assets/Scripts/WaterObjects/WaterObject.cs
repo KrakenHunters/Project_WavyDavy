@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class WaterObject : MonoBehaviour , IHitable
 {
-    [SerializeField] private float _speed = 1f;
+    private float objSpeed;
+
+    [SerializeField] private float _speedMod = 1f;
     [SerializeField] private float flow;
     [SerializeField] private float deadZone = -25f;
 
     public GameEvent Event;
+
+    private Collider2D Collider;
 
     public float Flow
     {
@@ -16,15 +20,46 @@ public class WaterObject : MonoBehaviour , IHitable
       private set => flow = value;
     }
 
+    private void Awake()
+    {
+        Collider = GetComponent<Collider2D>();
+    }
+    private void OnEnable()
+    {
+        Event.OnFlowChange.AddListener(FlowChange);
+        Event.OnChangeGameState.AddListener(SinkObject);
+        Collider.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        Event.OnFlowChange.RemoveListener(FlowChange);
+        Event.OnChangeGameState.RemoveListener(SinkObject);
+
+    }
+
+    private void FlowChange(float currentFlow)
+    {
+        objSpeed = currentFlow * _speedMod;
+    }
+
+    private void SinkObject(GamePhase phase)
+    {
+        Collider.enabled = false;
+        //Have an animation on the object that gets "submersed" in the water, sinking in the water
+        //After animation is done:
+        Event.OnReachDeadZone.Invoke(this);
+    }
+
     private void FixedUpdate()
     {
         //transform.Translate(Vector3.down * _speed * Time.deltaTime);
        // transform.position += Vector3.left * _speed * Time.deltaTime;
-
-       transform.Translate(Vector3.left * _speed * Time.fixedDeltaTime);
+ 
+        transform.Translate(Vector3.left * objSpeed * Time.fixedDeltaTime);
         if (transform.position.x < deadZone)
         {
-          Event.OnReachDeadZone.Invoke(this);
+            Event.OnReachDeadZone.Invoke(this);
         }
     }
 

@@ -16,16 +16,14 @@ public class PlayerController : MonoBehaviour
     public GamePhase currentGamePhase{ get; private set; }
     public BaseState currentState { get; private set; }
 
-    public float normalSpeed { get; private set; }
+    public float normalSpeed { get; set; }
     public float pumpSpeed { get; private set; }
-
-
-    [SerializeField] private float normalSpeedPhase2 = 2f;
-    [SerializeField] private float normalSpeedPhase3 = 3f;
 
     [SerializeField] private float pumpSpeedPhase2 = 4f;
     [SerializeField] private float pumpSpeedPhase3 = 7f;
 
+    [SerializeField] private float normalSpeedPhase2 = 2f;
+    [SerializeField] private float normalSpeedPhase3 = 3f;
 
     [SerializeField] private Transform _phase1StartPos;
     [SerializeField] private Transform _phase2StartPos;
@@ -54,11 +52,14 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         Event.OnChangeGameState.AddListener(SetPhase);
+        Event.OnHitObject.AddListener(HitObject);
+
     }
 
     private void OnDisable()
     {
         Event.OnChangeGameState.RemoveListener(SetPhase);
+        Event.OnHitObject.RemoveListener(HitObject);
     }
 
     private void SetPhase(GamePhase gameState)
@@ -68,17 +69,22 @@ public class PlayerController : MonoBehaviour
         switch (currentGamePhase)
         {
             case GamePhase.Phase2:
-                normalSpeed = normalSpeedPhase2;
                 pumpSpeed = pumpSpeedPhase2;
+                normalSpeed = normalSpeedPhase2;
                 break;
             case GamePhase.Phase3:
-                normalSpeed = normalSpeedPhase3;
                 pumpSpeed = pumpSpeedPhase3;
+                normalSpeed = normalSpeedPhase3;
                 break;
         }
 
         currentState?.HandleTransition();
 
+    }
+
+    private void HitObject(float flowAmount)
+    {
+        currentState?.HitObject();
     }
 
     public void ChangeState(BaseState newState)
@@ -148,8 +154,6 @@ public class PlayerController : MonoBehaviour
     {
        Event.OnPlayerInput?.Invoke(direction);
     }
-
-
 
     private IEnumerator WaitFixedFrame(BaseState newState)
     {
