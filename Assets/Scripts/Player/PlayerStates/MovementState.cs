@@ -16,6 +16,7 @@ public class MovementState : BaseState
     private float timeToMaxPump;
     private float timeToMaxSpeed;
     private float timeToReturnSpeed;
+    private float timeToReturnAngle;
     private float timeToNoSpeed = 0.2f;
 
     private float resetTimer;
@@ -46,14 +47,17 @@ public class MovementState : BaseState
             case GamePhase.Phase2:
                 maxHeight = player.phase2MaxHeight;
                 timeToMaxPump = 0.4f;
-                timeToMaxSpeed = 0.2f;
-                timeToReturnSpeed = 2f;
+                timeToMaxSpeed = 0.1f;
+                timeToReturnSpeed = 15f;
+                timeToReturnAngle = 3f;
                 break;
             case GamePhase.Phase3:
                 maxHeight = player.phase3MaxHeight;
                 timeToMaxPump = 0.5f;
-                timeToMaxSpeed = 0.2f;
-                timeToReturnSpeed = 2f;
+                timeToMaxSpeed = 0.1f;
+                timeToReturnSpeed = 20f;
+                timeToReturnAngle = 3f;
+
                 break;
         }
     }
@@ -88,7 +92,7 @@ public class MovementState : BaseState
 
 /*                float pumpFactor = Mathf.Clamp01((buttonHoldTime - timeToMaxPump) / timeToMaxPump);
                 targetPosition.x = Mathf.Lerp(originalPosition.x, originalPosition.x + 0.3f, pumpFactor); // Smooth right movement
-*/            }
+*/          }
 
             if (playerHeight <= minHeight)
             {
@@ -111,7 +115,7 @@ public class MovementState : BaseState
             else
             {
                 speed = Mathf.Lerp(speed, player.normalSpeed, resetTimer / timeToReturnSpeed);
-                targetAngle = Mathf.Lerp(currentAngle, _direction.x * -player.maxInclineBoostAngle * speed / player.pumpSpeed, resetTimer / timeToReturnSpeed);
+                targetAngle = Mathf.Lerp(currentAngle, _direction.x * -player.maxInclineBoostAngle * speed / player.pumpSpeed, resetTimer / timeToReturnAngle);
             }
 
             // Apply idle random movement and downward force
@@ -133,7 +137,7 @@ public class MovementState : BaseState
 
         if (speed > player.normalSpeed && !isPumping)
         {
-            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.3f * Time.fixedDeltaTime);
+            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.1f * Time.fixedDeltaTime);
         }
 
 
@@ -143,7 +147,7 @@ public class MovementState : BaseState
     }
     public override void StateUpdate()
     {
-
+        Debug.Log(speed);
 
     }
 

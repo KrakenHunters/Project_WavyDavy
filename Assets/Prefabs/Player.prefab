@@ -187,14 +187,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  pumpSpeedPhase2: 6
-  pumpSpeedPhase3: 10
+  pumpSpeedPhase2: 5
+  pumpSpeedPhase3: 8
   normalSpeedPhase2: 3
   normalSpeedPhase3: 5
   _phase1StartPos: {fileID: 0}
   _phase2StartPos: {fileID: 0}
   _phase3StartPos: {fileID: 0}
-  _paddleSpeed: 0.03
+  _paddleSpeed: 0.05
   _phase2MaxHeight: 1
   _phase3MaxHeight: 4
   _maxInclineAngle: 20
