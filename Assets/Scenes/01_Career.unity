@@ -729,7 +729,6 @@ MonoBehaviour:
   trickDOWN: {fileID: 2881177583419682270, guid: 49ce41b7081a2e74aab06c679aa6eac2, type: 3}
   trickLEFT: {fileID: 919019702650916092, guid: ec65e0c05f2fb35408f7a7ab0bdb1e28, type: 3}
   trickRIGHT: {fileID: 7821496158305734979, guid: f50986cb02cd29b4eb6eda455b81e1eb, type: 3}
-  trickSO: {fileID: 0}
 --- !u!1 &252318222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,7 +1788,7 @@ GameObject:
   - component: {fileID: 520606962}
   - component: {fileID: 520606963}
   m_Layer: 0
-  m_Name: player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1998,11 +1997,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
   tricks:
-  - {fileID: 11400000, guid: 0ffd06453e1347843af0b6007dae1ae7, type: 2}
-  - {fileID: 11400000, guid: da0715a901030274f9aaab906b900cc4, type: 2}
-  - {fileID: 11400000, guid: 90e471d5d048de64287000ec2c6ebccf, type: 2}
-  - {fileID: 11400000, guid: 3efce5c7ee67c924aa55d80b88b03f60, type: 2}
-  trickBeginTime: 10
+  - {fileID: 11400000, guid: a0f7b261562fc4f43908048611185c12, type: 2}
+  - {fileID: 11400000, guid: 26a55eee9cf8bf5438f930084bb483bd, type: 2}
+  - {fileID: 11400000, guid: 33d6b8537a2c2a44c94818b6356fa0f5, type: 2}
+  - {fileID: 11400000, guid: b3a3a998df7cf334a9cd0da8d1dd15f9, type: 2}
+  - {fileID: 11400000, guid: aac48245669fc214eaab82f97dfea901, type: 2}
+  - {fileID: 11400000, guid: 5d3cba091b10a7040bd929d332449201, type: 2}
+  - {fileID: 11400000, guid: bcaaffb30c8730a48ab8739b3759bbb9, type: 2}
+  trickBeginTime: 15
   currentPhase: 0
   possibleTrickCombos: []
   trickUIHandler: {fileID: 1985677269}

@@ -6,14 +6,14 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using static UnityEditor.Rendering.ShadowCascadeGUI;
 
-[RequireComponent(typeof(InputManager),typeof(PlayerHitHandler))]
+[RequireComponent(typeof(InputManager), typeof(PlayerHitHandler))]
 public class PlayerController : MonoBehaviour
 {
     private InputManager inputManager;
-    private TrickManager trickManager;
+    private PlayerTrickHandler trickManager;
     public GameEvent Event;
 
-    public GamePhase currentGamePhase{ get; private set; }
+    public GamePhase currentGamePhase { get; private set; }
     public BaseState currentState { get; private set; }
 
     public float normalSpeed { get; set; }
@@ -92,10 +92,11 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(WaitFixedFrame(newState));
     }
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         inputManager = GetComponent<InputManager>();
-        trickManager = GetComponent<TrickManager>();
+        trickManager = GetComponent<PlayerTrickHandler>();
+        Event.InitializeTrickUI?.Invoke(trickManager);
         ChangeState(new PaddleState());
     }
 
@@ -110,17 +111,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             inputManager.EnablePlayerMovement();
-            GameManager.Instance.Event.OnChangeGameState.Invoke(GamePhase.Phase2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            inputManager.EnablePlayerMovement();
-            GameManager.Instance.Event.OnChangeGameState.Invoke(GamePhase.Phase3);
+            GameManager.Instance.Event.OnChangeGameState?.Invoke(GamePhase.Phase3);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             inputManager.EnablePlayerTrickState();
-            GameManager.Instance.Event.OnChangeGameState.Invoke(GamePhase.Trick);
+            GameManager.Instance.Event.OnChangeGameState?.Invoke(GamePhase.Trick);
         }
 
         HandleMove(inputManager.Movement);
@@ -152,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleTrickInput(TrickCombo direction)
     {
-       Event.OnPlayerInput?.Invoke(direction);
+        Event.OnPlayerInput?.Invoke(direction);
     }
 
     private IEnumerator WaitFixedFrame(BaseState newState)

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Tricks;
 using UnityEngine;
@@ -18,6 +16,6 @@ public class TrickSO : ScriptableObject
     }
     private void OnEnable()
     {
-        _strategy = new TrickEvalStrategy(){Combos = trickCombo};
+        _strategy = new TrickEvalStrategy(trickCombo);
     }
 }

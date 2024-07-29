@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cab50c94343871e448f38bd519d594b3, type: 3}
-  m_Name: FirstTrick 3
+  m_Name: Trick 1
   m_EditorClassIdentifier: 
-  trickName: trick3
+  trickName: trick
   icon: {fileID: 0}
   points: 100
-  trickCombo: 0000000000000000020000000300000003000000
+  trickCombo: 0000000000000000010000000000000002000000

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TrickUIHandler : MonoBehaviour
 {
@@ -9,6 +10,15 @@ public class TrickUIHandler : MonoBehaviour
     [SerializeField] private GameObject trickUIParent;
     [SerializeField] private TMPro.TextMeshProUGUI trickTime;
     [SerializeField] private Slider trickTimeSlider;
+
+    [Header("Trick Fade Settings")]
+    [SerializeField] private float fadeDuration;
+    [SerializeField] private float fadeAmount;
+    [SerializeField] private Ease fadeEase;
+    [SerializeField] private CanvasGroup trickUICanvasGroup;
+        
+    private Tween fadetween;
+
     private Dictionary<TrickSO, TrickUISetup> trickDictionary = new();
 
     private float maxTimer;
@@ -29,12 +39,12 @@ public class TrickUIHandler : MonoBehaviour
 
     private void OnDisable()
     {
-
-    }
-
-    private void Start()
-    {
-
+        Event.OnTrickFail -= ToggleUIOffPanel;
+        Event.OnTrickInput -= UpdateUI;
+        Event.OnTrickStart -= ToggleOnUIPanel;
+        Event.OnTrickStart -= ResetUI;
+        Event.OnTrickRunning -= UpdateTimer;
+        Event.OnTrickComplete -= ToggleUIOffPanel;
     }
 
     private void UpdateTimer(float timer)
@@ -44,12 +54,11 @@ public class TrickUIHandler : MonoBehaviour
         trickTimeSlider.value = remainingTime;
     }
 
-    public void Initialize(TrickManager trickManager)
+    public void Initialize(PlayerTrickHandler trickManager)
     {
         foreach (TrickSO trick in trickManager.tricks)
         {
             SpawnTrickUIBox(trick);
-
         }
 
         maxTimer = trickManager.MaxTrickTime;
@@ -59,40 +68,67 @@ public class TrickUIHandler : MonoBehaviour
 
     }
 
-    public void ToggleOnUIPanel(TrickManager trickManager)
+    public void ToggleOnUIPanel(PlayerTrickHandler x)
     {
         trickUI.SetActive(true);
     }
 
-    public void ToggleUIOffPanel(TrickManager trickManager)
+    public void ToggleUIOffPanel(PlayerTrickHandler x)
     {
         trickUI.SetActive(false);
     }
 
     public void SpawnTrickUIBox(TrickSO trickSO)
     {
-        TrickUISetup trickUISetup = Instantiate(trickUIPrefab, trickUIParent.transform);
-        trickUISetup.trickSO = trickSO;
-        trickDictionary.Add(trickSO, trickUISetup);
-        trickUISetup.SetupTrick(trickSO);
+        if (trickSO == null) return;
+        if (!trickDictionary.ContainsKey(trickSO))
+        {
+            TrickUISetup trickUISetup = Instantiate(trickUIPrefab, trickUIParent.transform);
+            if (trickUISetup != null)
+            {
+                trickDictionary.Add(trickSO, trickUISetup);
+                trickUISetup.SetupTrick(trickSO);
+            }
+        }
+    
+    }
+
+
+    private void Fade(float newAlpha)
+    {
+        fadetween = trickUICanvasGroup.DOFade(newAlpha, fadeDuration).SetEase(fadeEase);
+    }
+
+    public void StartBlinking()
+    {
+        fadetween.onComplete += () =>
+        {
+            Fade(trickUICanvasGroup.alpha == fadeAmount ? fadeAmount : 1);
+        };
+
+    }
+    public void StopBlinking()
+    {
+        fadetween.Kill();
+        trickUICanvasGroup.alpha = 1;
     }
 
     private void UpdateUI(List<TrickSO> possibleTricks)
     {
         foreach (KeyValuePair<TrickSO, TrickUISetup> trickValues in trickDictionary)
         {
-            if(possibleTricks.Contains(trickValues.Key))
+            if (possibleTricks.Contains(trickValues.Key))
                 trickValues.Value.gameObject.SetActive(true);
             else
                 trickValues.Value.gameObject.SetActive(false);
         }
     }
 
-    public void ResetUI(TrickManager trickManager)
+    public void ResetUI(PlayerTrickHandler trickManager)
     {
-        foreach (TrickSO trick in trickManager.tricks)
+        foreach (TrickUISetup trickUISetup in trickDictionary.Values)
         {
-            trickDictionary[trick].gameObject.SetActive(true);
+            trickUISetup.gameObject.SetActive(true);
         }
     }
 }
