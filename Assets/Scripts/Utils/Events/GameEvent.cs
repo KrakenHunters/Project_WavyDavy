@@ -36,13 +36,18 @@ public class GameEvent : ScriptableObject
 
 
     public UnityAction<List<TrickSO>> OnTrickInput;
-    public UnityAction<TrickManager> OnTrickStart;
-    public UnityAction<TrickManager> OnTrickFail;
+    public UnityAction<PlayerTrickHandler> OnTrickStart;
+    public UnityAction<PlayerTrickHandler> OnTrickFail;
     public UnityAction<float> OnTrickRunning;
-    public UnityAction<TrickManager> OnTrickComplete;
+    public UnityAction<PlayerTrickHandler> OnTrickComplete;
 
 
+    public UnityAction<PlayerTrickHandler> InitializeTrickUI;
 
+    public UnityAction TrickCelebrationStart;
+    public UnityAction TrickCelebrationEnd;
+
+   
 }
 
 

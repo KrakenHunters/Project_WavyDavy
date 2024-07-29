@@ -20,11 +20,6 @@ public class TrickState : BaseState
         trickTimer.Reset();
     }
 
-    public override void StateFixedUpdate()
-    {
-
-    }
-
     public override void StateUpdate()
     {
         trickTimer.Tick(Time.deltaTime);

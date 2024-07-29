@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class BaseState
 {
     public PlayerController player { get; set; }
-    public TrickManager trickManager { get; set; }
+    public PlayerTrickHandler trickManager { get; set; }
 
     protected Vector3 _direction;
     protected float timer;

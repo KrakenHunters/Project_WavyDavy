@@ -107,6 +107,7 @@ public class MovementState : BaseState
             }
 
 
+            targetAngle = _direction.x * -player.maxInclineAngle;
         }
 
         player.transform.position += new Vector3(0, -_direction.x, 0) * speed * Time.fixedDeltaTime;

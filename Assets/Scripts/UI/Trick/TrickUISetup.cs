@@ -15,9 +15,6 @@ public class TrickUISetup : MonoBehaviour
     [SerializeField] private Image trickLEFT;
     [SerializeField] private Image trickRIGHT;
 
-    [Header("TrickSO")]
-    public TrickSO trickSO;
-
     public void SetupTrick(TrickSO trick)
     {
        trickIcon.sprite = trick.icon;

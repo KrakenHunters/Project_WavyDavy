@@ -28,6 +28,8 @@ public class Spawner : MonoBehaviour
 
     private List<WaterObject> availableWaves = new();
     private List<WaterObject> availableObstacles = new();
+    //private List<WaterObject> activeObjects = new();
+
     private GamePhase currentPhase;
     private bool flipSpawn;
     private CountdownTimer countdownTimer;
