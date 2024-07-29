@@ -606,6 +606,7 @@ GameObject:
   - component: {fileID: 232862959}
   - component: {fileID: 232862962}
   - component: {fileID: 232862961}
+  - component: {fileID: 232862963}
   m_Layer: 5
   m_Name: TrickCanvas
   m_TagString: Untagged
@@ -673,6 +674,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &232862963
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232862958}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &235587346
 GameObject:
   m_ObjectHideFlags: 0
@@ -4416,6 +4429,10 @@ MonoBehaviour:
   trickUIParent: {fileID: 1826593972}
   trickTime: {fileID: 1380894218}
   trickTimeSlider: {fileID: 218841031}
+  fadeDuration: 0.5
+  fadeAmount: 0
+  fadeEase: 1
+  trickUICanvasGroup: {fileID: 232862963}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &2076072334
 GameObject:

@@ -28,6 +28,7 @@ public class TrickState : BaseState
         {
             player.Event.OnTrickFail?.Invoke(trickManager);
             trickManager.EndTrick();
+            Debug.Log("Trick Failed");
         }
 
     }

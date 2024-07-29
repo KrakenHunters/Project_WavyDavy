@@ -14,10 +14,10 @@ public class TrickUIHandler : MonoBehaviour
     [Header("Trick Fade Settings")]
     [SerializeField] private float fadeDuration;
     [SerializeField] private float fadeAmount;
-    [SerializeField] private Ease fadeEase;
     [SerializeField] private CanvasGroup trickUICanvasGroup;
         
     private Tween fadetween;
+    private float currentDuration; 
 
     private Dictionary<TrickSO, TrickUISetup> trickDictionary = new();
 
@@ -60,21 +60,22 @@ public class TrickUIHandler : MonoBehaviour
         {
             SpawnTrickUIBox(trick);
         }
-
+        currentDuration = fadeDuration;
         maxTimer = trickManager.MaxTrickTime;
         trickTimeSlider.maxValue = maxTimer;
         trickTimeSlider.value = trickManager.MaxTrickTime; // Initialize slider to max value
         trickTime.text = ((int)trickManager.MaxTrickTime).ToString();
-
     }
 
     public void ToggleOnUIPanel(PlayerTrickHandler x)
     {
         trickUI.SetActive(true);
+        Invoke(nameof(StartBlinking),5f);//remove later
     }
 
     public void ToggleUIOffPanel(PlayerTrickHandler x)
     {
+        StopBlinking();
         trickUI.SetActive(false);
     }
 
@@ -96,20 +97,18 @@ public class TrickUIHandler : MonoBehaviour
 
     private void Fade(float newAlpha)
     {
-        fadetween = trickUICanvasGroup.DOFade(newAlpha, fadeDuration).SetEase(fadeEase);
+        fadetween = trickUICanvasGroup.DOFade(newAlpha, fadeDuration).SetLoops(-1,LoopType.Yoyo);
     }
+
 
     public void StartBlinking()
     {
-        fadetween.onComplete += () =>
-        {
-            Fade(trickUICanvasGroup.alpha == fadeAmount ? fadeAmount : 1);
-        };
-
+         Fade(fadeAmount);
     }
     public void StopBlinking()
     {
         fadetween.Kill();
+        currentDuration = fadeDuration;
         trickUICanvasGroup.alpha = 1;
     }
 
