@@ -103,18 +103,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            inputManager.EnablePlayerPaddle();
-            GameManager.Instance.Event.OnChangeGameState.Invoke(GamePhase.Phase1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            inputManager.EnablePlayerMovement();
-            GameManager.Instance.Event.OnChangeGameState?.Invoke(GamePhase.Phase3);
-        }
+
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            // Event.OnHitObject.Invoke(-1); // reduce flow
             inputManager.EnablePlayerTrickState();
             GameManager.Instance.Event.OnChangeGameState?.Invoke(GamePhase.Trick);
         }

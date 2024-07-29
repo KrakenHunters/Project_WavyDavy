@@ -12,9 +12,6 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioMixerGroup bgMusicGroup;
     [SerializeField] private AudioMixerGroup sfxGroup;
 
-    [Header("Game Event")]
-    public GameEvent gameEvent;
-
     private List<AudioSource> _audioSources = new();
 
     private void Awake()
@@ -25,7 +22,7 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    private void PlayAudio(AudioClip clip, bool isBgMusic)
+    public void PlayAudio(AudioClip clip, bool isBgMusic = false)
     {
         AudioSource audioSource = GetAvailableAudioSource();
 
@@ -66,9 +63,11 @@ public class AudioManager : Singleton<AudioManager>
 
     private void OnEnable()
     {
+
     }
 
     private void OnDisable()
     {
+
     }
 }

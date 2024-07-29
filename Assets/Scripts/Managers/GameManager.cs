@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class GameManager : Singleton<GameManager>
 {
-    public GamePhase currentGamePhase;
+
+    [field: SerializeField] public float GameTime { get; private set; }
+    public GamePhase currentGamePhase { get; private set; }
 
     public GameEvent Event;
+
+    private CountdownTimer countdownTimer;
 
     private void OnEnable()
     {
@@ -18,27 +23,41 @@ public class GameManager : Singleton<GameManager>
     }
     private void Awake()
     {
+        countdownTimer = new CountdownTimer(GameTime);
         Event.OnChangeGameState.Invoke(GamePhase.Phase1);
+    }
+
+    private void Start()
+    {
+        Event.OnSetGameTimer?.Invoke(GameTime);
+        countdownTimer.Start();
     }
 
 
     private void ChangeGamePhase(GamePhase nextPhase)
     {
-      switch (nextPhase)
-      {
-          case GamePhase.Phase1:
-              currentGamePhase = GamePhase.Phase1;
-              break;
-          case GamePhase.Phase2:
-              currentGamePhase = GamePhase.Phase2;
-              break;
-          case GamePhase.Phase3:
-              currentGamePhase = GamePhase.Phase3;
-              break;
-          case GamePhase.Trick:
-              currentGamePhase = GamePhase.Trick;
-              break;
-      }
+        switch (nextPhase)
+        {
+            case GamePhase.Phase1:
+                currentGamePhase = GamePhase.Phase1;
+                break;
+            case GamePhase.Phase2:
+                currentGamePhase = GamePhase.Phase2;
+                break;
+            case GamePhase.Phase3:
+                currentGamePhase = GamePhase.Phase3;
+                break;
+            case GamePhase.Trick:
+                currentGamePhase = GamePhase.Trick;
+                break;
+        }
+    }
+
+    private void Update()
+    {
+        countdownTimer.Tick(Time.deltaTime);
+        Event.OnUpdateGameTimer?.Invoke(countdownTimer.Progress * GameTime);
+        // Debug.Log(countdownTimer.Progress * 100);
     }
 
 }
