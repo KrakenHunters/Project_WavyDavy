@@ -33,11 +33,6 @@ public class TrickState : BaseState
 
     }
 
-    public override void HandlePaddling()
-    {
-
-    }
-
     public override void HandleTransition()
     {
         base.HandleTransition();

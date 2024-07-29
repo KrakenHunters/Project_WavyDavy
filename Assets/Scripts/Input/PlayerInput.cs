@@ -28,15 +28,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""id"": ""9a4585cf-023f-4dbf-b725-ea09fc1d006f"",
             ""actions"": [
                 {
-                    ""name"": ""Pump"",
-                    ""type"": ""Button"",
-                    ""id"": ""988a9dfd-4d83-4511-b49a-83245d726f79"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""3c7f67ce-7251-4815-93ef-5a3621cc259a"",
@@ -47,39 +38,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""fabb6489-8beb-47a2-a597-7545c461bc10"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a43e6ef9-1b51-4128-a5f0-e1cec0222f71"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b58a4b5b-2b2c-4327-99be-c284b66a1f04"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""f9409370-0fec-473f-b6ec-9bfcd95426dd"",
@@ -128,6 +86,61 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""right"",
                     ""id"": ""58811bbf-0a32-42ce-82da-d73c4e6c6dfa"",
                     ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector(Controller)"",
+                    ""id"": ""86d46125-cc43-4df1-be7b-7dbccbb146d5"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""2cb8add1-52c3-43f9-b272-77da4b70945f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d0a596dc-a505-473a-a206-f0b4024a7806"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""2bf82ad2-6bb6-41f8-866a-3512bc0c54b6"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1bed748c-55f2-49a9-b26d-3bd63b12d592"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -274,9 +287,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""id"": ""ca65f1b2-8874-4a75-904a-93a0174189ca"",
             ""actions"": [
                 {
-                    ""name"": ""Paddle"",
+                    ""name"": ""PaddleLeft"",
                     ""type"": ""Button"",
                     ""id"": ""f2171b36-0b2e-4542-ad01-010ea2926908"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PaddleRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""50e653d0-82a8-4a01-a5a6-b1f5fd8b448d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -287,22 +309,44 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b6b06b8d-e59e-4716-baa7-4e3bef2d3d49"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Paddle"",
+                    ""action"": ""PaddleLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""9ce10986-1900-443f-9faf-8949d2530c6f"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PaddleLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a0f2bba-87c5-418f-94a2-367c0835fdb6"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PaddleRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8479e1e7-8152-44e8-86b0-4a8d48df3df6"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Paddle"",
+                    ""action"": ""PaddleRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -313,7 +357,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
 }");
         // PlayerMovement
         m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
-        m_PlayerMovement_Pump = m_PlayerMovement.FindAction("Pump", throwIfNotFound: true);
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
         // PlayerTrickState
         m_PlayerTrickState = asset.FindActionMap("PlayerTrickState", throwIfNotFound: true);
@@ -323,7 +366,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_PlayerTrickState_Right = m_PlayerTrickState.FindAction("Right", throwIfNotFound: true);
         // PlayerPaddle
         m_PlayerPaddle = asset.FindActionMap("PlayerPaddle", throwIfNotFound: true);
-        m_PlayerPaddle_Paddle = m_PlayerPaddle.FindAction("Paddle", throwIfNotFound: true);
+        m_PlayerPaddle_PaddleLeft = m_PlayerPaddle.FindAction("PaddleLeft", throwIfNotFound: true);
+        m_PlayerPaddle_PaddleRight = m_PlayerPaddle.FindAction("PaddleRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -385,13 +429,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     // PlayerMovement
     private readonly InputActionMap m_PlayerMovement;
     private List<IPlayerMovementActions> m_PlayerMovementActionsCallbackInterfaces = new List<IPlayerMovementActions>();
-    private readonly InputAction m_PlayerMovement_Pump;
     private readonly InputAction m_PlayerMovement_Movement;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerMovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Pump => m_Wrapper.m_PlayerMovement_Pump;
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
@@ -402,9 +444,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerMovementActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerMovementActionsCallbackInterfaces.Add(instance);
-            @Pump.started += instance.OnPump;
-            @Pump.performed += instance.OnPump;
-            @Pump.canceled += instance.OnPump;
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
@@ -412,9 +451,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
         {
-            @Pump.started -= instance.OnPump;
-            @Pump.performed -= instance.OnPump;
-            @Pump.canceled -= instance.OnPump;
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
@@ -509,12 +545,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     // PlayerPaddle
     private readonly InputActionMap m_PlayerPaddle;
     private List<IPlayerPaddleActions> m_PlayerPaddleActionsCallbackInterfaces = new List<IPlayerPaddleActions>();
-    private readonly InputAction m_PlayerPaddle_Paddle;
+    private readonly InputAction m_PlayerPaddle_PaddleLeft;
+    private readonly InputAction m_PlayerPaddle_PaddleRight;
     public struct PlayerPaddleActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerPaddleActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Paddle => m_Wrapper.m_PlayerPaddle_Paddle;
+        public InputAction @PaddleLeft => m_Wrapper.m_PlayerPaddle_PaddleLeft;
+        public InputAction @PaddleRight => m_Wrapper.m_PlayerPaddle_PaddleRight;
         public InputActionMap Get() { return m_Wrapper.m_PlayerPaddle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -524,16 +562,22 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerPaddleActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerPaddleActionsCallbackInterfaces.Add(instance);
-            @Paddle.started += instance.OnPaddle;
-            @Paddle.performed += instance.OnPaddle;
-            @Paddle.canceled += instance.OnPaddle;
+            @PaddleLeft.started += instance.OnPaddleLeft;
+            @PaddleLeft.performed += instance.OnPaddleLeft;
+            @PaddleLeft.canceled += instance.OnPaddleLeft;
+            @PaddleRight.started += instance.OnPaddleRight;
+            @PaddleRight.performed += instance.OnPaddleRight;
+            @PaddleRight.canceled += instance.OnPaddleRight;
         }
 
         private void UnregisterCallbacks(IPlayerPaddleActions instance)
         {
-            @Paddle.started -= instance.OnPaddle;
-            @Paddle.performed -= instance.OnPaddle;
-            @Paddle.canceled -= instance.OnPaddle;
+            @PaddleLeft.started -= instance.OnPaddleLeft;
+            @PaddleLeft.performed -= instance.OnPaddleLeft;
+            @PaddleLeft.canceled -= instance.OnPaddleLeft;
+            @PaddleRight.started -= instance.OnPaddleRight;
+            @PaddleRight.performed -= instance.OnPaddleRight;
+            @PaddleRight.canceled -= instance.OnPaddleRight;
         }
 
         public void RemoveCallbacks(IPlayerPaddleActions instance)
@@ -553,7 +597,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public PlayerPaddleActions @PlayerPaddle => new PlayerPaddleActions(this);
     public interface IPlayerMovementActions
     {
-        void OnPump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
     }
     public interface IPlayerTrickStateActions
@@ -565,6 +608,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     }
     public interface IPlayerPaddleActions
     {
-        void OnPaddle(InputAction.CallbackContext context);
+        void OnPaddleLeft(InputAction.CallbackContext context);
+        void OnPaddleRight(InputAction.CallbackContext context);
     }
 }

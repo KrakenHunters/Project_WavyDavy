@@ -19,8 +19,7 @@ public abstract class BaseState
     public virtual void HandleMovement(Vector2 dir) { }
     public virtual void HandlePumping() { }
     public virtual void HandleStopPumping() { }
-    public virtual void HandlePaddling() { }
-
+    public virtual void HandlePaddling(Paddle paddleDir) { }
     public virtual void HitObject() { }
 
     public virtual void HandleTransition() 
@@ -28,4 +27,10 @@ public abstract class BaseState
         player.ChangeState(new TransitionState());
     }
 
+}
+public enum Paddle
+{
+    None,
+    Right,
+    Left
 }

@@ -34,9 +34,6 @@ public class InputManager : MonoBehaviour
         DisablePlayerPaddle();
         DisablePlayerTrickState();
 
-        _action.PlayerMovement.Pump.performed += (val) => _player.HandlePump();
-        _action.PlayerMovement.Pump.canceled += (val) => _player.HandleStopPump();
-
         _action.PlayerMovement.Movement.performed += (val) => HandleMovement(val.ReadValue<Vector2>());
 
         _action.PlayerMovement.Enable();
@@ -44,14 +41,11 @@ public class InputManager : MonoBehaviour
 
     private void HandleMovement(Vector2 input)
     {
-            _movement = input;
+        _movement = input;
     }
 
     private void DisablePlayerMovement()
     {
-        _action.PlayerMovement.Pump.performed -= (val) => _player.HandlePump();
-        _action.PlayerMovement.Pump.canceled -= (val) => _player.HandleStopPump();
-
         _action.PlayerMovement.Movement.performed -= (val) => _movement = val.ReadValue<Vector2>();
         _action.PlayerMovement.Disable();
     }
@@ -84,14 +78,17 @@ public class InputManager : MonoBehaviour
         DisablePlayerMovement();
         DisablePlayerTrickState();
 
-        _action.PlayerPaddle.Paddle.performed += (val) => _player.HandlePaddle();
+        _action.PlayerPaddle.PaddleRight.performed += (val) => _player.HandlePaddle(Paddle.Right);
+        _action.PlayerPaddle.PaddleLeft.performed += (val) => _player.HandlePaddle(Paddle.Left);
+
 
         _action.PlayerPaddle.Enable();
     }
 
     private void DisablePlayerPaddle()
     {
-        _action.PlayerPaddle.Paddle.performed -= (val) => _player.HandlePaddle();
+        _action.PlayerPaddle.PaddleRight.performed -= (val) => _player.HandlePaddle(Paddle.Right);
+        _action.PlayerPaddle.PaddleLeft.performed -= (val) => _player.HandlePaddle(Paddle.Left);
 
         _action.PlayerPaddle.Disable();
     }

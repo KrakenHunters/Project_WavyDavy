@@ -10,14 +10,13 @@ public class MovementState : BaseState
     private float buttonHoldTime = 0f;
     private float buttonReleaseTime = 0f;
 
-    private float pumpHoldTime;
-
     private float maxHeight;
     private float minHeight = -7.5f;
 
     private float timeToMaxPump;
     private float timeToMaxSpeed;
     private float timeToReturnSpeed;
+    private float timeToNoSpeed = 0.2f;
 
     private float resetTimer;
 
@@ -31,10 +30,13 @@ public class MovementState : BaseState
     private Vector3 originalPosition;
     private float idleTimer = 0f;
 
+    private float direction = 0f;
+
 
     public override void EnterState()
     {
         base.EnterState();
+        
         inputManager.EnablePlayerMovement();
 
         originalPosition = player.transform.position;
@@ -43,15 +45,15 @@ public class MovementState : BaseState
         {
             case GamePhase.Phase2:
                 maxHeight = player.phase2MaxHeight;
-                timeToMaxPump = 0.6f;
-                timeToMaxSpeed = 0.1f;
-                timeToReturnSpeed = 10f;
+                timeToMaxPump = 0.4f;
+                timeToMaxSpeed = 0.2f;
+                timeToReturnSpeed = 2f;
                 break;
             case GamePhase.Phase3:
                 maxHeight = player.phase3MaxHeight;
-                timeToMaxPump = 0.8f;
-                timeToMaxSpeed = 0.1f;
-                timeToReturnSpeed = 15f;
+                timeToMaxPump = 0.5f;
+                timeToMaxSpeed = 0.2f;
+                timeToReturnSpeed = 2f;
                 break;
         }
     }
@@ -71,7 +73,7 @@ public class MovementState : BaseState
         // Check the player's height
         float playerHeight = player.transform.position.y;
 
-        originalPosition = new Vector3(originalPosition.x, player.transform.position.y, originalPosition.z);
+        Vector3 targetPosition = new Vector3(originalPosition.x, player.transform.position.y, originalPosition.z);
 
         if (_direction.x > 0)
         {
@@ -79,15 +81,14 @@ public class MovementState : BaseState
             speed = Mathf.Lerp(speed, player.normalSpeed, _direction.x);
             targetAngle = _direction.x * -player.maxInclineAngle;
 
-
             if (isPumping)
             {
-                pumpHoldTime += Time.fixedDeltaTime;
-                // Flow Animation
-                // Add Flow to the meter
-                speed = Mathf.Lerp(speed, player.pumpSpeed, pumpHoldTime / timeToMaxPump);
-                targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineBoostAngle * (speed / player.pumpSpeed), pumpHoldTime / timeToMaxPump);
-            }
+                speed = Mathf.Lerp(speed, player.pumpSpeed, (buttonHoldTime - timeToMaxPump) / timeToMaxPump);
+                targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineBoostAngle * (speed / player.pumpSpeed), (buttonHoldTime - timeToMaxPump) / timeToMaxPump);
+
+/*                float pumpFactor = Mathf.Clamp01((buttonHoldTime - timeToMaxPump) / timeToMaxPump);
+                targetPosition.x = Mathf.Lerp(originalPosition.x, originalPosition.x + 0.3f, pumpFactor); // Smooth right movement
+*/            }
 
             if (playerHeight <= minHeight)
             {
@@ -95,9 +96,8 @@ public class MovementState : BaseState
                 targetAngle = 0f;
                 player.Event.OnIncreaseFlow.Invoke(-0.5f);
 
-                //TransitionToCrashState and get back one phase
+                // Get Hit animation
             }
-
         }
         else
         {
@@ -111,7 +111,7 @@ public class MovementState : BaseState
             else
             {
                 speed = Mathf.Lerp(speed, player.normalSpeed, resetTimer / timeToReturnSpeed);
-                targetAngle = _direction.x * -player.maxInclineBoostAngle * speed / player.pumpSpeed;
+                targetAngle = Mathf.Lerp(currentAngle, _direction.x * -player.maxInclineBoostAngle * speed / player.pumpSpeed, resetTimer / timeToReturnSpeed);
             }
 
             // Apply idle random movement and downward force
@@ -124,67 +124,76 @@ public class MovementState : BaseState
 
                 idleMovement = new Vector3(idleX, idleY * 0.05f, 0) * 0.5f;
 
-                player.transform.position = originalPosition + idleMovement;
+                targetPosition += idleMovement;
 
                 // Apply small downward force
-                player.transform.position += Vector3.down * 0.005f;
+                targetPosition += Vector3.down * 0.005f;
             }
         }
 
+        if (speed > player.normalSpeed && !isPumping)
+        {
+            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.3f * Time.fixedDeltaTime);
+        }
+
+
+        player.transform.position = targetPosition;
         player.transform.position += new Vector3(0, -_direction.x, 0) * speed * Time.fixedDeltaTime;
         player.transform.rotation = Quaternion.Euler(0, 0, targetAngle);
     }
     public override void StateUpdate()
     {
-        if (speed > player.normalSpeed && !isPumping)
-        {
-            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.08f * Time.deltaTime);
-        }
 
 
-    }
-
-    public override void HandlePumping()
-    {
-        isPumping = true;
-        //Play Pump animation in loop
-    }
-
-    public override void HandleStopPumping()
-    {
-        pumpHoldTime = 0f;
-        isPumping = false;
-        //Play Idle animation in loop
     }
 
     public override void HitObject()
     {
         isPumping = false;
+        speed = player.normalSpeed;
     }
 
     public override void HandleMovement(Vector2 dir)
     {
 
-        if (dir.x > 0)
+        if (dir.x != 0)
         {
-            buttonReleaseTime = 0f;
-            buttonHoldTime += Time.deltaTime;
+            // If direction has changed (compared to the previous direction)
+            if (Mathf.Sign(dir.x) != direction)
+            {
+                // Reset buttonHoldTime since the direction has changed
+                buttonHoldTime = 0f;
+
+                // Update the direction to the new direction
+                direction = Mathf.Sign(dir.x);
+            }
+            else
+            {
+                // If direction hasn't changed, increment buttonHoldTime
+                buttonHoldTime += Time.deltaTime;
+            }
+
+            // Calculate the holdFactor based on the time held
             holdFactor = Mathf.Clamp(buttonHoldTime / timeToMaxSpeed, 0f, 1f);
 
-            _direction = new Vector2(Mathf.Sign(dir.x) * holdFactor, 0f);
-        }
-        else if (dir.x < 0 && !isPumping)
-        {
-            buttonReleaseTime = 0f;
-            buttonHoldTime += Time.deltaTime;
-            holdFactor = Mathf.Clamp(buttonHoldTime / timeToMaxSpeed, 0f, 1f);
+            // Determine if the button is being pumped based on the hold time
+            if (buttonHoldTime > timeToMaxPump && dir.x >= 1)
+            {
+                isPumping = true;
+            }
+            else
+            {
+                isPumping = false;
+            }
 
+            // Update _direction based on the new direction and holdFactor
             _direction = new Vector2(Mathf.Sign(dir.x) * holdFactor, 0f);
         }
-        else if (!isPumping)
+        else
         {
+            buttonHoldTime = 0f;
             buttonReleaseTime += Time.deltaTime;
-            holdFactor = Mathf.Clamp(buttonReleaseTime / timeToMaxSpeed, 0f, 1f);
+            holdFactor = Mathf.Clamp(buttonReleaseTime / timeToNoSpeed, 0f, 1f);
 
             float adjustedX = Mathf.Lerp(_direction.x, 0, holdFactor);
             _direction = new Vector2(adjustedX, 0f);
@@ -196,6 +205,7 @@ public class MovementState : BaseState
     public override void HandleTransition()
     {
         isPumping = false;
+        speed = player.normalSpeed;
         base.HandleTransition();
     }
 }

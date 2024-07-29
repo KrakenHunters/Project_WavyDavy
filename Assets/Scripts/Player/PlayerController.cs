@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 {
     private InputManager inputManager;
     private PlayerTrickHandler trickManager;
+
     public GameEvent Event;
 
     public GamePhase currentGamePhase { get; private set; }
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
     public Transform phase1StartPos { get => _phase1StartPos; private set => _phase1StartPos = value; }
     public Transform phase2StartPos { get => _phase2StartPos; private set => _phase2StartPos = value; }
     public Transform phase3StartPos { get => _phase3StartPos; private set => _phase3StartPos = value; }
-    public float paddleSpeed { get => _paddleSpeed; private set => _paddleSpeed = value; }
+    public float finalPaddleSpeed { get; private set; }
     public float phase2MaxHeight { get => _phase2MaxHeight; private set => _phase2MaxHeight = value; }
     public float phase3MaxHeight { get => _phase3MaxHeight; private set => _phase3MaxHeight = value; }
     public float maxInclineAngle { get => _maxInclineAngle; private set => _maxInclineAngle = value; }
@@ -53,13 +54,15 @@ public class PlayerController : MonoBehaviour
     {
         Event.OnChangeGameState.AddListener(SetPhase);
         Event.OnHitObject.AddListener(HitObject);
-
+        Event.OnFlowChange.AddListener(FlowChange);
     }
 
     private void OnDisable()
     {
         Event.OnChangeGameState.RemoveListener(SetPhase);
         Event.OnHitObject.RemoveListener(HitObject);
+        Event.OnFlowChange.RemoveListener(FlowChange);
+
     }
 
     private void SetPhase(GamePhase gameState)
@@ -116,6 +119,15 @@ public class PlayerController : MonoBehaviour
         currentState?.StateUpdate();
     }
 
+    private void FlowChange(float currentFlow)
+    {
+        if (currentGamePhase == GamePhase.Phase1)
+        {
+            finalPaddleSpeed = _paddleSpeed - _paddleSpeed * currentFlow;
+        }
+
+    }
+
     private void FixedUpdate() => currentState?.StateFixedUpdate();
 
     public void HandlePump()
@@ -133,9 +145,9 @@ public class PlayerController : MonoBehaviour
         currentState?.HandleMovement(dir);
     }
 
-    public void HandlePaddle()
+    public void HandlePaddle(Paddle paddleDir)
     {
-        currentState?.HandlePaddling();
+        currentState?.HandlePaddling(paddleDir);
     }
 
     public void HandleTrickInput(TrickCombo direction)
