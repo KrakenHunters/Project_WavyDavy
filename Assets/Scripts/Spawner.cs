@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using Utilities;
@@ -20,16 +21,16 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Transform middleSpawnPos;
     [SerializeField] private Transform bottomSpawnPos;
 
+    private Transform topPos;
+    private Transform bottomPos;
+
     public GameEvent Event;
 
     private List<WaterObject> availableWaves = new();
     private List<WaterObject> availableObstacles = new();
     private GamePhase currentPhase;
-    private int phasePosIndex = 3;// change by currentPhase
     private bool flipSpawn;
     private CountdownTimer countdownTimer;
-
-    private float nextSpawnTime;
 
     private void OnEnable()
     {
@@ -49,11 +50,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        //InvokeRepeating(nameof(Spawn), 0, spawnRate);// same as below but more expensive
-
         countdownTimer = new CountdownTimer(spawnRate);
-        countdownTimer.OnTimerStart += Spawn;
-        countdownTimer.OnTimerStop += () => countdownTimer.Start();
         countdownTimer.Start();
     }
 
@@ -61,38 +58,37 @@ public class Spawner : MonoBehaviour
     {
         countdownTimer.Tick(Time.deltaTime);
 
-        if (Time.time >= nextSpawnTime)
+        if (countdownTimer.IsFinished)
         {
             Spawn();
-            nextSpawnTime = Time.time + spawnRate;
+            countdownTimer = new CountdownTimer(spawnRate);
+            countdownTimer.Start();
+
         }
     }
 
     private void AdjustSpawnRateBasedOnFlow(float currentFlow)
     {
-        spawnRate = Mathf.Lerp(maxSpawnInterval, minSpawnInterval, currentFlow / 3f); 
+        spawnRate = Mathf.Lerp(maxSpawnInterval, minSpawnInterval, currentFlow / 2.5f); 
     }
 
     private void SetGamePhase(GamePhase newPhase)
     {
         currentPhase = newPhase;
 
+        topPos = null;
+        bottomPos = null;
+
+
         switch (currentPhase)
         {
-            case GamePhase.Trick:
-                phasePosIndex = 0;  // Trick
-                break;
-            case GamePhase.Phase1:
-                phasePosIndex = 0;  // Phase 1
-                break;
             case GamePhase.Phase2:
-                phasePosIndex = 2;  // Phase 2
+                topPos = middleSpawnPos;
+                bottomPos = bottomSpawnPos;
                 break;
             case GamePhase.Phase3:
-                phasePosIndex = 3;  // Phase 3
-                break;
-            default:
-                phasePosIndex = 0; 
+                topPos = topSpawnPos;
+                bottomPos = bottomSpawnPos;
                 break;
         }
     }
@@ -113,18 +109,9 @@ public class Spawner : MonoBehaviour
         objToSpawn.gameObject.SetActive(true);
     }
 
-    private Vector3 GetSpawnPos() // change based on phase
+    private Vector3 GetSpawnPos()
     {
-        List<Vector3> possiblePositions = new List<Vector3>();
-
-        if (phasePosIndex > 0) possiblePositions.Add(bottomSpawnPos.position);
-        if (phasePosIndex > 1) possiblePositions.Add(middleSpawnPos.position);
-        if (phasePosIndex > 2) possiblePositions.Add(topSpawnPos.position);
-
-        if (possiblePositions.Count == 0)
-            return Vector3.zero;
-
-        return possiblePositions[Random.Range(0, possiblePositions.Count)];
+        return new Vector3 (topPos.position.x, Random.Range(bottomPos.position.y, topPos.position.y),topPos.position.z);
     }
 
     private WaterObject GetWaveObject()

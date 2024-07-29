@@ -2211,8 +2211,8 @@ MonoBehaviour:
   wavePrefab: {fileID: 946550667}
   obstaclePrefab: {fileID: 6563733163459200441, guid: c049d2567e78f8345bbb70509110f469, type: 3}
   spawnRate: 3
-  maxSpawnInterval: 5
-  minSpawnInterval: 2
+  maxSpawnInterval: 4
+  minSpawnInterval: 1
   topSpawnPos: {fileID: 1385221539}
   middleSpawnPos: {fileID: 1902838680}
   bottomSpawnPos: {fileID: 1277420489}
@@ -2308,11 +2308,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  maxFlowPhase1: 1
-  maxFlowPhase2: 2
-  maxFlowPhase3: 3
+  maxFlowPhase1: 0.8
+  maxFlowPhase2: 1.5
+  maxFlowPhase3: 2.5
   minFlowPhase1: 0.1
-  minFlowPhase2: 1.5
+  minFlowPhase2: 1
   aboveThreshold: 0.9
   belowThreshold: 0.15
   flowDecreaseSpeed: 0.05
