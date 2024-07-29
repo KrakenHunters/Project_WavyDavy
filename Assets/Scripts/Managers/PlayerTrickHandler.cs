@@ -38,7 +38,6 @@ public class PlayerTrickHandler : MonoBehaviour
 
     public void StartTrick()
     {
-        Debug.Log("Start Trick");
         Event.OnTrickStart?.Invoke(this);
     }
 
@@ -46,7 +45,6 @@ public class PlayerTrickHandler : MonoBehaviour
     {
         playerPressedCombo.Clear();
         Event.OnChangeGameState.Invoke(GamePhase.Phase3);
-        Debug.Log("End Trick");
     }
 
     public void AddButton(TrickCombo move)
@@ -59,22 +57,26 @@ public class PlayerTrickHandler : MonoBehaviour
 
     public void CheckMatchCombos()
     {
+        TrickResult result = TrickResult.Default;
         possibleTrickCombos.Clear();
         foreach (TrickSO trick in tricks)
         {
-            TrickResult result = trick.Evaluate(playerPressedCombo);
+            result = trick.Evaluate(playerPressedCombo);
             if (result == TrickResult.Possible)
                 possibleTrickCombos.Add(trick);
             if (result == TrickResult.Complete)
             {
                 Event.OnTrickComplete?.Invoke(this); //add some way of checking for whether trick done or not
                 EndTrick();
+                //ADD POINTS
+                Debug.Log(trick.trickName + " is Complete");
             }
         }
-        if (possibleTrickCombos.Count == 0)
+        if (result == TrickResult.Failed && possibleTrickCombos.Count == 0)
         {
             Event.OnTrickFail?.Invoke(this);
             EndTrick();
+            Debug.Log("Trick Faild");
         }
     }
 

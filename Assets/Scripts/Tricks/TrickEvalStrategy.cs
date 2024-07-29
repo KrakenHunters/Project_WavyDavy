@@ -42,6 +42,6 @@ namespace Tricks
 
     public enum TrickResult
     {
-        Possible, Failed, Complete
+        Possible, Failed, Complete, Default
     }
 }

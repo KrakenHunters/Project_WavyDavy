@@ -26,7 +26,7 @@ public class TransitionState : BaseState
                 //inputManager.EnablePlayerTrickState();
                 break;
                 case GamePhase.Trick:
-                  player.Event.TrickCelebrationStart.Invoke();
+                 // player.Event.TrickCelebrationStart.Invoke();
                 break;
         }
 
