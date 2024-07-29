@@ -27,11 +27,17 @@ public class MovementState : BaseState
 
     float holdFactor = 0f;
 
+    private Vector3 idleMovement;
+    private Vector3 originalPosition;
+    private float idleTimer = 0f;
+
 
     public override void EnterState()
     {
         base.EnterState();
         inputManager.EnablePlayerMovement();
+
+        originalPosition = player.transform.position;
 
         switch (player.currentGamePhase)
         {
@@ -64,6 +70,8 @@ public class MovementState : BaseState
 
         // Check the player's height
         float playerHeight = player.transform.position.y;
+
+        originalPosition = new Vector3(originalPosition.x, player.transform.position.y, originalPosition.z);
 
         if (_direction.x > 0)
         {
@@ -106,13 +114,25 @@ public class MovementState : BaseState
                 targetAngle = _direction.x * -player.maxInclineBoostAngle * speed / player.pumpSpeed;
             }
 
+            // Apply idle random movement and downward force
+            if (_direction == Vector3.zero)
+            {
+                idleTimer += Time.fixedDeltaTime;
 
+                float idleX = Mathf.PerlinNoise(idleTimer, 0) - 0.5f; // Smooth random x movement
+                float idleY = Mathf.PerlinNoise(0, idleTimer) - 0.5f; // Smooth random y movement
+
+                idleMovement = new Vector3(idleX, idleY * 0.05f, 0) * 0.5f;
+
+                player.transform.position = originalPosition + idleMovement;
+
+                // Apply small downward force
+                player.transform.position += Vector3.down * 0.005f;
+            }
         }
 
         player.transform.position += new Vector3(0, -_direction.x, 0) * speed * Time.fixedDeltaTime;
-
         player.transform.rotation = Quaternion.Euler(0, 0, targetAngle);
-
     }
     public override void StateUpdate()
     {
