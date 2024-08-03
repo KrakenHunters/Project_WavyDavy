@@ -91,8 +91,15 @@ public class FlowManager : MonoBehaviour
 
     private IEnumerator FlowDecrease()
     {
+
         while (true)
         {
+            if (currentFlow >= maxFlow && nextPhase == GamePhase.Phase2)
+            {
+                Event.OnChangeGameState.Invoke(GamePhase.Phase2);
+                StopAllCoroutines();
+            }
+
             if (currentFlow > minFlow)
             {
                 currentFlow -= flowDecreaseSpeed * (maxFlow - minFlow) * Time.deltaTime;
@@ -105,8 +112,6 @@ public class FlowManager : MonoBehaviour
 
             Event.OnIsTrickPossible.Invoke(isAboveThreshold && GameManager.Instance.currentGamePhase == GamePhase.Phase3);
 
-            if (currentFlow >= maxFlow && nextPhase == GamePhase.Phase2)
-                Event.OnChangeGameState.Invoke(GamePhase.Phase2);
 
 
             if (isAboveThreshold && nextPhase != GamePhase.Trick)

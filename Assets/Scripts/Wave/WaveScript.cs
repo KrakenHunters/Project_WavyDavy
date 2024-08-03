@@ -10,8 +10,6 @@ public class WaveScript : MonoBehaviour
     private Animator _animator;
     private GamePhase currentPhase;
 
-    private float animationSpeed;
-
     protected static readonly int Wave1To2Hash = Animator.StringToHash("TransitionPhase1ToPhase2");
     protected static readonly int Wave2To1Hash = Animator.StringToHash("TransitionPhase2ToPhase1");
     protected static readonly int Wave2To3Hash = Animator.StringToHash("TransitionPhase2ToPhase3");
@@ -67,7 +65,7 @@ public class WaveScript : MonoBehaviour
 
                     _animator.CrossFade(Wave2To1Hash,0.2f);
                 }
-
+                currentPhase = newPhase;
                 break;
             case GamePhase.Phase2:
                 parallaxObj.SetActive(false);
@@ -82,17 +80,23 @@ public class WaveScript : MonoBehaviour
                 {
                     _animator.CrossFade(Wave2To3Hash, 0.2f);
                 }
+                currentPhase = newPhase;
 
                 break;
             case GamePhase.Phase3:
-                parallaxObj.SetActive(false);
-                parallaxObj.GetComponent<MeshRenderer>().material = largeWaveMaterial;
+                if (currentPhase == GamePhase.Phase2)
+                {
+                    parallaxObj.SetActive(false);
+                    parallaxObj.GetComponent<MeshRenderer>().material = largeWaveMaterial;
 
-                _animator.CrossFade(Wave3To2Hash, 0.2f);
+                    _animator.CrossFade(Wave3To2Hash, 0.2f);
+                }
+                currentPhase = newPhase;
 
                 break;
             case GamePhase.Trick:
                 //_animator.SetTrigger("Phase3ToTrick");
+                currentPhase = newPhase;
 
                 break;
 

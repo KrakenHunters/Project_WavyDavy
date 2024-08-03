@@ -25,8 +25,9 @@ public class TransitionState : BaseState
                 targetPos = player.phase3StartPos.position;
                 //inputManager.EnablePlayerTrickState();
                 break;
-                case GamePhase.Trick:
-                 // player.Event.TrickCelebrationStart.Invoke();
+            case GamePhase.Trick:
+                targetPos = player.trickStartPos.position;
+
                 break;
         }
 

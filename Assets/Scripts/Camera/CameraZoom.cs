@@ -5,13 +5,15 @@ using UnityEngine;
 public class CameraZoom : MonoBehaviour
 {
 
-    [Header("Camera")]
+    [Header("Cameras")]
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
+
 
     [Header("Zoom Values")]
     [SerializeField] float phase1Zoom = 4.0f;
     [SerializeField] float phase2Zoom = 7.0f;
     [SerializeField] float phase3Zoom = 10.0f;
+
 
     [SerializeField] private float zoomSpeed = 2.0f;
 
@@ -51,6 +53,9 @@ public class CameraZoom : MonoBehaviour
                 StopZoom();
                 StartCoroutine(SetZoom(phase3Zoom));   
                 break;
+            case GamePhase.Trick:
+
+                break;
         }
     }
 
@@ -60,6 +65,7 @@ public class CameraZoom : MonoBehaviour
         StopCoroutine(SetZoom(phase1Zoom));
         StopCoroutine(SetZoom(phase2Zoom));
         StopCoroutine(SetZoom(phase3Zoom));
+
     }
 
 

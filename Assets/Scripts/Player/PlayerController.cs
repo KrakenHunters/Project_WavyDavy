@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _phase1StartPos;
     [SerializeField] private Transform _phase2StartPos;
     [SerializeField] private Transform _phase3StartPos;
+    [SerializeField] private Transform _trickStartPos;
+
 
     [SerializeField] private float _paddleSpeed;
     [SerializeField] private float _phase2MaxHeight;
@@ -43,6 +45,8 @@ public class PlayerController : MonoBehaviour
     public Transform phase1StartPos { get => _phase1StartPos; private set => _phase1StartPos = value; }
     public Transform phase2StartPos { get => _phase2StartPos; private set => _phase2StartPos = value; }
     public Transform phase3StartPos { get => _phase3StartPos; private set => _phase3StartPos = value; }
+    public Transform trickStartPos { get => _trickStartPos; private set => _trickStartPos = value; }
+
     public float finalPaddleSpeed { get; private set; }
     public float phase2MaxHeight { get => _phase2MaxHeight; private set => _phase2MaxHeight = value; }
     public float phase3MaxHeight { get => _phase3MaxHeight; private set => _phase3MaxHeight = value; }
