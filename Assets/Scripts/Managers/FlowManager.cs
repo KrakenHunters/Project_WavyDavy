@@ -105,6 +105,10 @@ public class FlowManager : MonoBehaviour
 
             Event.OnIsTrickPossible.Invoke(isAboveThreshold && GameManager.Instance.currentGamePhase == GamePhase.Phase3);
 
+            if (currentFlow >= maxFlow && nextPhase == GamePhase.Phase2)
+                Event.OnChangeGameState.Invoke(GamePhase.Phase2);
+
+
             if (isAboveThreshold && nextPhase != GamePhase.Trick)
             {
                 if (thresholdCoroutine == null)
