@@ -17,6 +17,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float minSpawnInterval;
 
     [Header("Spawn positions")]
+    [SerializeField] private float randomRadius ;
     [SerializeField] private Transform topSpawnPos;
     [SerializeField] private Transform middleSpawnPos;
     [SerializeField] private Transform bottomSpawnPos;
@@ -113,7 +114,18 @@ public class Spawner : MonoBehaviour
 
     private Vector3 GetSpawnPos()
     {
-        return new Vector3 (topPos.position.x, Random.Range(bottomPos.position.y, topPos.position.y),topPos.position.z);
+        float topY = topPos.position.y;
+        float bottomY = bottomPos.position.y;
+
+        float randomY = Random.Range(bottomY - randomRadius, topY + randomRadius);
+
+        float xPos = topPos.position.x;
+
+        float zPos = topPos.position.z;
+
+        return new Vector3(xPos, randomY, zPos);
+
+        //return new Vector3 (topPos.position.x, Random.Range(bottomPos.position.y, topPos.position.y),topPos.position.z);
     }
 
     private WaterObject GetWaveObject()
