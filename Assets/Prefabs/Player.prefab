@@ -195,8 +195,8 @@ MonoBehaviour:
   _phase2StartPos: {fileID: 0}
   _phase3StartPos: {fileID: 0}
   _paddleSpeed: 0.05
-  _phase2MaxHeight: 1
-  _phase3MaxHeight: 4
+  _phase2MaxHeight: -0.5
+  _phase3MaxHeight: 1.7
   _maxInclineAngle: 20
   _maxInclineBoostAngle: 30
   _inclineSpeed: 20
