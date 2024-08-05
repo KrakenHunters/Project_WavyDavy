@@ -29,6 +29,14 @@ public class GameManager : Singleton<GameManager>
     {
         countdownTimer = new CountdownTimer(GameTime);
         Event.OnChangeGameState.Invoke(GamePhase.Phase1);
+        countdownTimer.OnTimerStop += EndGame;
+    }
+
+    private void EndGame()
+    {
+        Event.OnUpdateGameTimer.Invoke(0);
+        //End Game
+
     }
 
     private void Start()
@@ -62,6 +70,7 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         countdownTimer.Tick(Time.deltaTime);
+        if(!countdownTimer.IsFinished)
         Event.OnUpdateGameTimer?.Invoke(countdownTimer.Progress * GameTime);
     }
 

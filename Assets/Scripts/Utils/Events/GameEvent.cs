@@ -26,7 +26,7 @@ public class GameEvent : ScriptableObject
     public UnityEvent<bool> OnEndTrick;
     public UnityAction<bool> OnIsTrickPossible;
 
-    public UnityEvent<GameObject> OnCelebration;
+    public UnityAction OnCelebration;
 
     public UnityEvent<GameObject> OnGameEnd;
 
@@ -42,6 +42,7 @@ public class GameEvent : ScriptableObject
     public UnityAction<PlayerTrickHandler> OnTrickStart;
     public UnityAction<float> OnTrickRunning;
     public UnityAction<PlayerTrickHandler> OnTrickFinish;
+    public UnityAction OnTrickHalfTime;
 
 
     public UnityAction<PlayerTrickHandler> InitializeTrickUI;

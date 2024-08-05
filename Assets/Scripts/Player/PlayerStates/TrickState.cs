@@ -6,24 +6,33 @@ using Utilities;
 public class TrickState : BaseState
 {
     private CountdownTimer trickTimer;
-
+    private bool calledHalfTime;
     public override void EnterState()
     {
         inputManager.EnablePlayerTrickState();
         trickTimer = new CountdownTimer(trickManager.trickBeginTime);
         trickTimer.Start();
         trickManager.StartTrick();
+        calledHalfTime = false;
     }
 
     public override void ExitState()
     {
         trickTimer.Reset();
+
     }
 
     public override void StateUpdate()
     {
         trickTimer.Tick(Time.deltaTime);
         player.Event.OnTrickRunning.Invoke(trickTimer.Progress);
+
+        if (trickTimer.Progress < 0.5f && !calledHalfTime)
+        {
+            player.Event.OnTrickHalfTime?.Invoke();
+            calledHalfTime = true;
+        }
+
         if (trickTimer.IsFinished)
         {
             player.Event.OnTrickFinish?.Invoke(trickManager);
