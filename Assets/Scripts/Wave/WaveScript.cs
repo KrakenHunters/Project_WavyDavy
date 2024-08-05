@@ -73,12 +73,11 @@ public class WaveScript : MonoBehaviour
 
                 if (currentPhase == GamePhase.Phase1)
                 {
-
                     _animator.CrossFade(Wave1To2Hash, 0.2f);
                 }
                 else if (currentPhase == GamePhase.Phase3)
                 {
-                    _animator.CrossFade(Wave2To3Hash, 0.2f);
+                    _animator.CrossFade(Wave3To2Hash, 0.2f);
                 }
                 currentPhase = newPhase;
 
@@ -89,7 +88,7 @@ public class WaveScript : MonoBehaviour
                     parallaxObj.SetActive(false);
                     parallaxObj.GetComponent<MeshRenderer>().material = largeWaveMaterial;
 
-                    _animator.CrossFade(Wave3To2Hash, 0.2f);
+                    _animator.CrossFade(Wave2To3Hash, 0.2f);
                 }
                 currentPhase = newPhase;
 

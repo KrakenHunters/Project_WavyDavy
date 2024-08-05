@@ -56,11 +56,16 @@ public class WaterObject : MonoBehaviour , IHitable
         //transform.Translate(Vector3.down * _speed * Time.deltaTime);
        // transform.position += Vector3.left * _speed * Time.deltaTime;
  
-        transform.Translate(Vector3.left * objSpeed * Time.fixedDeltaTime);
+    }
+
+    private void Update()
+    {
+        transform.Translate(Vector3.left * objSpeed * Time.deltaTime);
         if (transform.position.x < deadZone)
         {
             Event.OnReachDeadZone.Invoke(this);
         }
+
     }
 
     public virtual void OnHit() 
