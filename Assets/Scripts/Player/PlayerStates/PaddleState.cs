@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class PaddleState : BaseState
 {
-    private Paddle currentPaddleDir;
+    bool paddleLeft;
+    bool paddleRight;
+
+    private Paddle lastPaddleDir;
     public override void EnterState()
     {
         base.EnterState();
         inputManager.EnablePlayerPaddle(); // Start in first phase paddle
-        currentPaddleDir = Paddle.None;
+        lastPaddleDir = Paddle.None;
     }
 
     public override void ExitState()
@@ -21,15 +24,39 @@ public class PaddleState : BaseState
 
     public override void StateUpdate()
     {
+        timer += Time.deltaTime;
+        GoPaddle();
+
     }
 
-    public override void HandlePaddling(Paddle paddleDir)
+    public override void HandlePaddlingRight(bool isPaddling)
     {
-        if (currentPaddleDir != paddleDir)
+        paddleRight = isPaddling;
+        timer = 0f;
+    }
+
+    public override void HandlePaddlingLeft(bool isPaddling)
+    {
+        paddleLeft = isPaddling;
+        timer = 0f;
+    }
+
+
+    private void GoPaddle()
+    {
+        if (timer >= 0.05f)
         {
-            currentPaddleDir = paddleDir;
-            player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed);
-            //Player paddle animation giver the currentPaddleDir
+            if (paddleRight && !paddleLeft && lastPaddleDir != Paddle.Right)
+            {
+                lastPaddleDir = Paddle.Right;
+                player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed);
+
+            }
+            else if (!paddleRight && paddleLeft && lastPaddleDir != Paddle.Left)
+            {
+                lastPaddleDir = Paddle.Left;
+                player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed);
+            }
         }
     }
 

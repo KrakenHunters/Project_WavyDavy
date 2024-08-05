@@ -78,17 +78,23 @@ public class InputManager : MonoBehaviour
         DisablePlayerMovement();
         DisablePlayerTrickState();
 
-        _action.PlayerPaddle.PaddleRight.performed += (val) => _player.HandlePaddle(Paddle.Right);
-        _action.PlayerPaddle.PaddleLeft.performed += (val) => _player.HandlePaddle(Paddle.Left);
+        _action.PlayerPaddle.PaddleRight.performed += (val) => _player.HandlePaddleRight(true);
+        _action.PlayerPaddle.PaddleLeft.performed += (val) => _player.HandlePaddleLeft(true);
 
+        _action.PlayerPaddle.PaddleRight.canceled += (val) => _player.HandlePaddleRight(false);
+        _action.PlayerPaddle.PaddleLeft.canceled += (val) => _player.HandlePaddleLeft(false);
 
         _action.PlayerPaddle.Enable();
     }
 
     private void DisablePlayerPaddle()
     {
-        _action.PlayerPaddle.PaddleRight.performed -= (val) => _player.HandlePaddle(Paddle.Right);
-        _action.PlayerPaddle.PaddleLeft.performed -= (val) => _player.HandlePaddle(Paddle.Left);
+        _action.PlayerPaddle.PaddleRight.performed -= (val) => _player.HandlePaddleRight(true);
+        _action.PlayerPaddle.PaddleLeft.performed -= (val) => _player.HandlePaddleLeft(true);
+
+        _action.PlayerPaddle.PaddleRight.canceled -= (val) => _player.HandlePaddleRight(false);
+        _action.PlayerPaddle.PaddleLeft.canceled -= (val) => _player.HandlePaddleLeft(false);
+
 
         _action.PlayerPaddle.Disable();
     }

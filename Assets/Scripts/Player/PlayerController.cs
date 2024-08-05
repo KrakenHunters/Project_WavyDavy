@@ -152,10 +152,16 @@ public class PlayerController : MonoBehaviour
         currentState?.HandleMovement(dir);
     }
 
-    public void HandlePaddle(Paddle paddleDir)
+    public void HandlePaddleRight(bool isPaddling)
     {
-        currentState?.HandlePaddling(paddleDir);
+        currentState?.HandlePaddlingRight(isPaddling);
     }
+
+    public void HandlePaddleLeft(bool isPaddling)
+    {
+        currentState?.HandlePaddlingLeft(isPaddling);
+    }
+
 
     public void HandleTrickInput(TrickCombo direction)
     {

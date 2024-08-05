@@ -19,7 +19,8 @@ public abstract class BaseState
     public virtual void HandleMovement(Vector2 dir) { }
     public virtual void HandlePumping() { }
     public virtual void HandleStopPumping() { }
-    public virtual void HandlePaddling(Paddle paddleDir) { }
+    public virtual void HandlePaddlingRight(bool isPaddling) { }
+    public virtual void HandlePaddlingLeft(bool isPaddling) { }
     public virtual void HitObject() { }
 
     public virtual void HandleTransition() 
