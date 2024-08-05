@@ -38,6 +38,7 @@ public class Spawner : MonoBehaviour
     private void OnEnable()
     {
         Event.OnChangeGameState.AddListener(SetGamePhase);
+        Event.OnFinishTransition.AddListener(RestartSpawning);
         Event.OnReachDeadZone.AddListener(SortObject);
         Event.OnFlowChange.AddListener(AdjustSpawnRateBasedOnFlow);
     }
@@ -45,6 +46,7 @@ public class Spawner : MonoBehaviour
     private void OnDisable()
     {
         Event.OnChangeGameState.RemoveListener(SetGamePhase);
+        Event.OnFinishTransition.RemoveListener(RestartSpawning);
         Event.OnReachDeadZone.RemoveListener(SortObject);
         Event.OnFlowChange.RemoveListener(AdjustSpawnRateBasedOnFlow);
 
@@ -81,7 +83,7 @@ public class Spawner : MonoBehaviour
 
         topPos = null;
         bottomPos = null;
-
+        countdownTimer?.Stop();
 
         switch (currentPhase)
         {
@@ -110,6 +112,21 @@ public class Spawner : MonoBehaviour
         Vector3 spawnPos = GetSpawnPos();//change based on type 
         objToSpawn.transform.position = spawnPos;
         objToSpawn.gameObject.SetActive(true);
+    }
+
+    private void RestartSpawning()
+    {
+        switch (currentPhase)
+        {
+            case GamePhase.Phase2:
+                countdownTimer = new CountdownTimer(spawnRate);
+                countdownTimer.Start();
+                break;
+            case GamePhase.Phase3:
+                countdownTimer = new CountdownTimer(spawnRate);
+                countdownTimer.Start();
+                break;
+        }
     }
 
     private Vector3 GetSpawnPos()
