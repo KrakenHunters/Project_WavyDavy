@@ -46,4 +46,11 @@ public class TrickState : BaseState
     {
         base.HandleTransition();
     }
+
+    public override void HandleCelebration()
+    {
+        player.ChangeState(new CelebrationState());
+    }
+
+
 }

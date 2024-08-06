@@ -3712,29 +3712,17 @@ PrefabInstance:
       propertyPath: _phase3StartPos
       value: 
       objectReference: {fileID: 2076072335}
-    - target: {fileID: 2168989452470114885, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: lengthInSec
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2168989452470114886, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: m_Name
-      value: TrickCompleted
-      objectReference: {fileID: 0}
-    - target: {fileID: 4321736212522538839, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5286026227086643731, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5286026227704933187, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 6477671705551211483, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6477671705551211483, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: m_LocalPosition.y
       value: -6.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477671705551211483, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6477671705551211483, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: m_LocalRotation.w

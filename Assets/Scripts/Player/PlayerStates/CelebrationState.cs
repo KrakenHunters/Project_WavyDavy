@@ -11,12 +11,11 @@ public class CelebrationState : BaseState
     protected static readonly int TrickFailPeak = Animator.StringToHash("TrickFailPeak");
     protected static readonly int TrickFailEnd = Animator.StringToHash("TrickFailEnd");
 
-
-    private AnimatorOverrideController animatorOverrideController;
     bool celebrationInvoked;
     public override void EnterState()
     {
         celebrationInvoked = false;
+        Debug.Log("Enter Celebration State");
 
         inputManager.DisableAllInput();
 
@@ -39,6 +38,7 @@ public class CelebrationState : BaseState
     public override void StateUpdate()
     {
         AnimatorStateInfo stateInfo = player.animator.GetCurrentAnimatorStateInfo(0);
+        Debug.Log(stateInfo.GetHashCode().ToString());
         if ((stateInfo.GetHashCode() == TrickPeak || stateInfo.GetHashCode() == TrickFailPeak) && !celebrationInvoked)
         {
             if (stateInfo.normalizedTime >= 1.0f)
