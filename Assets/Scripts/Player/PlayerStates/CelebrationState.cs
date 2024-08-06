@@ -15,7 +15,6 @@ public class CelebrationState : BaseState
     public override void EnterState()
     {
         celebrationInvoked = false;
-        Debug.Log("Enter Celebration State");
 
         inputManager.DisableAllInput();
 
@@ -38,7 +37,6 @@ public class CelebrationState : BaseState
     public override void StateUpdate()
     {
         AnimatorStateInfo stateInfo = player.animator.GetCurrentAnimatorStateInfo(0);
-        Debug.Log(stateInfo.GetHashCode().ToString());
         if ((stateInfo.GetHashCode() == TrickPeak || stateInfo.GetHashCode() == TrickFailPeak) && !celebrationInvoked)
         {
             if (stateInfo.normalizedTime >= 1.0f)
