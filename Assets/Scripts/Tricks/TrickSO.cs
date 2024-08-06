@@ -7,6 +7,7 @@ public class TrickSO : ScriptableObject
     public string TrickName;
     public Sprite Icon;
     public int Points;
+    public AnimationClip TrickAnimation;
     public List<TrickCombo> trickCombo;
     private TrickEvalStrategy _strategy;
     public AnimatorOverrideController animationController;

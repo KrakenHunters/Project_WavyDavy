@@ -6,4 +6,6 @@ public class SurferInfoSO : ScriptableObject
 {
     public Sprite sprite;
     public int pointsToBeat;
+    public string surferName;
+    public string surferCatchPhrase;
 }

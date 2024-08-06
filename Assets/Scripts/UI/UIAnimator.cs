@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
 public class UIAnimator : MonoBehaviour
 {
@@ -28,6 +26,8 @@ public class UIAnimator : MonoBehaviour
             currentTween = rectTransform.DOAnchorPos(startPos, duration).SetEase(ease);
         else
             currentTween = rectTransform.DOAnchorPos(targetPos, duration).SetEase(ease);
+
+        currentTween.OnComplete(() => currentTween.Kill());
     }
 
     public void GrowAnimate()
@@ -39,5 +39,8 @@ public class UIAnimator : MonoBehaviour
             currentTween = rectTransform.DOScale(Vector3.zero, duration).SetEase(ease);
         else
             currentTween = rectTransform.DOScale(Vector3.one, duration).SetEase(ease);
+
+        currentTween.OnComplete(() => currentTween.Kill());
+
     }
 }

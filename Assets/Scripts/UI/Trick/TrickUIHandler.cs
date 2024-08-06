@@ -14,15 +14,14 @@ public class TrickUIHandler : MonoBehaviour
 
     [Header("Trick Fade Settings")]
     [SerializeField] private float fadeDuration;
-    [SerializeField] private float fadeAmount;
+    [SerializeField, Range(0, 1)] private float finalFadeAmount;
+    [SerializeField] private Ease ease = Ease.Linear;
     [SerializeField] private CanvasGroup trickUICanvasGroup;
-    private float currentDuration;
-    private float currentFadeAmount;
 
+    private Tween tween;
     private Dictionary<TrickSO, TrickUISetup> trickDictionary = new();
 
     private float maxTimer;
-    private bool isBlinking;
 
     public GameEvent Event;
 
@@ -37,8 +36,8 @@ public class TrickUIHandler : MonoBehaviour
 
         Event.OnTrickFinish += ToggleUIOffPanel;
 
-        Event.OnTrickHalfTime += StartBlinkingOG;
-     
+        Event.OnTrickHalfTime += StartFadingOG;
+
     }
 
     private void OnDisable()
@@ -48,6 +47,7 @@ public class TrickUIHandler : MonoBehaviour
         Event.OnTrickStart -= ResetUI;
         Event.OnTrickRunning -= UpdateTimer;
         Event.OnTrickFinish -= ToggleUIOffPanel;
+        Event.OnTrickHalfTime -= StartFadingOG;
     }
 
     private void UpdateTimer(float timer)
@@ -63,8 +63,6 @@ public class TrickUIHandler : MonoBehaviour
         {
             SpawnTrickUIBox(trick);
         }
-        currentDuration = fadeDuration;
-        currentFadeAmount = 0.5f;
         maxTimer = trickManager.MaxTrickTime;
         trickTimeSlider.maxValue = maxTimer;
         trickTimeSlider.value = trickManager.MaxTrickTime; // Initialize slider to max value
@@ -99,49 +97,22 @@ public class TrickUIHandler : MonoBehaviour
         }
     }
 
-
-    private IEnumerator FadeInOut()
+    public void StartFadingOG()
     {
-        isBlinking = true;
-        while (isBlinking)
-        {
-            yield return StartCoroutine(FadeCanvasGroup(currentFadeAmount, 0f));
-            if (currentFadeAmount < fadeAmount)
-                currentFadeAmount += 0.1f;
-            yield return StartCoroutine(FadeCanvasGroup(0f, currentFadeAmount));
-        }
+        if (tween.IsActive()) return;
+        FadeOut();
     }
 
-    private IEnumerator FadeCanvasGroup(float start, float end)
+    private void FadeOut()
     {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < currentDuration)
-        {
-            trickUICanvasGroup.alpha = Mathf.Lerp(start, end, elapsedTime / currentDuration);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        if (currentDuration > 0.5f)
-            currentDuration -= 0.1f;
-
-        trickUICanvasGroup.alpha = end;
+        tween = trickUICanvasGroup.DOFade(finalFadeAmount, fadeDuration).SetEase(ease);
     }
 
-    public void StartBlinkingOG()
-    {
-        if (isBlinking) return;
-        StartCoroutine(FadeInOut());
-    }
-
-    public void StartBlinking(List<TrickSO> so) => StartBlinkingOG();
+    public void StartBlinking(List<TrickSO> so) => StartFadingOG();
 
     public void StopBlinking()
     {
-        StopAllCoroutines();
-        isBlinking = false;
-        currentDuration = fadeDuration;
+        tween.Kill();
         trickUICanvasGroup.alpha = 1;
     }
 

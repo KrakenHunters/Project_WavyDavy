@@ -41,8 +41,8 @@ public class CelebrationState : BaseState
         {
             if (stateInfo.normalizedTime >= 1.0f)
             {
-                player.Event.OnTrickCelebration(trickManager);
                 celebrationInvoked = true;
+                player.Event.OnTrickCelebration(trickManager);
             }
         }
     }
