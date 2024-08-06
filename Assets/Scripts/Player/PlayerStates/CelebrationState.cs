@@ -57,6 +57,7 @@ public class CelebrationState : BaseState
         {
             player.animator.Play(TrickFailStart);
         }
+        player.Event.OnChangeGameState.Invoke(GamePhase.Phase3);
     }
 
     public override void HandleTransition()
