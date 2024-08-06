@@ -3712,14 +3712,6 @@ PrefabInstance:
       propertyPath: _phase3StartPos
       value: 
       objectReference: {fileID: 2076072335}
-    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: pumpSpeedPhase2
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: pumpSpeedPhase3
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 6477671705551211483, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: m_LocalPosition.y
       value: -6.63

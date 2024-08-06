@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  pumpSpeedPhase2: 5
-  pumpSpeedPhase3: 8
+  pumpSpeedPhase2: 7
+  pumpSpeedPhase3: 12
   normalSpeedPhase2: 3
   normalSpeedPhase3: 5
   _phase1StartPos: {fileID: 0}

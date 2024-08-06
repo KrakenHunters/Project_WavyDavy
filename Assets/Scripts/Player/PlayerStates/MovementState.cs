@@ -21,6 +21,7 @@ public class MovementState : BaseState
     float speed;
     float holdFactor = 0f;
     float possibleXMovement;
+    float startXPos;
     Vector3 idleMovement;
     Vector3 originalPosition;
     float idleTimer = 0f;
@@ -39,17 +40,17 @@ public class MovementState : BaseState
         {
             case GamePhase.Phase2:
                 maxHeight = player.phase2MaxHeight;
-                timeToMaxPump = 50f;
+                timeToMaxPump = 2f;
                 possibleXMovement = 8f;
-                timeToMaxSpeed = 0.3f;
+                timeToMaxSpeed = 0.1f;
                 timeToReturnSpeed = 30f;
                 timeToReturnAngle = 1f;
                 break;
             case GamePhase.Phase3:
                 maxHeight = player.phase3MaxHeight;
-                timeToMaxPump = 80f;
+                timeToMaxPump = 3f;
                 possibleXMovement = 15f;
-                timeToMaxSpeed = 0.5f;
+                timeToMaxSpeed = 0.2f;
                 timeToReturnSpeed = 50f;
                 timeToReturnAngle = 1f;
                 break;
@@ -102,6 +103,10 @@ public class MovementState : BaseState
 
         if (_direction.x > 0)
         {
+            if (startXPos > player.transform.position.x)
+            {
+                startXPos = player.transform.position.x;
+            }
             resetTimer = 0f;
             speed = Mathf.Lerp(speed, player.normalSpeed, _direction.x);
             targetAngle = _direction.x * -player.maxInclineAngle;
@@ -110,7 +115,7 @@ public class MovementState : BaseState
             {
                 speed = Mathf.Lerp(player.normalSpeed, player.pumpSpeed, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineBoostAngle * (speed / player.pumpSpeed), (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
-                targetPosition.x = Mathf.Lerp(targetPosition.x, originalPosition.x + possibleXMovement, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump); // Move back to original x position
+                targetPosition.x = Mathf.Lerp(startXPos, originalPosition.x + possibleXMovement, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 player.transform.position = targetPosition;
             }
 
@@ -121,6 +126,11 @@ public class MovementState : BaseState
         }
         else
         {
+            if (startXPos < player.transform.position.x)
+            {
+                startXPos = player.transform.position.x;
+            }
+
             HandleResetLogic(playerHeight);
 
         }
@@ -138,7 +148,7 @@ public class MovementState : BaseState
     {
         resetTimer += Time.fixedDeltaTime;
 
-        float resetDelay = 1f;
+        float resetDelay = 0.2f;
         if (playerHeight >= maxHeight)
         {
             HandleMaxHeight(playerHeight);
@@ -187,7 +197,7 @@ public class MovementState : BaseState
     {
         if (speed > player.normalSpeed && !isPumping)
         {
-            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 2f * Time.fixedDeltaTime);
+            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.1f * Time.fixedDeltaTime);
         }
 
         player.transform.position += new Vector3(0, -_direction.x, 0) * speed * Time.fixedDeltaTime;
@@ -233,6 +243,6 @@ public class MovementState : BaseState
 
     private void UpdatePumpingStatus(Vector2 dir)
     {
-        isPumping = buttonHoldTime > timeToMaxSpeed && dir.x >= 1;
+        isPumping = buttonHoldTime >= timeToMaxSpeed && dir.x >= 1;
     }
 }
