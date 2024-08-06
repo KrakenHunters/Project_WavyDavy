@@ -49,7 +49,7 @@ public class CelebrationState : BaseState
         }
     }
 
-    public void FinishCelebration()
+    public override void FinishCelebration()
     {
         if (trickManager.CurrentResult == Tricks.TrickResult.Complete)
         {

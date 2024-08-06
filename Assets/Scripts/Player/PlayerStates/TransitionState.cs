@@ -84,5 +84,10 @@ public class TransitionState : BaseState
 
     }
 
+    public override void HandleCelebration()
+    {
+        player.ChangeState(new CelebrationState());
+    }
+
 
 }

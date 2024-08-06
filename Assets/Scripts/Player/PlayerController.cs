@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         Event.OnHitObject.AddListener(HitObject);
         Event.OnFlowChange.AddListener(FlowChange);
         Event.OnTrickCelebration += CelebrationState;
+        Event.OnFinishCelebration += HandleFinishCelebration;
         Event.OnIsTrickPossible += (val)=> canTrick = val;
     }
 
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
         Event.OnHitObject.RemoveListener(HitObject);
         Event.OnFlowChange.RemoveListener(FlowChange);
         Event.OnTrickCelebration -= CelebrationState;
+        Event.OnFinishCelebration -= HandleFinishCelebration;
         Event.OnIsTrickPossible -= (val) => canTrick = val;
 
     }
@@ -172,9 +174,14 @@ public class PlayerController : MonoBehaviour
         Event.OnPlayerInput?.Invoke(direction);
     }
 
-    public void CelebrationState(PlayerTrickHandler trickHandler)
+    private void CelebrationState(PlayerTrickHandler trickHandler)
     {
-        ChangeState(new CelebrationState());
+        currentState?.HandleCelebration();
+    }
+
+    private void HandleFinishCelebration()
+    {
+        currentState?.FinishCelebration();
     }
 
 
