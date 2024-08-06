@@ -48,6 +48,7 @@ public class GameEvent : ScriptableObject
     public UnityAction<PlayerTrickHandler> InitializeTrickUI;
 
     public UnityAction<PlayerTrickHandler> OnTrickCelebration;
+    public UnityAction OnFinishCelebration;
 
    
 }
