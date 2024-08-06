@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
@@ -18,11 +19,15 @@ public class ParallaxBackground : MonoBehaviour
     private void OnEnable()
     {
         Event.OnFlowChange.AddListener(FlowChange);
+        Event.OnTrickStart += ApplySlowMo;
+
     }
 
     private void OnDisable()
     {
         Event.OnFlowChange.RemoveListener(FlowChange);
+        Event.OnTrickStart -= ApplySlowMo;
+
     }
 
     private void Awake()
@@ -33,6 +38,11 @@ public class ParallaxBackground : MonoBehaviour
     private void FlowChange(float currentFlow)
     {
         animationSpeed = currentFlow * animationConvert;
+    }
+
+    private void ApplySlowMo(PlayerTrickHandler trickHandler)
+    {
+        animationSpeed = 0.01f * animationConvert;
     }
 
     // Update is called once per frame

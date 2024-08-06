@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public GameEvent Event;
 
     public GamePhase currentGamePhase { get; private set; }
+    public Animator animator { get; set; }
     public BaseState currentState { get; private set; }
 
     public float normalSpeed { get; set; }
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
         Event.OnChangeGameState.AddListener(SetPhase);
         Event.OnHitObject.AddListener(HitObject);
         Event.OnFlowChange.AddListener(FlowChange);
+        Event.OnTrickCelebration += CelebrationState;
         Event.OnIsTrickPossible += (val)=> canTrick = val;
     }
 
@@ -69,6 +71,7 @@ public class PlayerController : MonoBehaviour
         Event.OnChangeGameState.RemoveListener(SetPhase);
         Event.OnHitObject.RemoveListener(HitObject);
         Event.OnFlowChange.RemoveListener(FlowChange);
+        Event.OnTrickCelebration -= CelebrationState;
         Event.OnIsTrickPossible -= (val) => canTrick = val;
 
     }
@@ -107,6 +110,7 @@ public class PlayerController : MonoBehaviour
     {
         inputManager = GetComponent<InputManager>();
         trickManager = GetComponent<PlayerTrickHandler>();
+        animator = GetComponent<Animator>();
         Event.InitializeTrickUI?.Invoke(trickManager);
         ChangeState(new PaddleState());
     }
@@ -167,6 +171,12 @@ public class PlayerController : MonoBehaviour
     {
         Event.OnPlayerInput?.Invoke(direction);
     }
+
+    public void CelebrationState(PlayerTrickHandler trickHandler)
+    {
+        ChangeState(new CelebrationState());
+    }
+
 
     private IEnumerator WaitFixedFrame(BaseState newState)
     {

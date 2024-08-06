@@ -9,6 +9,7 @@ public class TrickSO : ScriptableObject
     public int Points;
     public List<TrickCombo> trickCombo;
     private TrickEvalStrategy _strategy;
+    public AnimatorOverrideController animationController;
 
     public TrickResult Evaluate(List<TrickCombo> combos)
     {

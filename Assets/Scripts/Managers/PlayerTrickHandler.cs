@@ -46,7 +46,7 @@ public class PlayerTrickHandler : MonoBehaviour
     public void EndTrick()
     {
         playerPressedCombo.Clear();
-        Event.OnChangeGameState.Invoke(GamePhase.Phase3);
+        Event.OnTrickCelebration?.Invoke(this);
     }
 
     public void AddButton(TrickCombo move)
@@ -84,71 +84,6 @@ public class PlayerTrickHandler : MonoBehaviour
             Debug.Log("Trick Faild");
         }
     }
-
-    /*    public void CheckMatchingCombos() //Way too long and hard codes how you set up your trick detection.
-        {
-            possibleTrickCombos.Clear();
-            bool hasMatch = false;
-            foreach (TrickSO trick in tricks)
-            {
-                for (int i = 0; i < playerPressedCombo.Count; i++)
-                {
-                    if (trick.trickCombo.Count < playerPressedCombo.Count)
-                    {
-                        continue;
-                    }
-
-                    if (trick.trickCombo[i] == playerPressedCombo[i])
-                    {
-                        hasMatch = true;
-                    }
-                    else
-                    {
-                        hasMatch = false;
-                        break;
-                    }
-                }
-                if (hasMatch || playerPressedCombo.Count == 0)
-                {
-                    possibleTrickCombos.Add(trick);
-                }
-            }
-            // Debug.Log("Possible tricks: " + possibleTrickCombos.Count);
-            if (possibleTrickCombos.Count == 1 && CheckCombosAreEqual(possibleTrickCombos[0].trickCombo, playerPressedCombo))
-            {
-                currentTrick = possibleTrickCombos[0];
-                possibleTrickCombos.Clear();
-                playerPressedCombo.Clear();
-                Debug.Log("Trick: " + currentTrick.trickName + " is Complete");
-                Event.OnTrickComplete?.Invoke(this);
-                EndTrick();
-            }
-            else if (possibleTrickCombos.Count == 0)
-            {
-                possibleTrickCombos.Clear();
-                playerPressedCombo.Clear();
-                Debug.Log("Combo Faild");
-                Event.OnTrickFail?.Invoke(this);
-                EndTrick();
-            }
-        }
-
-
-        private bool CheckCombosAreEqual(List<TrickCombo> combo1, List<TrickCombo> combo2)
-        {
-            if (combo1.Count != combo2.Count)
-            {
-                return false;
-            }
-            for (int i = 0; i < combo1.Count; i++)
-            {
-                if (combo1[i] != combo2[i])
-                {
-                    return false;
-                }
-            }
-            return true;
-        }*/
 
 }
 

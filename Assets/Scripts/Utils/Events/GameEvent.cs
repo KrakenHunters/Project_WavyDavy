@@ -41,14 +41,13 @@ public class GameEvent : ScriptableObject
     public UnityAction<List<TrickSO>> OnTrickInput;
     public UnityAction<PlayerTrickHandler> OnTrickStart;
     public UnityAction<float> OnTrickRunning;
-    public UnityAction<PlayerTrickHandler> OnTrickFinish;
     public UnityAction OnTrickHalfTime;
+    public UnityAction<PlayerTrickHandler> OnTrickFinish;
 
 
     public UnityAction<PlayerTrickHandler> InitializeTrickUI;
 
-    public UnityAction TrickCelebrationStart;
-    public UnityAction TrickCelebrationEnd;
+    public UnityAction<PlayerTrickHandler> OnTrickCelebration;
 
    
 }
