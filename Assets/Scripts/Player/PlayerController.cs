@@ -182,12 +182,15 @@ public class PlayerController : MonoBehaviour
     {
 
         yield return new WaitForFixedUpdate();
-        currentState?.ExitState();
-        currentState = newState;
-        currentState.player = this;
-        currentState.trickManager = trickManager;
-        currentState.inputManager = this.inputManager;
-        currentState.EnterState();
+        if (currentState != newState)
+        {
+            currentState?.ExitState();
+            currentState = newState;
+            currentState.player = this;
+            currentState.trickManager = trickManager;
+            currentState.inputManager = this.inputManager;
+            currentState.EnterState();
+        }
 
     }
 
