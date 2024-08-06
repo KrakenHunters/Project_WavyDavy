@@ -3,18 +3,19 @@ using UnityEngine;
 
 public class CelebrationState : BaseState
 {
-    protected static readonly int TrickCompleted = Animator.StringToHash("Trick");
-    protected static readonly int TrickFailed = Animator.StringToHash("Trick Fail");
+    protected static readonly int TrickStart = Animator.StringToHash("TrickStart");
+    protected static readonly int TrickPeak = Animator.StringToHash("TrickPeak");
+    protected static readonly int TrickEnd = Animator.StringToHash("TrickEnd");
 
-    private bool isAnimationPlaying;
+    protected static readonly int TrickFailStart = Animator.StringToHash("TrickFailStart");
+    protected static readonly int TrickFailPeak = Animator.StringToHash("TrickFailPeak");
+    protected static readonly int TrickFailEnd = Animator.StringToHash("TrickFailEnd");
+
 
     private AnimatorOverrideController animatorOverrideController;
     bool celebrationInvoked;
     public override void EnterState()
     {
-        base.EnterState();
-
-        isAnimationPlaying = false;
         celebrationInvoked = false;
 
         inputManager.DisableAllInput();
@@ -22,34 +23,24 @@ public class CelebrationState : BaseState
         if (trickManager.CurrentResult == Tricks.TrickResult.Complete)
         {
             player.animator.runtimeAnimatorController = trickManager.CurrentTrick.animationController;
-
-            player.animator.Play(TrickCompleted);
-            isAnimationPlaying = true;
+            player.animator.Play(TrickStart);
         }
         else if (trickManager.CurrentResult == Tricks.TrickResult.Failed)
         {
-            player.animator.Play(TrickFailed);
-            isAnimationPlaying = true;
+            player.animator.Play(TrickFailStart);
         }
 
     }
     public override void ExitState()
     {
-        isAnimationPlaying = false;
         celebrationInvoked = false;
-    }
-
-    public override void StateFixedUpdate()
-    {
-        base.StateFixedUpdate();
     }
 
     public override void StateUpdate()
     {
-        if (isAnimationPlaying && !celebrationInvoked)
+        AnimatorStateInfo stateInfo = player.animator.GetCurrentAnimatorStateInfo(0);
+        if ((stateInfo.GetHashCode() == TrickPeak || stateInfo.GetHashCode() == TrickFailPeak) && !celebrationInvoked)
         {
-            AnimatorStateInfo stateInfo = player.animator.GetCurrentAnimatorStateInfo(0);
-
             if (stateInfo.normalizedTime >= 1.0f)
             {
                 player.Event.OnTrickCelebration(trickManager);
@@ -58,27 +49,18 @@ public class CelebrationState : BaseState
         }
     }
 
-    private void ChangeAnimationClip(string stateName, AnimationClip newClip)
+    public void FinishCelebration()
     {
-        // Create a list of animation clip pairs
-        var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(animatorOverrideController.overridesCount);
-
-        // Populate the list with the current overrides
-        animatorOverrideController.GetOverrides(overrides);
-
-        // Find the clip you want to replace and update it
-        for (int i = 0; i < overrides.Count; i++)
+        if (trickManager.CurrentResult == Tricks.TrickResult.Complete)
         {
-            if (overrides[i].Key.name == stateName)
-            {
-                overrides[i] = new KeyValuePair<AnimationClip, AnimationClip>(overrides[i].Key, newClip);
-                break;
-            }
+            player.animator.Play(TrickEnd);
         }
-
-        // Apply the overrides
-        animatorOverrideController.ApplyOverrides(overrides);
+        else if (trickManager.CurrentResult == Tricks.TrickResult.Failed)
+        {
+            player.animator.Play(TrickFailStart);
+        }
     }
+
     public override void HandleTransition()
     {
         base.HandleTransition();
