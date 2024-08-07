@@ -3,31 +3,36 @@ using UnityEngine;
 public class TransitionState : BaseState
 {
     private Vector3 targetPos;
-
-    private float inclineVelocity = 0f;
-
+    float targetInclineAngle;
     public override void EnterState()
     {
         base.EnterState();
-
-        player.normalSpeed = 3f;
 
         switch (player.currentGamePhase)
         {
             case GamePhase.Phase1:
                 inputManager.DisableAllInput();
                 targetPos = player.phase1StartPos.position;
+                player.normalSpeed = 3f;
+                targetInclineAngle = 0f;
                 break;
             case GamePhase.Phase2:
                 targetPos = player.phase2StartPos.position;
+                player.normalSpeed = 3f;
+                targetInclineAngle = 0f;
                 break;
             case GamePhase.Phase3:
                 targetPos = player.phase3StartPos.position;
-                //inputManager.EnablePlayerTrickState();
+                player.normalSpeed = 5f;
+                targetInclineAngle = 0f;
+
                 break;
             case GamePhase.Trick:
+                AudioManager.Instance.PlayAudio(player.scpart1Clip);
                 targetPos = player.trickStartPos.position;
-                 AudioManager.Instance.PlayAudio(player.scpart1Clip);
+                player.normalSpeed = 7f;
+                targetInclineAngle = player.transform.rotation.z;
+
                 break;
         }
 
@@ -43,8 +48,7 @@ public class TransitionState : BaseState
     {
         base.StateFixedUpdate();
 
-        float targetInclineAngle = 0f;
-        float currentInclineAngle = Mathf.SmoothDamp(player.transform.rotation.z, targetInclineAngle, ref inclineVelocity, 0.5f);
+        float currentInclineAngle = Mathf.LerpAngle(player.transform.eulerAngles.z, targetInclineAngle, Time.deltaTime * 3f);
         player.transform.rotation = Quaternion.Euler(0f, 0f, currentInclineAngle);
 
         if ((targetPos - player.transform.position).sqrMagnitude > 0.01f)

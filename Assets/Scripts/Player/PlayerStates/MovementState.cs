@@ -114,7 +114,7 @@ public class MovementState : BaseState
             if (isPumping)
             {
                 speed = Mathf.Lerp(player.normalSpeed, player.pumpSpeed, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
-                targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineBoostAngle * (speed / player.pumpSpeed), (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
+                targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineAngle * (speed / player.pumpSpeed), (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 targetPosition.x = Mathf.Lerp(startXPos, originalPosition.x + possibleXMovement, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 player.transform.position = targetPosition;
             }
