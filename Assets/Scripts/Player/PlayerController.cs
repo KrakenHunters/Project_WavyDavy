@@ -56,6 +56,11 @@ public class PlayerController : MonoBehaviour
 
     public float inclineSpeed { get => _inclineSpeed; private set => _inclineSpeed = value; }
 
+    public AudioClip scpart1Clip;
+    public AudioClip scpart2Clip;
+    public AudioClip hitSand;
+    public AudioClip speedPlayer;
+
 
     private void OnEnable()
     {
@@ -67,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
         Event.OnGameEnd += DisableInput;
 
-        Event.OnIsTrickPossible += (val)=> canTrick = val;
+        Event.OnIsTrickPossible += (val) => canTrick = val;
     }
 
     private void OnDisable()

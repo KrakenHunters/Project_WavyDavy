@@ -17,7 +17,7 @@ public class LeaderBoardManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI personalEntryText;
 
-    [SerializeField] private ScoreSO ScoreSO;
+    [SerializeField] private GameDataSO ScoreSO;
 
     [SerializeField] private UIAnimator UIAnimator;
 

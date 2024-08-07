@@ -19,7 +19,7 @@ public class TrickState : BaseState
     public override void ExitState()
     {
         trickTimer.Reset();
-
+        AudioManager.Instance.PlayAudio(player.scpart2Clip);
     }
 
     public override void StateUpdate()

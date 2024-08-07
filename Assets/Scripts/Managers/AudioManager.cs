@@ -12,6 +12,12 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioMixerGroup bgMusicGroup;
     [SerializeField] private AudioMixerGroup sfxGroup;
 
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource speaker;
+
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip timeoutClip;
+
     private List<AudioSource> _audioSources = new();
 
     private void Awake()
@@ -50,7 +56,9 @@ public class AudioManager : Singleton<AudioManager>
                 return audioSource;
             }
         }
-        return null;
+
+        AudioSource newAudioSource = Instantiate(speaker,transform);
+        return newAudioSource;
     }
 
     public void StopAllAudio()
@@ -59,6 +67,11 @@ public class AudioManager : Singleton<AudioManager>
         {
             audioSource.Stop();
         }
+    }
+
+    public void PlayTimeoutSound()
+    {
+        PlayAudio(timeoutClip);
     }
 
     private void OnEnable()

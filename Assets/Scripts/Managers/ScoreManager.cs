@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+
+    [SerializeField] private AudioClip countCoinClip;
     [SerializeField] private ScoreUIHandler scoreUIHandler;
-    [SerializeField] private ScoreSO scoreSO;
+    [SerializeField] private GameDataSO scoreSO;
     public int Score { get; private set; }
     public GameEvent Event;
 
@@ -30,6 +32,8 @@ public class ScoreManager : MonoBehaviour
     }
     private void AddScore(PlayerTrickHandler pth)
     {
+        AudioManager.Instance.PlayAudio(countCoinClip);
+
         if (pth.CurrentResult == Tricks.TrickResult.Complete)
         {
             Score += pth.CurrentTrick.Points;

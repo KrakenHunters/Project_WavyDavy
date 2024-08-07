@@ -7,10 +7,6 @@ public class ScoreUIHandler : MonoBehaviour
     [Header("Player UI Elements")]
     [SerializeField] private TextMeshProUGUI scoreText;
 
-    [Header("Opponent UI Elements")]
-    [SerializeField] private TextMeshProUGUI opponentScoreText;
-    [SerializeField] private Image opponentImage;
-
     [SerializeField] private float countSpeed;
 
 
@@ -20,7 +16,6 @@ public class ScoreUIHandler : MonoBehaviour
     private void Awake()
     {
         scoreText.text = "Score: 0";
-        //opponentScoreText.text = "Opponent Score: 0";
     }
 
     public void UpdateScore(int score)

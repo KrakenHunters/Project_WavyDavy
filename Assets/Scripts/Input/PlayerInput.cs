@@ -351,6 +351,34 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""059f5bd2-c3c4-4bfe-a3f3-268b9bcf6441"",
+            ""actions"": [
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c9fdc2c-339e-41b0-9fc8-d818ddedf78b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""80c9b02f-6953-4edd-95c3-40740df75a3d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -368,6 +396,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_PlayerPaddle = asset.FindActionMap("PlayerPaddle", throwIfNotFound: true);
         m_PlayerPaddle_PaddleLeft = m_PlayerPaddle.FindAction("PaddleLeft", throwIfNotFound: true);
         m_PlayerPaddle_PaddleRight = m_PlayerPaddle.FindAction("PaddleRight", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_PauseGame = m_UI.FindAction("PauseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -595,6 +626,52 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public PlayerPaddleActions @PlayerPaddle => new PlayerPaddleActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_PauseGame;
+    public struct UIActions
+    {
+        private @PlayerInput m_Wrapper;
+        public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PauseGame => m_Wrapper.m_UI_PauseGame;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @PauseGame.started += instance.OnPauseGame;
+            @PauseGame.performed += instance.OnPauseGame;
+            @PauseGame.canceled += instance.OnPauseGame;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @PauseGame.started -= instance.OnPauseGame;
+            @PauseGame.performed -= instance.OnPauseGame;
+            @PauseGame.canceled -= instance.OnPauseGame;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -610,5 +687,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnPaddleLeft(InputAction.CallbackContext context);
         void OnPaddleRight(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnPauseGame(InputAction.CallbackContext context);
     }
 }
