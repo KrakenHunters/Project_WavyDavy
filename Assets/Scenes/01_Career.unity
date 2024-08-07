@@ -601,7 +601,7 @@ Transform:
   m_GameObject: {fileID: 309469390}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.8, z: 0}
+  m_LocalPosition: {x: 0, y: -0.8, z: 1}
   m_LocalScale: {x: 21.225353, y: 10.351747, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -954,7 +954,7 @@ Transform:
   m_GameObject: {fileID: 378563672}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: -0.33, z: -0.7}
+  m_LocalPosition: {x: 0.3, y: -0.33, z: -1}
   m_LocalScale: {x: 19.019663, y: 9.0593195, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1352,7 +1352,7 @@ Transform:
   m_GameObject: {fileID: 550696812}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: 12.71, z: 0}
+  m_LocalPosition: {x: 3.15, y: 12.830005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1529,7 +1529,7 @@ Transform:
   m_GameObject: {fileID: 706879195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.025, y: -0.0788, z: 0.72}
+  m_LocalPosition: {x: 0.025, y: -0.0788, z: 1.5}
   m_LocalScale: {x: 21.225353, y: 10.351747, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2658,7 +2658,7 @@ Transform:
   m_GameObject: {fileID: 1387300927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 6.08, z: 0}
+  m_LocalPosition: {x: 0.15, y: 6.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3229,7 +3229,7 @@ Transform:
   m_GameObject: {fileID: 1717688019}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.8, z: -0.5}
+  m_LocalPosition: {x: 0, y: -0.8, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3832,7 +3832,7 @@ Transform:
   m_GameObject: {fileID: 2076072334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.17, y: -0.89, z: 0}
+  m_LocalPosition: {x: -6.4, y: -0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4281,18 +4281,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: hitSand
-      value: 
-      objectReference: {fileID: 8300000, guid: 7d5a95e7583baf44f89036d3bc05bf57, type: 3}
-    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: scpart1Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: bbb836c516c16f849bde42f6425cf7b7, type: 3}
-    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: scpart2Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: bbb836c516c16f849bde42f6425cf7b7, type: 3}
-    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: _trickStartPos
       value: 
       objectReference: {fileID: 1387300928}
@@ -4312,6 +4300,10 @@ PrefabInstance:
       propertyPath: _pauseMenu
       value: 
       objectReference: {fileID: 1281558510}
+    - target: {fileID: 5985656491112556461, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6477671705551211483, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4356,18 +4348,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6799988974865088034, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: trickFailed
-      value: 
-      objectReference: {fileID: 8300000, guid: 1377dc6d7fe17714fb1a351fd9fcf85f, type: 3}
-    - target: {fileID: 6799988974865088034, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: trickBeginTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799988974865088034, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: trickCompleted
-      value: 
-      objectReference: {fileID: 8300000, guid: bd88c9a6d25af5c4bb62f3fb92c45b3b, type: 3}
     - target: {fileID: 6799988974865088034, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: trickUIHandler
       value: 

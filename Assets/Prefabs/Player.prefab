@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a819a64fd60252e49b151796d4bc2410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pauseMenu: {fileID: 0}
 --- !u!114 &196520658530590776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,8 +202,12 @@ MonoBehaviour:
   _phase2MaxHeight: -0.5
   _phase3MaxHeight: 1.7
   _maxInclineAngle: 10
-  _maxInclineBoostAngle: 60
+  _maxInclineBoostAngle: 40
   _inclineSpeed: 20
+  scpart1Clip: {fileID: 8300000, guid: f4d9de53123cd3245bc5664976256f52, type: 3}
+  scpart2Clip: {fileID: 8300000, guid: 83b7b1c4209e1ed419afb701dc864b05, type: 3}
+  hitSand: {fileID: 8300000, guid: 7d5a95e7583baf44f89036d3bc05bf57, type: 3}
+  speedPlayer: {fileID: 8300000, guid: 74df2476eda3d4647b619a6b2f460710, type: 3}
 --- !u!114 &4642518729882892256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,10 +241,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aac48245669fc214eaab82f97dfea901, type: 2}
   - {fileID: 11400000, guid: 5d3cba091b10a7040bd929d332449201, type: 2}
   - {fileID: 11400000, guid: bcaaffb30c8730a48ab8739b3759bbb9, type: 2}
-  trickBeginTime: 15
+  trickBeginTime: 5
   currentPhase: 0
   possibleTrickCombos: []
   trickUIHandler: {fileID: 0}
+  trickCompleted: {fileID: 8300000, guid: bd88c9a6d25af5c4bb62f3fb92c45b3b, type: 3}
+  trickFailed: {fileID: 8300000, guid: 1377dc6d7fe17714fb1a351fd9fcf85f, type: 3}
 --- !u!95 &8428178596282315737
 Animator:
   serializedVersion: 5

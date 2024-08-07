@@ -42,7 +42,7 @@ public class ParallaxBackground : MonoBehaviour
 
     private void ApplySlowMo(PlayerTrickHandler trickHandler)
     {
-        animationSpeed = 0.01f * animationConvert;
+        animationSpeed = 0.1f * animationConvert;
     }
 
     // Update is called once per frame

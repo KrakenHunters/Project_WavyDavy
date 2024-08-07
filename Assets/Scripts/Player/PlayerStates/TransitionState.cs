@@ -28,7 +28,6 @@ public class TransitionState : BaseState
 
                 break;
             case GamePhase.Trick:
-                AudioManager.Instance.PlayAudio(player.scpart1Clip);
                 targetPos = player.trickStartPos.position;
                 player.normalSpeed = 7f;
                 targetInclineAngle = player.transform.rotation.z;

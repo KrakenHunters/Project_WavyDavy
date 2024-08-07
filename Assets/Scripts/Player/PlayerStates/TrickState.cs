@@ -14,12 +14,16 @@ public class TrickState : BaseState
         trickTimer.Start();
         trickManager.StartTrick();
         calledHalfTime = false;
+
+        AudioManager.Instance.PlayAudio(player.scpart1Clip);
+        AudioManager.Instance.SlowDownBGMusic(0.5f);
+
     }
 
     public override void ExitState()
     {
         trickTimer.Reset();
-        AudioManager.Instance.PlayAudio(player.scpart2Clip);
+
     }
 
     public override void StateUpdate()

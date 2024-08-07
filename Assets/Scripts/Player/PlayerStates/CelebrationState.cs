@@ -32,6 +32,9 @@ public class CelebrationState : BaseState
     public override void ExitState()
     {
         celebrationInvoked = false;
+        AudioManager.Instance.PlayAudio(player.scpart2Clip);
+        AudioManager.Instance.SlowDownBGMusic(1f);
+
     }
 
     public override void StateUpdate()

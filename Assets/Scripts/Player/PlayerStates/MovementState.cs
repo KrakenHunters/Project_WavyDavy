@@ -26,7 +26,7 @@ public class MovementState : BaseState
     Vector3 originalPosition;
     float idleTimer = 0f;
     float direction = 0f;
-
+    bool speeding;
     public override void EnterState()
     {
         base.EnterState();
@@ -66,6 +66,10 @@ public class MovementState : BaseState
         HandleMovementLogic();
         ApplyRandomIdleMovement();
         ApplyForces();
+        if (speed <= player.normalSpeed)
+        {
+            speeding = false;
+        }
     }
 
     public override void StateUpdate() { }
@@ -103,6 +107,7 @@ public class MovementState : BaseState
 
         if (_direction.x > 0)
         {
+            speeding = false;
             if (startXPos > player.transform.position.x)
             {
                 startXPos = player.transform.position.x;
@@ -142,6 +147,8 @@ public class MovementState : BaseState
         speed = 0f;
         targetAngle = 0f;
         player.Event.OnIncreaseFlow.Invoke(-0.5f);
+        AudioManager.Instance.PlayAudio(player.speedPlayer);
+
     }
 
     private void HandleResetLogic(float playerHeight)
@@ -155,10 +162,14 @@ public class MovementState : BaseState
         }
         else
         {
+            if (speed > player.normalSpeed && _direction.x < 0f && !speeding)
+            {
+                AudioManager.Instance.PlayAudio(player.speedPlayer);
+                speeding = true;
+            }
             if (resetTimer > resetDelay)
             {
                 speed = Mathf.Lerp(speed, player.normalSpeed, (resetTimer - resetDelay) / timeToReturnSpeed);
-
             }
             targetAngle = Mathf.Lerp(currentAngle, _direction.x * -player.maxInclineBoostAngle * speed / player.pumpSpeed, (resetTimer) / timeToReturnAngle);
             HandleResetXPosition(resetTimer);
@@ -177,8 +188,11 @@ public class MovementState : BaseState
         {
             player.Event.OnChangeGameState.Invoke(GamePhase.Trick);
         }
-        speed = 0f;
-        targetAngle = 0f;
+        else
+        {
+            speed = 0f;
+            targetAngle = 0f;
+        }
     }
 
     private void ApplyRandomIdleMovement()
@@ -195,7 +209,7 @@ public class MovementState : BaseState
 
     private void ApplyForces()
     {
-        if (speed > player.normalSpeed && !isPumping)
+        if (speed > player.normalSpeed && !isPumping && _direction.x < 0)
         {
             player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.1f * Time.fixedDeltaTime);
         }
