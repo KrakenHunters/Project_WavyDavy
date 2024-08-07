@@ -1221,6 +1221,9 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0}
   duration: 1
   ease: 6
+  OnAnimateFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &468905571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2761,6 +2764,9 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0}
   duration: 5
   ease: 1
+  OnAnimateFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1472761008
 MonoBehaviour:
   m_ObjectHideFlags: 0
