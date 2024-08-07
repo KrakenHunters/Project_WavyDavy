@@ -78,6 +78,7 @@ public class AudioManager : Singleton<AudioManager>
             if (audioSource.outputAudioMixerGroup == bgMusicGroup)
             {
                 audioSource.Play();
+                audioSource.pitch = 1;
             }
         }
     }
@@ -98,6 +99,17 @@ public class AudioManager : Singleton<AudioManager>
     public void MuteAudio(bool isMuted, float volume)
     {
         mixer.SetFloat("Master", isMuted ? Mathf.Log10(0.001f) * 20 : Mathf.Log10(volume) * 20);
+    }
+
+    public void SlowDownBGMusic(float pitchSpeed)
+    {
+        foreach (AudioSource audioSource in _audioSources)
+        {
+            if (audioSource.outputAudioMixerGroup == bgMusicGroup)
+            {
+                audioSource.pitch = pitchSpeed;
+            }
+        }
     }
 
     private void OnEnable()
