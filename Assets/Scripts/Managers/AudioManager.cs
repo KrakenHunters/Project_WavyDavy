@@ -32,12 +32,11 @@ public class AudioManager : Singleton<AudioManager>
     {
         AudioSource audioSource = GetAvailableAudioSource();
 
-        if (isBgMusic) StopAllAudio();
-
         if (audioSource)
         {
             audioSource.outputAudioMixerGroup = isBgMusic ? bgMusicGroup : sfxGroup;
             audioSource.loop = isBgMusic;
+            audioSource.pitch = 1;
             audioSource.clip = clip;
             audioSource.Play();
         }
@@ -45,6 +44,11 @@ public class AudioManager : Singleton<AudioManager>
         {
             Debug.LogWarning("No available audio sources");
         }
+    }
+
+    private void PoolAudio(AudioSource audioSource)
+    {
+        if(!audioSource.isPlaying) audioSource.clip = null;
     }
 
     private AudioSource GetAvailableAudioSource()

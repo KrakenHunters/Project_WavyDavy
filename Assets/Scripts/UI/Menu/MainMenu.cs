@@ -38,20 +38,24 @@ public class MainMenu : Menu
 
     public void OnPlay_01() 
     {
-        AudioManager.Instance.PlayAudio(buttonClip); 
         SceneManager.LoadScene("01_Career");
     } 
     public void OnPlay_02() 
     {
-        AudioManager.Instance.PlayAudio(buttonClip);
         SceneManager.LoadScene("02_Exhibition");
-    } 
+    }
 
+
+    public void playClickSound()
+    {
+        AudioManager.Instance.PlayAudio(buttonClip);
+    }
 
     public void OnToggleMute()
     {
         _isMusted = !_isMusted;
         MuteButtonImage.sprite = _isMusted ? MuteSprite : UnMuteSprite;
-        _MasterAudioMixer.SetFloat("Master", _isMusted ? Mathf.Log10(0.001f) * 20 : Mathf.Log10(_maxVolume) * 20);
+       
+       AudioManager.Instance.MuteAudio(_isMusted, _maxVolume);
     }
 }
