@@ -1169,7 +1169,6 @@ GameObject:
   m_Component:
   - component: {fileID: 468905569}
   - component: {fileID: 468905573}
-  - component: {fileID: 468905572}
   - component: {fileID: 468905571}
   - component: {fileID: 468905570}
   - component: {fileID: 468905574}
@@ -1235,29 +1234,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &468905572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468905568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &468905573
 Canvas:
   m_ObjectHideFlags: 0
@@ -1275,7 +1251,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1290,8 +1266,8 @@ CanvasGroup:
   m_GameObject: {fileID: 468905568}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!4 &520606957 stripped
 Transform:
@@ -1802,6 +1778,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1049847898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8367171582277995638, guid: 800a17cfed418ef4ca0bf951abf60bfd, type: 3}
+  m_PrefabInstance: {fileID: 8644610506434466077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1063890566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2288,7 +2269,7 @@ MonoBehaviour:
   <GameTime>k__BackingField: 180
   gameDataSO: {fileID: 11400000, guid: d6686ff2c87c57545a91a1b541b06d2c, type: 2}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  gameMusic: {fileID: 0}
+  gameMusic: {fileID: 8300000, guid: 3d9fd20002edf384399aec756532fb24, type: 3}
 --- !u!4 &1281558507
 Transform:
   m_ObjectHideFlags: 0
@@ -2318,6 +2299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSlider: {fileID: 932670463}
   gameTimerText: {fileID: 1198495478}
+  TimerUIPanel: {fileID: 1049847898}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!114 &1281558509
 MonoBehaviour:
@@ -2354,7 +2336,7 @@ MonoBehaviour:
   OnResume:
     m_PersistentCalls:
       m_Calls: []
-  pauseClip: {fileID: 0}
+  pauseClip: {fileID: 8300000, guid: c91aeff6a19154047bc701df8d7a6fd7, type: 3}
 --- !u!1 &1345683860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2892,7 +2874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9165cc9f3bca52d44a85d111001c02ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countCoinClip: {fileID: 0}
+  countCoinClip: {fileID: 8300000, guid: bbb836c516c16f849bde42f6425cf7b7, type: 3}
   scoreUIHandler: {fileID: 1485145305}
   scoreSO: {fileID: 11400000, guid: d6686ff2c87c57545a91a1b541b06d2c, type: 2}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
@@ -3786,7 +3768,7 @@ MonoBehaviour:
   trickUIParent: {fileID: 1826593972}
   trickTime: {fileID: 1380894218}
   trickTimeSlider: {fileID: 218841031}
-  fadeDuration: 5
+  fadeDuration: 3
   finalFadeAmount: 0.5
   ease: 2
   trickUICanvasGroup: {fileID: 232862963}
@@ -3810,8 +3792,8 @@ MonoBehaviour:
   crowdUIAnimator: {fileID: 8822404903554051576}
   coolEffect: {fileID: 307048705}
   celebrationTime: 5
-  cheerSound: {fileID: 0}
-  booSound: {fileID: 0}
+  cheerSound: {fileID: 8300000, guid: 404e1b77f2eaef14c8fb68cfa8181c28, type: 3}
+  booSound: {fileID: 8300000, guid: b9544d46460055b47996aee8ba366828, type: 3}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &2076072334
 GameObject:
@@ -4276,6 +4258,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: hitSand
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d5a95e7583baf44f89036d3bc05bf57, type: 3}
+    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: scpart1Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bbb836c516c16f849bde42f6425cf7b7, type: 3}
+    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: scpart2Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bbb836c516c16f849bde42f6425cf7b7, type: 3}
+    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: _trickStartPos
       value: 
       objectReference: {fileID: 1387300928}
@@ -4339,6 +4333,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6799988974865088034, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: trickFailed
+      value: 
+      objectReference: {fileID: 8300000, guid: 1377dc6d7fe17714fb1a351fd9fcf85f, type: 3}
+    - target: {fileID: 6799988974865088034, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: trickBeginTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799988974865088034, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: trickCompleted
+      value: 
+      objectReference: {fileID: 8300000, guid: bd88c9a6d25af5c4bb62f3fb92c45b3b, type: 3}
     - target: {fileID: 6799988974865088034, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: trickUIHandler
       value: 

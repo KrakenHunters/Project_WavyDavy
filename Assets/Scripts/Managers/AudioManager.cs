@@ -12,6 +12,9 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioMixerGroup bgMusicGroup;
     [SerializeField] private AudioMixerGroup sfxGroup;
 
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource speaker;
+
     private List<AudioSource> _audioSources = new();
 
     private void Awake()
@@ -50,7 +53,9 @@ public class AudioManager : Singleton<AudioManager>
                 return audioSource;
             }
         }
-        return null;
+
+        AudioSource newAudioSource = Instantiate(speaker,transform);
+        return newAudioSource;
     }
 
     public void StopAllAudio()

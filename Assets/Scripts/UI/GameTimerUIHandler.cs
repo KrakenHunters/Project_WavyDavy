@@ -6,9 +6,15 @@ using UnityEngine.UI;
 public class GameTimerUIHandler : MonoBehaviour
 {
     [SerializeField] private Slider gameSlider;
-    [SerializeField] private TextMeshProUGUI gameTimerText;
+    [SerializeField] private TextMeshProUGUI gameTimerText; 
+    [SerializeField] private GameObject TimerUIPanel;
 
     public GameEvent Event;
+
+    private void Awake()
+    {
+        TimerUIPanel.SetActive(false);
+    }
 
     private void OnEnable()
     {
@@ -24,6 +30,7 @@ public class GameTimerUIHandler : MonoBehaviour
     private void SetMaxTime(float val)
     {
         gameSlider.maxValue = val;
+        TimerUIPanel.SetActive(true);
     }
 
     private void UpdateUI(float time)

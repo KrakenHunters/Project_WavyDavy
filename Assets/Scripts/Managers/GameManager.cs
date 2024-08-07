@@ -30,14 +30,8 @@ public class GameManager : Singleton<GameManager>
         countdownTimer = new CountdownTimer(GameTime);
         Event.OnChangeGameState.Invoke(GamePhase.Phase1);
         countdownTimer.OnTimerStop += EndGame;
-        if (gameDataSO.gameMode == GameMode.Career)
-        {
-           
-        }
-        else if (gameDataSO.gameMode == GameMode.Endless)
-        {
-           
-        }
+
+      
        
     }
 
@@ -45,14 +39,21 @@ public class GameManager : Singleton<GameManager>
     {
         Event.OnUpdateGameTimer.Invoke(0);
         Event.OnGameEnd.Invoke();
-
     }
 
     private void Start()
     {
         AudioManager.Instance.PlayAudio(gameMusic, true);
+
+        if (gameDataSO.gameMode == GameMode.Career)
+        {
         Event.OnSetGameTimer?.Invoke(GameTime);
         countdownTimer.Start();
+        }
+        else if (gameDataSO.gameMode == GameMode.Endless)
+        {
+
+        }
     }
 
 
