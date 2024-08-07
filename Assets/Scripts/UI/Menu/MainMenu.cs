@@ -54,7 +54,7 @@ public class MainMenu : Menu
     public void OnToggleMute()
     {
         _isMusted = !_isMusted;
-        MuteButtonImage.sprite = _isMusted ? MuteSprite : UnMuteSprite;
+        MuteButtonImage.sprite = !_isMusted ? MuteSprite : UnMuteSprite;
        
        AudioManager.Instance.MuteAudio(_isMusted, _maxVolume);
     }

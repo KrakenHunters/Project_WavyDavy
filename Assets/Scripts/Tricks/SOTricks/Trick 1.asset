@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrickName: 
   Icon: {fileID: 0}
-  Points: 10
+  Points: 20
+  TrickAnimation: {fileID: 0}
   trickCombo: 0000000000000000010000000000000002000000
   animationController: {fileID: 22100000, guid: fbf527659b1bbd642a10d4d8d7eb2e38, type: 2}
