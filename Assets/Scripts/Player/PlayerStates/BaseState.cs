@@ -2,6 +2,22 @@ using UnityEngine;
 
 public abstract class BaseState
 {
+    protected static readonly int TrickStart = Animator.StringToHash("TrickStart");
+    protected static readonly int TrickPeak = Animator.StringToHash("TrickPeak");
+    protected static readonly int TrickEnd = Animator.StringToHash("TrickEnd");
+
+    protected static readonly int PaddleIdle = Animator.StringToHash("PaddleIdle");
+    protected static readonly int PaddleLeft = Animator.StringToHash("PaddleLeft");
+    protected static readonly int PaddleRight = Animator.StringToHash("PaddleRight");
+    protected static readonly int PaddleGetUp = Animator.StringToHash("GetUp");
+
+    protected static readonly int GetHit = Animator.StringToHash("GetHit");
+
+
+    protected static readonly int TrickFailStart = Animator.StringToHash("TrickFailStart");
+    protected static readonly int TrickFailPeak = Animator.StringToHash("TrickFailPeak");
+    protected static readonly int TrickFailEnd = Animator.StringToHash("TrickFailEnd");
+
     public PlayerController player { get; set; }
     public PlayerTrickHandler trickManager { get; set; }
 

@@ -18,13 +18,13 @@ public class Menu : MonoBehaviour
     public void OnQuitGame()
     {
         
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_WEBGL
             CloseTab();
 #else
             Application.Quit();
 #endif
-    }
+*/    }
 
 }

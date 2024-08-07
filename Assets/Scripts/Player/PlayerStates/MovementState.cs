@@ -77,7 +77,8 @@ public class MovementState : BaseState
     public override void HitObject()
     {
         isPumping = false;
-        speed = player.normalSpeed;
+        speed = 0f;
+        player.animator.CrossFade(GetHit, 0.2f);
     }
 
     public override void HandleMovement(Vector2 dir)
@@ -113,12 +114,12 @@ public class MovementState : BaseState
                 startXPos = player.transform.position.x;
             }
             resetTimer = 0f;
-            speed = Mathf.Lerp(speed, player.normalSpeed, _direction.x);
+            speed = Mathf.Lerp(speed, player.normalSpeed, (buttonHoldTime) / timeToMaxSpeed);
             targetAngle = _direction.x * -player.maxInclineAngle;
 
             if (isPumping)
             {
-                speed = Mathf.Lerp(player.normalSpeed, player.pumpSpeed, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
+                speed = Mathf.Lerp(speed, player.pumpSpeed, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineAngle * (speed / player.pumpSpeed), (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 targetPosition.x = Mathf.Lerp(startXPos, originalPosition.x + possibleXMovement, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 player.transform.position = targetPosition;

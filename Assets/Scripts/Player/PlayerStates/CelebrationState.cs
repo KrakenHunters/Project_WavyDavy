@@ -3,13 +3,6 @@ using UnityEngine;
 
 public class CelebrationState : BaseState
 {
-    protected static readonly int TrickStart = Animator.StringToHash("TrickStart");
-    protected static readonly int TrickPeak = Animator.StringToHash("TrickPeak");
-    protected static readonly int TrickEnd = Animator.StringToHash("TrickEnd");
-
-    protected static readonly int TrickFailStart = Animator.StringToHash("TrickFailStart");
-    protected static readonly int TrickFailPeak = Animator.StringToHash("TrickFailPeak");
-    protected static readonly int TrickFailEnd = Animator.StringToHash("TrickFailEnd");
 
     bool celebrationInvoked;
     public override void EnterState()
@@ -40,7 +33,7 @@ public class CelebrationState : BaseState
     public override void StateUpdate()
     {
         AnimatorStateInfo stateInfo = player.animator.GetCurrentAnimatorStateInfo(0);
-        if ((stateInfo.GetHashCode() == TrickPeak || stateInfo.GetHashCode() == TrickFailPeak) && !celebrationInvoked)
+        if ((stateInfo.shortNameHash == TrickPeak || stateInfo.shortNameHash == TrickFailPeak) && !celebrationInvoked)
         {
             if (stateInfo.normalizedTime >= 1.0f)
             {

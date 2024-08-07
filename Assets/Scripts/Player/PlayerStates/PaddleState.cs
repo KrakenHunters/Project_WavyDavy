@@ -6,15 +6,19 @@ public class PaddleState : BaseState
     bool paddleRight;
 
     private Paddle lastPaddleDir;
+    private AnimatorStateInfo stateInfo;
     public override void EnterState()
     {
         base.EnterState();
         inputManager.EnablePlayerPaddle(); // Start in first phase paddle
+        player.animator.Play(PaddleIdle);
         lastPaddleDir = Paddle.None;
     }
 
     public override void ExitState()
     {
+        player.animator.speed = 1f;
+        player.animator.CrossFade(PaddleGetUp, 0.2f);
     }
 
     public override void StateFixedUpdate()
@@ -24,7 +28,7 @@ public class PaddleState : BaseState
 
     public override void StateUpdate()
     {
-        timer += Time.deltaTime;
+        stateInfo = player.animator.GetCurrentAnimatorStateInfo(0);
         GoPaddle();
 
     }
@@ -44,20 +48,56 @@ public class PaddleState : BaseState
 
     private void GoPaddle()
     {
-        if (timer >= 0.05f)
-        {
-            if (paddleRight && !paddleLeft && lastPaddleDir != Paddle.Right)
-            {
-                lastPaddleDir = Paddle.Right;
-                player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed);
 
-            }
-            else if (!paddleRight && paddleLeft && lastPaddleDir != Paddle.Left)
+        float multiplier = 1f;
+
+        if (paddleRight && !paddleLeft && lastPaddleDir != Paddle.Right)
+        {
+
+            if (stateInfo.shortNameHash == PaddleLeft)
             {
-                lastPaddleDir = Paddle.Left;
-                player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed);
+                if (stateInfo.normalizedTime <= 0.8f)
+                {
+                    multiplier = 0f;
+                }
+                else
+                {
+                    multiplier = Mathf.Clamp(stateInfo.normalizedTime, 0f, 1f);
+
+                }
             }
+            
+            player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed * multiplier);
+
+            lastPaddleDir = Paddle.Right;
+            player.animator.speed *= (1 + player.currentFlow + 0.05f);
+
+            player.animator.CrossFade(PaddleRight, 0.1f);
+
         }
+        else if (!paddleRight && paddleLeft && lastPaddleDir != Paddle.Left)
+        {
+            if (stateInfo.shortNameHash == PaddleRight)
+            {
+                if (stateInfo.normalizedTime <= 0.8f)
+                {
+                    multiplier = 0f;
+                }
+                else
+                {
+                    multiplier = Mathf.Clamp(stateInfo.normalizedTime, 0f, 1f);
+                }
+            }
+            
+            player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed * multiplier);
+
+            lastPaddleDir = Paddle.Left;
+            player.animator.speed *= (1 + player.currentFlow+0.05f);
+
+            player.animator.CrossFade(PaddleLeft, 0.1f);
+
+        }
+
     }
 
     public override void HandleTransition()

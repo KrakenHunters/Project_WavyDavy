@@ -1,10 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using System;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using static UnityEditor.Rendering.ShadowCascadeGUI;
 
 [RequireComponent(typeof(InputManager), typeof(PlayerHitHandler))]
 public class PlayerController : MonoBehaviour

@@ -954,7 +954,7 @@ Transform:
   m_GameObject: {fileID: 378563672}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: -0.33, z: -1}
+  m_LocalPosition: {x: 0.3, y: -0.33, z: 0.1}
   m_LocalScale: {x: 19.019663, y: 9.0593195, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3799,8 +3799,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crowdPanel: {fileID: 8822404903554051578}
   crowdImage: {fileID: 8822404903554051577}
-  cheerCrowd: {fileID: 21300000, guid: c6605e460653d1d4eb8fe4c505f957f4, type: 3}
-  booCrowd: {fileID: 21300000, guid: fefdb6711de468c43af7da542416ff63, type: 3}
+  cheerCrowd: {fileID: 21300000, guid: 4890db68e08fca54499758fb287fa860, type: 3}
+  booCrowd: {fileID: 21300000, guid: 0715d0039df94bd46beadc6ba28eeea0, type: 3}
   crowdUIAnimator: {fileID: 8822404903554051576}
   coolEffect: {fileID: 307048705}
   celebrationTime: 5
@@ -4280,6 +4280,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: PaddleText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: _trickStartPos
       value: 
