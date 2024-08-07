@@ -7,7 +7,6 @@ public class GameManager : Singleton<GameManager>
 {
 
     [field: SerializeField] public float GameTime { get; private set; }
-
     public GamePhase currentGamePhase { get; private set; }
 
     public GameEvent Event;
@@ -35,7 +34,7 @@ public class GameManager : Singleton<GameManager>
     private void EndGame()
     {
         Event.OnUpdateGameTimer.Invoke(0);
-        //End Game
+        Event.OnGameEnd.Invoke();
 
     }
 

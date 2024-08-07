@@ -28,7 +28,7 @@ public class GameEvent : ScriptableObject
 
     public UnityAction OnCelebration;
 
-    public UnityEvent<GameObject> OnGameEnd;
+    public UnityAction OnGameEnd;
 
     public UnityEvent OnUIUpdate;
 

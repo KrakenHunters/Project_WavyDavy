@@ -41,6 +41,7 @@ public class Spawner : MonoBehaviour
         Event.OnFinishTransition.AddListener(RestartSpawning);
         Event.OnReachDeadZone.AddListener(SortObject);
         Event.OnFlowChange.AddListener(AdjustSpawnRateBasedOnFlow);
+        Event.OnGameEnd += StopSpawner;
     }
 
     private void OnDisable()
@@ -49,6 +50,7 @@ public class Spawner : MonoBehaviour
         Event.OnFinishTransition.RemoveListener(RestartSpawning);
         Event.OnReachDeadZone.RemoveListener(SortObject);
         Event.OnFlowChange.RemoveListener(AdjustSpawnRateBasedOnFlow);
+        Event.OnGameEnd -= StopSpawner;
 
     }
 
@@ -185,6 +187,11 @@ public class Spawner : MonoBehaviour
     {
         obstacleObject.gameObject.SetActive(false);
         availableObstacles.Add(obstacleObject);
+    }
+
+    private void StopSpawner()
+    {
+        countdownTimer.Stop();
     }
 
     private void SortObject(WaterObject waterObject)

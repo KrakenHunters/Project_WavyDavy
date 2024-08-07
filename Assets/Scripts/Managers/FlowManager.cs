@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FlowManager : MonoBehaviour
@@ -53,7 +54,7 @@ public class FlowManager : MonoBehaviour
         Event.OnChangeGameState.AddListener(ResetFlow);
         Event.OnHitObject.AddListener(AddFlow);
         Event.OnIncreaseFlow.AddListener(AddFlow);
-
+        Event.OnGameEnd += DisableFlow;
         Event.OnFinishTransition.AddListener(RestartCoroutine);
 
         Event.OnTrickFinish += TrickCompleteCost;
@@ -64,6 +65,7 @@ public class FlowManager : MonoBehaviour
         Event.OnChangeGameState.RemoveListener(ResetFlow);
         Event.OnHitObject.RemoveListener(AddFlow);
         Event.OnIncreaseFlow.RemoveListener(AddFlow);
+        Event.OnGameEnd -= DisableFlow;
 
         Event.OnFinishTransition.RemoveListener(RestartCoroutine);
 
@@ -231,6 +233,13 @@ public class FlowManager : MonoBehaviour
         {
             AddFlow(-(maxFlow - minFlow) / 2f);
         }
+    }
+
+    private void DisableFlow()
+    {
+        StopAllCoroutines();
+        currentFlow = 0;
+
     }
 
     private void AddFlow(float flowAmount)

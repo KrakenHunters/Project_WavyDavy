@@ -64,6 +64,9 @@ public class PlayerController : MonoBehaviour
         Event.OnFlowChange.AddListener(FlowChange);
         Event.OnTrickCelebration += CelebrationState;
         Event.OnFinishCelebration += HandleFinishCelebration;
+
+        Event.OnGameEnd += DisableInput;
+
         Event.OnIsTrickPossible += (val)=> canTrick = val;
     }
 
@@ -75,6 +78,7 @@ public class PlayerController : MonoBehaviour
         Event.OnTrickCelebration -= CelebrationState;
         Event.OnFinishCelebration -= HandleFinishCelebration;
         Event.OnIsTrickPossible -= (val) => canTrick = val;
+        Event.OnGameEnd -= DisableInput;
 
     }
 
@@ -184,7 +188,10 @@ public class PlayerController : MonoBehaviour
         currentState?.FinishCelebration();
     }
 
-
+    private void DisableInput()
+    {
+        inputManager.DisableAllInput();
+    }
     private IEnumerator WaitFixedFrame(BaseState newState)
     {
 
