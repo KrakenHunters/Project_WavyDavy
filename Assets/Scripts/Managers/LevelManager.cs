@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    [field: SerializeField] public int CurrentLevel { get; private set; }
-
-    [SerializeField] private List<SurferInfoSO> contestantSurfers = new();
-
+    //[field: SerializeField] public GameMode CurrentGameMode => currentGameMode;
     private GameMode currentGameMode;
 
     private void Awake()
@@ -18,8 +15,6 @@ public class LevelManager : Singleton<LevelManager>
         }
         DontDestroyOnLoad(this.gameObject);
 
-
-        Initialize();
     }
 
     private void Initialize()
@@ -27,12 +22,12 @@ public class LevelManager : Singleton<LevelManager>
 
     }
 
-    void Update()
+    public void StartGame(GameMode gameMode)
     {
-        
+        currentGameMode = gameMode;
     }
 
-    private enum GameMode
+    public enum GameMode
     {
         Career,
         Endless

@@ -39,9 +39,9 @@ public class UIAnimator : MonoBehaviour
         else
             currentTween = rectTransform.DOAnchorPos(targetPos, duration).SetEase(ease);
 
-        currentTween.OnComplete(() => 
+        currentTween.OnComplete(() =>
         {
-            currentTween.Kill(); 
+            currentTween.Kill();
             isPosChanged = !isPosChanged;
             OnAnimateFinished.Invoke();
         });
@@ -57,7 +57,7 @@ public class UIAnimator : MonoBehaviour
         else
             currentTween = rectTransform.DOScale(Vector3.one, duration).SetEase(ease);
 
-        currentTween.OnComplete(() => 
+        currentTween.OnComplete(() =>
         {
             currentTween.Kill();
             isScaleChanged = !isScaleChanged;
@@ -66,22 +66,32 @@ public class UIAnimator : MonoBehaviour
 
     }
 
-     public void FadeAnimate()
-     {
-         if (currentTween.IsActive())
-             return;
+    public void FadeAnimate()
+    {
+        if (currentTween.IsActive())
+            return;
 
-         if (isFadeChanged)
-             currentTween = canvasGroup.DOFade(0, duration).SetEase(ease);
-         else
-             currentTween = canvasGroup.DOFade(1, duration).SetEase(ease);
+        if (isFadeChanged)
+            currentTween = canvasGroup.DOFade(0, duration).SetEase(ease);
+        else
+            currentTween = canvasGroup.DOFade(1, duration).SetEase(ease);
 
-        currentTween.OnComplete(() => 
+        currentTween.OnComplete(() =>
          {
              currentTween.Kill();
              isFadeChanged = !isFadeChanged;
              OnAnimateFinished.Invoke();
          });
 
-     }
+    }
+
+    public void RotateAnimate()
+    {
+        if (currentTween.IsActive())
+            return;
+
+        currentTween = rectTransform.DORotate(new Vector3(0, 0, -180), duration).SetEase(ease).SetLoops(-1);
+
+    }
+
 }
