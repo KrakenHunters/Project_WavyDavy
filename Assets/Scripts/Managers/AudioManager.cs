@@ -57,17 +57,27 @@ public class AudioManager : Singleton<AudioManager>
             }
         }
 
-        AudioSource newAudioSource = Instantiate(speaker,transform);
+        AudioSource newAudioSource = Instantiate(speaker, transform);
         return newAudioSource;
     }
 
-    public void StopBGAudio()
+    public void PauseBGAudio()
     {
         foreach (AudioSource audioSource in _audioSources)
         {
-           if(audioSource.outputAudioMixerGroup == bgMusicGroup)
+            if (audioSource.outputAudioMixerGroup == bgMusicGroup)
             {
-                audioSource.Stop();
+                audioSource.Pause();
+            }
+        }
+    }
+    public void ResumeBGAudio()
+    {
+        foreach (AudioSource audioSource in _audioSources)
+        {
+            if (audioSource.outputAudioMixerGroup == bgMusicGroup)
+            {
+                audioSource.Play();
             }
         }
     }
@@ -85,7 +95,7 @@ public class AudioManager : Singleton<AudioManager>
         PlayAudio(timeoutClip);
     }
 
-    public void MuteAudio(bool isMuted,float volume)
+    public void MuteAudio(bool isMuted, float volume)
     {
         mixer.SetFloat("Master", isMuted ? Mathf.Log10(0.001f) * 20 : Mathf.Log10(volume) * 20);
     }
