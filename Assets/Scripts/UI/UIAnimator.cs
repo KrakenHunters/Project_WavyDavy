@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 [RequireComponent(typeof(CanvasGroup))]
 public class UIAnimator : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class UIAnimator : MonoBehaviour
     private bool isPosChanged;
     private bool isScaleChanged;
     private bool isFadeChanged;
+
+    public UnityEvent OnAnimateFinished;
 
     private void Awake()
     {
@@ -40,6 +43,7 @@ public class UIAnimator : MonoBehaviour
         {
             currentTween.Kill(); 
             isPosChanged = !isPosChanged;
+            OnAnimateFinished.Invoke();
         });
     }
 
@@ -57,6 +61,7 @@ public class UIAnimator : MonoBehaviour
         {
             currentTween.Kill();
             isScaleChanged = !isScaleChanged;
+            OnAnimateFinished.Invoke();
         });
 
     }
@@ -75,6 +80,7 @@ public class UIAnimator : MonoBehaviour
          {
              currentTween.Kill();
              isFadeChanged = !isFadeChanged;
+             OnAnimateFinished.Invoke();
          });
 
      }
