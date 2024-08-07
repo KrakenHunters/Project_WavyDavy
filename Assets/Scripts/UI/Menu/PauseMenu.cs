@@ -6,6 +6,9 @@ public class PauseMenu : Menu
 {
     public UnityEvent OnPause;
     public UnityEvent OnResume;
+
+    [SerializeField] private AudioClip pauseClip;
+
     private bool _isPaused;
     private float _initialTimeScale;
     private void Awake()
@@ -19,6 +22,8 @@ public class PauseMenu : Menu
     {
         _isPaused = !_isPaused;
         _currentMenu.gameObject.SetActive(_isPaused); 
+
+        AudioManager.Instance.PlayAudio(pauseClip);
 
         if (_isPaused)
         {
@@ -38,13 +43,6 @@ public class PauseMenu : Menu
     public void OnLoadMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("00_MainMenu");
+        SceneManager.LoadScene(0);
     }
-
-    public void OnReturnToShop()
-    {
-        SceneManager.LoadScene("01_Shop");
-    }
-
-
 }

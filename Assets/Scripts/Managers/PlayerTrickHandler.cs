@@ -12,6 +12,7 @@ public class PlayerTrickHandler : MonoBehaviour
     public float MaxTrickTime => trickBeginTime;
 
 
+
     public GamePhase currentPhase = GamePhase.Phase1;
     public List<TrickSO> possibleTrickCombos = new List<TrickSO>();
     private List<TrickCombo> playerPressedCombo = new List<TrickCombo>();
@@ -22,7 +23,8 @@ public class PlayerTrickHandler : MonoBehaviour
     [SerializeField]
     private TrickUIHandler trickUIHandler;
 
-
+    [SerializeField] private AudioClip trickCompleted;
+    [SerializeField] private AudioClip trickFailed;
 
     private void OnEnable()
     {
@@ -45,6 +47,17 @@ public class PlayerTrickHandler : MonoBehaviour
 
     public void EndTrick()
     {
+
+        if(CurrentResult == TrickResult.Complete)
+        {
+            AudioManager.Instance.PlayAudio(trickCompleted);
+        }
+        else if(CurrentResult == TrickResult.Failed)
+        {
+            AudioManager.Instance.PlayAudio(trickFailed);
+        }
+
+
         playerPressedCombo.Clear();
         Event.OnTrickCelebration?.Invoke(this);
     }

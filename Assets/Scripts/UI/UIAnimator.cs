@@ -8,6 +8,8 @@ public class UIAnimator : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private Ease ease = Ease.Linear;
 
+    public float Duration => duration;
+
     private Tween currentTween;
     private Vector2 startPos;
     private RectTransform rectTransform;

@@ -1,35 +1,30 @@
- using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    //[field: SerializeField] public GameMode CurrentGameMode => currentGameMode;
-    private GameMode currentGameMode;
+    [SerializeField] private GameDataSO gameDataSO;
 
     private void Awake()
     {
-        if(Instance != this)
+        if (Instance != this)
         {
-               Destroy(gameObject);
+            Destroy(gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
-
     }
 
-    private void Initialize()
+    public void OnEndlessGame()
     {
-
+        gameDataSO.gameMode = GameMode.Endless;
     }
 
-    public void StartGame(GameMode gameMode)
+    public void OnCareerGame()
     {
-        currentGameMode = gameMode;
+        gameDataSO.gameMode = GameMode.Career;
     }
+}
 
-    public enum GameMode
-    {
-        Career,
-        Endless
-    }
+public enum GameMode
+{
+    Career,
+    Endless
 }

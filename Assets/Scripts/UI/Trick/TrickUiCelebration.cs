@@ -17,6 +17,10 @@ public class TrickUiCelebration : MonoBehaviour
     [Header("Timer")]
     [SerializeField] private float celebrationTime;
 
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip cheerSound;
+    [SerializeField] private AudioClip booSound;
+
     private CountdownTimer timer;
     private TrickResult result;
     public GameEvent Event;
@@ -43,11 +47,13 @@ public class TrickUiCelebration : MonoBehaviour
         {
             coolEffect.Play();
             crowdImage.sprite = cheerCrowd;
+            AudioManager.Instance.PlayAudio(cheerSound);
             //play cheer sound
         }
         else if (result == TrickResult.Failed)
         {
             crowdImage.sprite = booCrowd;
+            AudioManager.Instance.PlayAudio(booSound);
             //play boo sound
         }
         timer.Start();

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterObject : MonoBehaviour , IHitable
+public class WaterObject : MonoBehaviour, IHitable
 {
     private float objSpeed;
 
@@ -10,14 +8,18 @@ public class WaterObject : MonoBehaviour , IHitable
     [SerializeField] private float flow;
     [SerializeField] private float deadZone = -25f;
 
+
+    [SerializeField] private AudioClip hitClip;
+    [SerializeField] private AudioClip worriedCrowd;
+
     public GameEvent Event;
 
     private Collider2D Collider;
 
     public float Flow
     {
-      get => flow;
-      private set => flow = value;
+        get => flow;
+        private set => flow = value;
     }
 
     private void Awake()
@@ -54,8 +56,8 @@ public class WaterObject : MonoBehaviour , IHitable
     private void FixedUpdate()
     {
         //transform.Translate(Vector3.down * _speed * Time.deltaTime);
-       // transform.position += Vector3.left * _speed * Time.deltaTime;
- 
+        // transform.position += Vector3.left * _speed * Time.deltaTime;
+
     }
 
     private void Update()
@@ -68,8 +70,10 @@ public class WaterObject : MonoBehaviour , IHitable
 
     }
 
-    public virtual void OnHit() 
+    public virtual void OnHit()
     {
+        AudioManager.Instance.PlayAudio(hitClip);
+        AudioManager.Instance.PlayAudio(worriedCrowd);
         Event.OnHitObject.Invoke(flow);
         Event.OnReachDeadZone.Invoke(this);
     }

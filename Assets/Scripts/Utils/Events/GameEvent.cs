@@ -11,7 +11,6 @@ public class GameEvent : ScriptableObject
     public UnityEvent<GameObject> OnFlowBarAbove;
     public UnityEvent<GameObject> OnFlowBarBelow;
 
-
     // Flow Events
     public UnityEvent<float> OnHitObject;
     public UnityEvent<WaterObject> OnReachDeadZone;
@@ -37,13 +36,11 @@ public class GameEvent : ScriptableObject
 
     public UnityAction<TrickCombo> OnPlayerInput;
 
-
     public UnityAction<List<TrickSO>> OnTrickInput;
     public UnityAction<PlayerTrickHandler> OnTrickStart;
     public UnityAction<float> OnTrickRunning;
     public UnityAction OnTrickHalfTime;
     public UnityAction<PlayerTrickHandler> OnTrickFinish;
-
 
     public UnityAction<PlayerTrickHandler> InitializeTrickUI;
 

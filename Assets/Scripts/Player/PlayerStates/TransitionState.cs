@@ -27,7 +27,7 @@ public class TransitionState : BaseState
                 break;
             case GamePhase.Trick:
                 targetPos = player.trickStartPos.position;
-
+                 AudioManager.Instance.PlayAudio(player.scpart1Clip);
                 break;
         }
 

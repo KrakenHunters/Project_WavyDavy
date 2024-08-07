@@ -33,11 +33,19 @@ public class MainMenu : Menu
     private void Start()
     {
         _startActive = true;
-       
+       AudioManager.Instance.PlayAudio(menuClip,true);
     }
 
-    public void OnPlay_01() => SceneManager.LoadScene("01_Career");
-    public void OnPlay_02() => SceneManager.LoadScene("02_Exhibition");
+    public void OnPlay_01() 
+    {
+        AudioManager.Instance.PlayAudio(buttonClip); 
+        SceneManager.LoadScene("01_Career");
+    } 
+    public void OnPlay_02() 
+    {
+        AudioManager.Instance.PlayAudio(buttonClip);
+        SceneManager.LoadScene("02_Exhibition");
+    } 
 
 
     public void OnToggleMute()

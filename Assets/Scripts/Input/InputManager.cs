@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
 
-   PlayerInput _action;
-   PlayerController _player;
+    PlayerInput _action;
+    PlayerController _player;
+    [SerializeField] private PauseMenu _pauseMenu;
 
     Vector2 _movement;
     public Vector2 Movement
@@ -54,18 +54,18 @@ public class InputManager : MonoBehaviour
     {
         DisablePlayerPaddle();
         DisablePlayerMovement();
-        _action.PlayerTrickState.Up.performed += (val) =>   _player.HandleTrickInput(TrickCombo.UP);
+        _action.PlayerTrickState.Up.performed += (val) => _player.HandleTrickInput(TrickCombo.UP);
         _action.PlayerTrickState.Down.performed += (val) => _player.HandleTrickInput(TrickCombo.DOWN);
         _action.PlayerTrickState.Left.performed += (val) => _player.HandleTrickInput(TrickCombo.LEFT);
         _action.PlayerTrickState.Right.performed += (val) => _player.HandleTrickInput(TrickCombo.RIGHT);
 
         _action.PlayerTrickState.Enable();
     }
-    
+
 
     private void DisablePlayerTrickState()
     {
-        _action.PlayerTrickState.Up.performed -= (val) =>   _player.HandleTrickInput(TrickCombo.UP);
+        _action.PlayerTrickState.Up.performed -= (val) => _player.HandleTrickInput(TrickCombo.UP);
         _action.PlayerTrickState.Down.performed -= (val) => _player.HandleTrickInput(TrickCombo.DOWN);
         _action.PlayerTrickState.Left.performed -= (val) => _player.HandleTrickInput(TrickCombo.LEFT);
         _action.PlayerTrickState.Right.performed -= (val) => _player.HandleTrickInput(TrickCombo.RIGHT);
@@ -108,10 +108,12 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
+        _action.UI.PauseGame.performed += (val) => _pauseMenu.OnTogglePauseMenu();
         _action.Enable();
     }
     private void OnDisable()
     {
+        _action.UI.PauseGame.performed -= (val) => _pauseMenu.OnTogglePauseMenu();
         _action.Disable();
     }
 }

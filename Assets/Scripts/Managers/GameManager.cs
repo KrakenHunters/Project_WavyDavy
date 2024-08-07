@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 
@@ -9,7 +7,10 @@ public class GameManager : Singleton<GameManager>
     [field: SerializeField] public float GameTime { get; private set; }
     public GamePhase currentGamePhase { get; private set; }
 
+    public GameDataSO gameDataSO;
     public GameEvent Event;
+
+    [SerializeField] private AudioClip gameMusic;
 
     private CountdownTimer countdownTimer;
 
@@ -29,6 +30,15 @@ public class GameManager : Singleton<GameManager>
         countdownTimer = new CountdownTimer(GameTime);
         Event.OnChangeGameState.Invoke(GamePhase.Phase1);
         countdownTimer.OnTimerStop += EndGame;
+        if (gameDataSO.gameMode == GameMode.Career)
+        {
+           
+        }
+        else if (gameDataSO.gameMode == GameMode.Endless)
+        {
+           
+        }
+       
     }
 
     private void EndGame()
@@ -40,6 +50,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        AudioManager.Instance.PlayAudio(gameMusic, true);
         Event.OnSetGameTimer?.Invoke(GameTime);
         countdownTimer.Start();
     }
@@ -69,8 +80,8 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         countdownTimer.Tick(Time.deltaTime);
-        if(!countdownTimer.IsFinished)
-        Event.OnUpdateGameTimer?.Invoke(countdownTimer.Progress * GameTime);
+        if (!countdownTimer.IsFinished)
+            Event.OnUpdateGameTimer?.Invoke(countdownTimer.Progress * GameTime);
     }
 
     private void Resume()
