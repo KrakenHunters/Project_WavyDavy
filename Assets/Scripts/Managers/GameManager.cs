@@ -30,9 +30,6 @@ public class GameManager : Singleton<GameManager>
         countdownTimer = new CountdownTimer(GameTime);
         Event.OnChangeGameState.Invoke(GamePhase.Phase1);
         countdownTimer.OnTimerStop += EndGame;
-
-      
-       
     }
 
     private void EndGame()
@@ -47,12 +44,12 @@ public class GameManager : Singleton<GameManager>
 
         if (gameDataSO.gameMode == GameMode.Career)
         {
-        Event.OnSetGameTimer?.Invoke(GameTime);
-        countdownTimer.Start();
+            Event.OnSetGameTimer?.Invoke(GameTime);
+            countdownTimer.Start();
         }
         else if (gameDataSO.gameMode == GameMode.Endless)
         {
-
+            Debug.Log("Endless Mode");
         }
     }
 

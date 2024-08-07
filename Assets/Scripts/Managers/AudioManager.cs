@@ -15,6 +15,9 @@ public class AudioManager : Singleton<AudioManager>
     [Header("Audio Sources")]
     [SerializeField] private AudioSource speaker;
 
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip timeoutClip;
+
     private List<AudioSource> _audioSources = new();
 
     private void Awake()
@@ -64,6 +67,11 @@ public class AudioManager : Singleton<AudioManager>
         {
             audioSource.Stop();
         }
+    }
+
+    public void PlayTimeoutSound()
+    {
+        PlayAudio(timeoutClip);
     }
 
     private void OnEnable()

@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip scpart1Clip;
     public AudioClip scpart2Clip;
     public AudioClip hitSand;
+    public AudioClip speedPlayer;
 
 
     private void OnEnable()

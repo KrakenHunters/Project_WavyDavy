@@ -1216,7 +1216,19 @@ MonoBehaviour:
   ease: 6
   OnAnimateFinished:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2500200558390367117}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayTimeoutSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &468905571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2266,7 +2278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222e5e3274c603045bb4a621df6e4303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GameTime>k__BackingField: 180
+  <GameTime>k__BackingField: 90
   gameDataSO: {fileID: 11400000, guid: d6686ff2c87c57545a91a1b541b06d2c, type: 2}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
   gameMusic: {fileID: 8300000, guid: 3d9fd20002edf384399aec756532fb24, type: 3}
@@ -3768,8 +3780,8 @@ MonoBehaviour:
   trickUIParent: {fileID: 1826593972}
   trickTime: {fileID: 1380894218}
   trickTimeSlider: {fileID: 218841031}
-  fadeDuration: 3
-  finalFadeAmount: 0.5
+  fadeDuration: 1.25
+  finalFadeAmount: 0.25
   ease: 2
   trickUICanvasGroup: {fileID: 232862963}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
@@ -4249,6 +4261,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+--- !u!114 &2500200558390367117 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9136442684036107019, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+  m_PrefabInstance: {fileID: 2500200558390367116}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b409c0bf345cd47a02408742c4b25d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2800333083428125293
 PrefabInstance:
   m_ObjectHideFlags: 0
