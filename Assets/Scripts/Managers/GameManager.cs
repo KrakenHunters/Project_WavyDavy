@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        AudioManager.Instance.PlayAudio(gameMusic, true);
+        PlayBGMusic();
 
         if (gameDataSO.gameMode == GameMode.Career)
         {
@@ -51,6 +51,11 @@ public class GameManager : Singleton<GameManager>
         {
             Debug.Log("Endless Mode");
         }
+    }
+
+    public void PlayBGMusic()
+    {
+        AudioManager.Instance.PlayAudio(gameMusic, true);
     }
 
 
