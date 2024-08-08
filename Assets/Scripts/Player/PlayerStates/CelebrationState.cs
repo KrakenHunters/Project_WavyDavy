@@ -25,6 +25,8 @@ public class CelebrationState : BaseState
     public override void ExitState()
     {
         celebrationInvoked = false;
+        player.animator.Play(Idle);
+
         AudioManager.Instance.PlayAudio(player.scpart2Clip);
         AudioManager.Instance.SlowDownBGMusic(1f);
 

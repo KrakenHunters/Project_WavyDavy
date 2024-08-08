@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90836bf8a47faef49a2be3412906e906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedMod: 7
+  _speedMod: 1
   flow: -0.05
   deadZone: -25
   hitClip: {fileID: 8300000, guid: 39d605b926fcfae43bf1c0337c25f518, type: 3}

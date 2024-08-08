@@ -9,16 +9,19 @@ public class ScoreManager : MonoBehaviour
     public int Score { get; private set; }
     public GameEvent Event;
 
-
+    private int plusPointsForTime;
 
     private void OnEnable()
     {
         Event.OnTrickFinish += AddScore;
+        Event.OnTrickRunning += CheckTimer;
     }
 
     private void OnDisable()
     {
         Event.OnTrickFinish -= AddScore;
+        Event.OnTrickRunning += CheckTimer;
+
     }
 
     void Start()
@@ -36,9 +39,15 @@ public class ScoreManager : MonoBehaviour
 
         if (pth.CurrentResult == Tricks.TrickResult.Complete)
         {
-            Score += pth.CurrentTrick.Points;
+            Score += pth.CurrentTrick.Points + plusPointsForTime;
             scoreSO.Score = Score;
             scoreUIHandler.UpdateScore(Score);
         }
     }
+
+    private void CheckTimer(float trickTimer)
+    {
+        plusPointsForTime = Mathf.RoundToInt(trickTimer * 10f);
+    }
+
 }

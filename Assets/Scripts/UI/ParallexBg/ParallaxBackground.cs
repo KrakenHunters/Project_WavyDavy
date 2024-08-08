@@ -10,6 +10,8 @@ public class ParallaxBackground : MonoBehaviour
 
     private float animationSpeed;
 
+    private float setFlow;
+
     [SerializeField]
     private GameEvent Event;
 
@@ -34,12 +36,12 @@ public class ParallaxBackground : MonoBehaviour
 
     private void FlowChange(float currentFlow)
     {
-        animationSpeed = currentFlow * animationConvert;
+        animationSpeed = (currentFlow) * animationConvert;
     }
 
     private void ApplySlowMo(PlayerTrickHandler trickHandler)
     {
-        animationSpeed = 0.1f * animationConvert;
+        animationSpeed = 0.2f * animationConvert;
     }
 
     // Update is called once per frame

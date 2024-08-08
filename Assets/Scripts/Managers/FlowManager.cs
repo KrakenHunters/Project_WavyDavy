@@ -26,8 +26,6 @@ public class FlowManager : MonoBehaviour
     [SerializeField]
     private float minFlowPhase2;
 
-
-
     [Range(0f, 1f)]
     [SerializeField]
     private float aboveThreshold;
@@ -35,9 +33,14 @@ public class FlowManager : MonoBehaviour
     [SerializeField]
     private float belowThreshold;
 
-    [SerializeField]
     private float flowDecreaseSpeed; // Speed at which flow decreases
 
+    [SerializeField]
+    private float flowDecreaseSpeed1;
+    [SerializeField]
+    private float flowDecreaseSpeed2;
+    [SerializeField]
+    private float flowDecreaseSpeed3;
 
     [SerializeField]
     private float thresholdDuration; // Duration to check if flow stays within threshold
@@ -86,6 +89,7 @@ public class FlowManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(currentFlow);
         flowUIHandler.UpdateFlowUI(currentFlow);
         if (previousPhase != GamePhase.Phase3)
             Event.OnFlowChange.Invoke(currentFlow);
@@ -194,6 +198,7 @@ public class FlowManager : MonoBehaviour
                 currentFlow = minFlowPhase1;
                 previousPhase = null;
                 nextPhase = GamePhase.Phase2;
+                flowDecreaseSpeed = flowDecreaseSpeed1;
                 break;
             case GamePhase.Phase2:
                 maxFlow = maxFlowPhase2;
@@ -201,6 +206,7 @@ public class FlowManager : MonoBehaviour
                 currentFlow = (maxFlow - minFlow) / 2 + minFlow;
                 previousPhase = GamePhase.Phase1;
                 nextPhase = GamePhase.Phase3;
+                flowDecreaseSpeed = flowDecreaseSpeed2;
                 break;
             case GamePhase.Phase3:
                 maxFlow = maxFlowPhase3;
@@ -209,6 +215,7 @@ public class FlowManager : MonoBehaviour
                 wasPhaseTrick = false;
                 previousPhase = GamePhase.Phase2;
                 nextPhase = GamePhase.Trick;
+                flowDecreaseSpeed = flowDecreaseSpeed3;
                 break;
             case GamePhase.Trick:
                 //Disable UI
@@ -227,7 +234,6 @@ public class FlowManager : MonoBehaviour
         if(trickHandler.CurrentResult == Tricks.TrickResult.Complete)
         {
             AddFlow(-(maxFlow-minFlow) / 3f);
-            Debug.Log(-maxFlow / 3f);
         }
         else
         {
@@ -238,7 +244,7 @@ public class FlowManager : MonoBehaviour
     private void DisableFlow()
     {
         StopAllCoroutines();
-        currentFlow = 0;
+        currentFlow = 5f;
 
     }
 

@@ -11,8 +11,12 @@ public abstract class BaseState
     protected static readonly int PaddleRight = Animator.StringToHash("PaddleRight");
     protected static readonly int PaddleGetUp = Animator.StringToHash("GetUp");
 
+    protected static readonly int Pump = Animator.StringToHash("PumpingDown");
+
+
     protected static readonly int GetHit = Animator.StringToHash("GetHit");
 
+    protected static readonly int Idle = Animator.StringToHash("SurfIdle");
 
     protected static readonly int TrickFailStart = Animator.StringToHash("TrickFailStart");
     protected static readonly int TrickFailPeak = Animator.StringToHash("TrickFailPeak");

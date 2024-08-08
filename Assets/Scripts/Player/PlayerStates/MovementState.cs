@@ -85,7 +85,6 @@ public class MovementState : BaseState
     {
         UpdateDirection(dir);
         UpdateHoldFactor(dir);
-        UpdatePumpingStatus(dir);
     }
 
     public override void HandleTransition()
@@ -119,6 +118,8 @@ public class MovementState : BaseState
 
             if (isPumping)
             {
+                if (player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Pump)
+                    player.animator.Play(Pump);
                 speed = Mathf.Lerp(speed, player.pumpSpeed, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineAngle * (speed / player.pumpSpeed), (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 targetPosition.x = Mathf.Lerp(startXPos, originalPosition.x + possibleXMovement, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
@@ -132,6 +133,8 @@ public class MovementState : BaseState
         }
         else
         {
+            player.animator.CrossFade(Idle, 0.2f);
+
             if (startXPos < player.transform.position.x)
             {
                 startXPos = player.transform.position.x;
@@ -212,7 +215,7 @@ public class MovementState : BaseState
     {
         if (speed > player.normalSpeed && !isPumping && _direction.x < 0)
         {
-            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 0.1f * Time.fixedDeltaTime);
+            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 2f * Time.fixedDeltaTime);
         }
 
         player.transform.position += new Vector3(0, -_direction.x, 0) * speed * Time.fixedDeltaTime;
@@ -242,18 +245,12 @@ public class MovementState : BaseState
             holdFactor = Mathf.Clamp(buttonReleaseTime / timeToNoSpeed, 0f, 1f);
             _direction = new Vector2(Mathf.Lerp(_direction.x, 0, holdFactor), 0f);
         }
+        UpdatePumpingStatus(_direction);
     }
 
     private void UpdateHoldFactor(Vector2 dir)
     {
-        if (speed <= player.normalSpeed)
-        {
-            holdFactor = Mathf.Clamp(buttonHoldTime / timeToMaxSpeed, 0f, 1f);
-        }
-        else
-        {
-            holdFactor = 1f;
-        }
+        holdFactor = Mathf.Clamp(buttonHoldTime / timeToMaxSpeed, 0f, 1f);
     }
 
     private void UpdatePumpingStatus(Vector2 dir)

@@ -30,7 +30,6 @@ public class TrickState : BaseState
     {
         trickTimer.Tick(Time.deltaTime);
         player.Event.OnTrickRunning.Invoke(trickTimer.Progress);
-
         if (trickTimer.Progress < 0.5f && !calledHalfTime)
         {
             player.Event.OnTrickHalfTime?.Invoke();
