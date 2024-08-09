@@ -3385,6 +3385,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746296188}
   m_CullTransparentMesh: 1
+--- !u!1 &1765087916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 283220195219398997, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+  m_PrefabInstance: {fileID: 2800333083428125293}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1784426027
 GameObject:
   m_ObjectHideFlags: 0
@@ -3465,7 +3470,7 @@ Transform:
   m_GameObject: {fileID: 1807976334}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.33, y: 2.61, z: -1.75}
+  m_LocalPosition: {x: 3.33, y: 2.61, z: 0.5}
   m_LocalScale: {x: 19.019663, y: 9.0593195, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3805,7 +3810,7 @@ MonoBehaviour:
   booCrowd: {fileID: 21300000, guid: 0715d0039df94bd46beadc6ba28eeea0, type: 3}
   crowdUIAnimator: {fileID: 8822404903554051576}
   coolEffect: {fileID: 307048705}
-  celebrationTime: 5
+  celebrationTime: 3
   cheerSound: {fileID: 8300000, guid: 404e1b77f2eaef14c8fb68cfa8181c28, type: 3}
   booSound: {fileID: 8300000, guid: b9544d46460055b47996aee8ba366828, type: 3}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
@@ -4287,6 +4292,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: windAnimator
+      value: 
+      objectReference: {fileID: 1765087916}
+    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: _trickStartPos
       value: 
       objectReference: {fileID: 1387300928}
@@ -4302,10 +4311,50 @@ PrefabInstance:
       propertyPath: _phase3StartPos
       value: 
       objectReference: {fileID: 2076072335}
+    - target: {fileID: 283220195219398997, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770895184357057810, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 3030937129534251356, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: _pauseMenu
       value: 
       objectReference: {fileID: 1281558510}
+    - target: {fileID: 3384719092198580079, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384719092198580079, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384719092198580079, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032703999152429833, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032703999152429833, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032703999152429833, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c16db38f5214b934196d8ea86be8e046, type: 3}
+    - target: {fileID: 4032703999152429833, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667568571697371813, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b181b0fbea79fbf4db040e2718cc6510, type: 2}
     - target: {fileID: 5985656491112556461, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: m_SortingOrder
       value: 0

@@ -89,7 +89,6 @@ public class FlowManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentFlow);
         flowUIHandler.UpdateFlowUI(currentFlow);
         if (previousPhase != GamePhase.Phase3)
             Event.OnFlowChange.Invoke(currentFlow);

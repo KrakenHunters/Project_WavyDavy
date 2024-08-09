@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private PlayerTrickHandler trickManager;
 
     public GameEvent Event;
-
+    public GameObject windAnimator;
     public GamePhase currentGamePhase { get; private set; }
     public Animator animator { get; set; }
     public BaseState currentState { get; private set; }
@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
     public float phase3MaxHeight { get => _phase3MaxHeight; private set => _phase3MaxHeight = value; }
     public float maxInclineAngle { get => _maxInclineAngle; private set => _maxInclineAngle = value; }
     public float maxInclineBoostAngle { get => _maxInclineBoostAngle; private set => _maxInclineBoostAngle = value; }
-
     public float inclineSpeed { get => _inclineSpeed; private set => _inclineSpeed = value; }
 
     public AudioClip scpart1Clip;

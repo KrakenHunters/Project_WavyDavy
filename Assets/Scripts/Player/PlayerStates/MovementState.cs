@@ -43,7 +43,7 @@ public class MovementState : BaseState
                 timeToMaxPump = 2f;
                 possibleXMovement = 8f;
                 timeToMaxSpeed = 0.1f;
-                timeToReturnSpeed = 30f;
+                timeToReturnSpeed = 20f;
                 timeToReturnAngle = 1f;
                 break;
             case GamePhase.Phase3:
@@ -51,7 +51,7 @@ public class MovementState : BaseState
                 timeToMaxPump = 3f;
                 possibleXMovement = 15f;
                 timeToMaxSpeed = 0.2f;
-                timeToReturnSpeed = 50f;
+                timeToReturnSpeed = 60f;
                 timeToReturnAngle = 1f;
                 break;
         }
@@ -66,9 +66,11 @@ public class MovementState : BaseState
         HandleMovementLogic();
         ApplyRandomIdleMovement();
         ApplyForces();
-        if (speed <= player.normalSpeed)
+        if (speed <= player.normalSpeed || _direction.x >= 0f)
         {
             speeding = false;
+            player.windAnimator.SetActive(false);
+
         }
     }
 
@@ -169,6 +171,7 @@ public class MovementState : BaseState
             if (speed > player.normalSpeed && _direction.x < 0f && !speeding)
             {
                 AudioManager.Instance.PlayAudio(player.speedPlayer);
+                player.windAnimator.SetActive(true);
                 speeding = true;
             }
             if (resetTimer > resetDelay)
