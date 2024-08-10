@@ -4516,6 +4516,10 @@ PrefabInstance:
       propertyPath: m_text
       value: ptb :2000
       objectReference: {fileID: 0}
+    - target: {fileID: 3606711122439528008, guid: 2e03946b13942b345a6dc9719817804d, type: 3}
+      propertyPath: m_margin.z
+      value: -64.602295
+      objectReference: {fileID: 0}
     - target: {fileID: 4351061949233039800, guid: 2e03946b13942b345a6dc9719817804d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -20
