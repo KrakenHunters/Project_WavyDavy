@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private WaterObject obstaclePrefab;
 
     [Header("Spawn Settings")]
-    [SerializeField] private float spawnRate;
+    private float spawnRate;
     [SerializeField] private float maxSpawnInterval;
     [SerializeField] private float minSpawnInterval;
 
@@ -76,7 +76,7 @@ public class Spawner : MonoBehaviour
 
     private void AdjustSpawnRateBasedOnFlow(float currentFlow)
     {
-        spawnRate = Mathf.Lerp(maxSpawnInterval, minSpawnInterval, currentFlow / 2.5f); 
+        spawnRate = Mathf.Lerp(maxSpawnInterval, minSpawnInterval, currentFlow / 25f); 
     }
 
     private void SetGamePhase(GamePhase newPhase)
