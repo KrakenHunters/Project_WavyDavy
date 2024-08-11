@@ -22,7 +22,7 @@ public class TrickState : BaseState
 
     public override void ExitState()
     {
-        trickTimer.Reset();
+        trickTimer.Stop();
 
     }
 
@@ -38,8 +38,7 @@ public class TrickState : BaseState
 
         if (trickTimer.IsFinished)
         {
-            player.Event.OnTrickFinish?.Invoke(trickManager);
-            trickManager.EndTrick();
+            trickManager.TrickFailed(Tricks.TrickResult.Failed);
             Debug.Log("Trick Failed");
         }
 

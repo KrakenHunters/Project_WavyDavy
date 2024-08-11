@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  windAnimator: {fileID: 0}
+  windAnimator: {fileID: 283220195219398997}
   pumpSpeedPhase2: 7
   pumpSpeedPhase3: 18
   normalSpeedPhase2: 3
@@ -306,7 +306,7 @@ MonoBehaviour:
   _phase2StartPos: {fileID: 0}
   _phase3StartPos: {fileID: 0}
   _trickStartPos: {fileID: 0}
-  _paddleSpeed: 0.1
+  _paddleSpeed: 0.3
   _phase2MaxHeight: -0.5
   _phase3MaxHeight: 1.7
   _maxInclineAngle: 10
@@ -315,7 +315,8 @@ MonoBehaviour:
   scpart1Clip: {fileID: 8300000, guid: f4d9de53123cd3245bc5664976256f52, type: 3}
   scpart2Clip: {fileID: 8300000, guid: 83b7b1c4209e1ed419afb701dc864b05, type: 3}
   hitSand: {fileID: 8300000, guid: 7d5a95e7583baf44f89036d3bc05bf57, type: 3}
-  speedPlayer: {fileID: 8300000, guid: 74df2476eda3d4647b619a6b2f460710, type: 3}
+  speedPlayer: {fileID: 8300000, guid: bec0974f55bfe4c468112ec109fb58ed, type: 3}
+  paddleClip: {fileID: 8300000, guid: 74df2476eda3d4647b619a6b2f460710, type: 3}
 --- !u!114 &4642518729882892256
 MonoBehaviour:
   m_ObjectHideFlags: 0

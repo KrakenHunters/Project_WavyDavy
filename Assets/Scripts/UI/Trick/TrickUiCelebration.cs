@@ -33,15 +33,18 @@ public class TrickUiCelebration : MonoBehaviour
     private void OnEnable()
     {
         Event.OnTrickCelebration += ShowCelebration;
+        timer.OnTimerStop += HideCelebration;
+
     }
     private void OnDisable()
     {
         Event.OnTrickCelebration -= ShowCelebration;
+        timer.OnTimerStop -= HideCelebration;
+
     }
     public void ShowCelebration(PlayerTrickHandler trickHandler)
     {
         result = trickHandler.CurrentResult;
-        timer.OnTimerStop += HideCelebration;
         crowdUIAnimator.MoveAnimate();
         if (result == TrickResult.Complete)
         {
@@ -57,16 +60,15 @@ public class TrickUiCelebration : MonoBehaviour
             //play boo sound
         }
         timer.Start();
-        Debug.Log(timer.Progress);
+        Debug.Log("Progress: " + timer.Progress);
     }
 
     public void HideCelebration()
     {
-        coolEffect.Stop();
-
-        timer.OnTimerStop -= HideCelebration;
+        if (coolEffect.isPlaying)
+            coolEffect.Stop();
         crowdUIAnimator.MoveAnimate();
-        timer.Reset();
+        //timer.Reset();
         Event.OnFinishCelebration?.Invoke();
         Debug.Log("Celebration Ended");
     }

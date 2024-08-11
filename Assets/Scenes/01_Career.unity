@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wavePrefab: {fileID: 946550667}
   obstaclePrefab: {fileID: 6563733163459200441, guid: c049d2567e78f8345bbb70509110f469, type: 3}
-  maxSpawnInterval: 5
+  maxSpawnInterval: 4
   minSpawnInterval: 1
   randomRadius: 0
   topSpawnPos: {fileID: 1385221539}
@@ -4100,11 +4100,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746296188}
   m_CullTransparentMesh: 1
---- !u!1 &1765087916 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 283220195219398997, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-  m_PrefabInstance: {fileID: 2800333083428125293}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1784426027
 GameObject:
   m_ObjectHideFlags: 0
@@ -5118,22 +5113,6 @@ PrefabInstance:
       propertyPath: PaddleText
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: paddleClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 74df2476eda3d4647b619a6b2f460710, type: 3}
-    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: speedPlayer
-      value: 
-      objectReference: {fileID: 8300000, guid: bec0974f55bfe4c468112ec109fb58ed, type: 3}
-    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: _paddleSpeed
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
-      propertyPath: windAnimator
-      value: 
-      objectReference: {fileID: 1765087916}
     - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: _trickStartPos
       value: 

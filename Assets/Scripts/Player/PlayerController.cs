@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public Animator animator { get; set; }
     public BaseState currentState { get; private set; }
 
+    private static readonly int Crash = Animator.StringToHash("Crash");
+
     public float normalSpeed { get; set; }
     public float pumpSpeed { get; private set; }
     public float currentFlow { get; private set; }
@@ -84,10 +86,13 @@ public class PlayerController : MonoBehaviour
 
     private void SetPhase(GamePhase gameState)
     {
-        currentGamePhase = gameState;
 
-        switch (currentGamePhase)
+        switch (gameState)
         {
+            case GamePhase.Phase1:
+                if (currentGamePhase == GamePhase.Phase2)
+                    animator.Play(Crash);
+                break;
             case GamePhase.Phase2:
                 pumpSpeed = pumpSpeedPhase2;
                 normalSpeed = normalSpeedPhase2;
@@ -97,6 +102,7 @@ public class PlayerController : MonoBehaviour
                 normalSpeed = normalSpeedPhase3;
                 break;
         }
+        currentGamePhase = gameState;
 
         currentState?.HandleTransition();
 
@@ -124,14 +130,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            // Event.OnHitObject.Invoke(-1); // reduce flow
-            inputManager.EnablePlayerTrickState();
-            GameManager.Instance.Event.OnChangeGameState?.Invoke(GamePhase.Trick);
-        }
-
         HandleMove(inputManager.Movement);
 
         currentState?.StateUpdate();

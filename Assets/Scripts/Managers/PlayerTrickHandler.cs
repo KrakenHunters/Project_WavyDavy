@@ -11,8 +11,6 @@ public class PlayerTrickHandler : MonoBehaviour
 
     public float MaxTrickTime => trickBeginTime;
 
-
-
     public GamePhase currentPhase = GamePhase.Phase1;
     public List<TrickSO> possibleTrickCombos = new List<TrickSO>();
     private List<TrickCombo> playerPressedCombo = new List<TrickCombo>();
@@ -57,7 +55,6 @@ public class PlayerTrickHandler : MonoBehaviour
             AudioManager.Instance.PlayAudio(trickFailed);
         }
 
-
         playerPressedCombo.Clear();
         Event.OnTrickCelebration?.Invoke(this);
     }
@@ -91,11 +88,16 @@ public class PlayerTrickHandler : MonoBehaviour
         }
         if (result == TrickResult.Failed && possibleTrickCombos.Count == 0)
         {
-            CurrentResult = result;
-            Event.OnTrickFinish?.Invoke(this);
-            EndTrick();
-            Debug.Log("Trick Faild");
+            TrickFailed(result);
         }
+    }
+
+    public void TrickFailed(TrickResult result)
+    {
+        Debug.Log("TrickFailed");
+        CurrentResult = result;
+        Event.OnTrickFinish?.Invoke(this);
+        EndTrick();
     }
 
 }

@@ -11,7 +11,6 @@ public class PaddleState : BaseState
     {
         base.EnterState();
         inputManager.EnablePlayerPaddle(); // Start in first phase paddle
-        player.animator.Play(PaddleIdle);
         lastPaddleDir = Paddle.None;
     }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 public class TransitionState : BaseState
 {
     private Vector3 targetPos;
-    float targetInclineAngle;
     public override void EnterState()
     {
         base.EnterState();

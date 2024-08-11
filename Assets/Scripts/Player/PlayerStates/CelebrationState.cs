@@ -53,7 +53,7 @@ public class CelebrationState : BaseState
         }
         else if (trickManager.CurrentResult == Tricks.TrickResult.Failed)
         {
-            player.animator.Play(TrickFailStart);
+            player.animator.Play(TrickFailEnd);
         }
         player.Event.OnChangeGameState.Invoke(GamePhase.Phase3);
     }

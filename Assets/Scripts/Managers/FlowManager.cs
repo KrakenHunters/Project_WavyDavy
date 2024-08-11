@@ -110,7 +110,6 @@ public class FlowManager : MonoBehaviour
             {
                 currentFlow -= flowDecreaseSpeed * (maxFlow - minFlow) * Time.deltaTime;
                 currentFlow = Mathf.Max(currentFlow, minFlow); // Ensure currentFlow doesn't go below minFlow
-
             }
 
             bool isAboveThreshold = currentFlow > (maxFlow - (maxFlow - minFlow) * (1 - aboveThreshold));
@@ -210,7 +209,7 @@ public class FlowManager : MonoBehaviour
             case GamePhase.Phase3:
                 maxFlow = maxFlowPhase3;
                 minFlow = maxFlowPhase2;
-                currentFlow = wasPhaseTrick ? previousFlow : (maxFlow - minFlow) / 2 + minFlow;
+                currentFlow = wasPhaseTrick ? currentFlow : (maxFlow - minFlow) / 2 + minFlow;
                 wasPhaseTrick = false;
                 previousPhase = GamePhase.Phase2;
                 nextPhase = GamePhase.Trick;
@@ -232,7 +231,7 @@ public class FlowManager : MonoBehaviour
     {
         if(trickHandler.CurrentResult == Tricks.TrickResult.Complete)
         {
-            AddFlow(-(maxFlow-minFlow) / 3f);
+            AddFlow(-(maxFlow-minFlow) /4f);
         }
         else
         {

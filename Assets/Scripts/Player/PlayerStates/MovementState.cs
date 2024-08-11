@@ -120,7 +120,7 @@ public class MovementState : BaseState
 
             if (isPumping)
             {
-                if (player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Pump && player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != GetHit)
+                if (player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Pump && player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != GetHit && player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Crash)
                     player.animator.Play(Pump);
                 speed = Mathf.Lerp(speed, player.pumpSpeed, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineAngle * (speed / player.pumpSpeed), (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
@@ -135,7 +135,7 @@ public class MovementState : BaseState
         }
         else
         {
-            if (player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Idle && player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != GetHit)
+            if (player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Idle && player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != GetHit && player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Crash)
                 player.animator.Play(Idle);
 
             if (startXPos < player.transform.position.x)
