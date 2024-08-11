@@ -15,7 +15,8 @@ public class LeaderBoardManager : MonoBehaviour
     [SerializeField] private int maxNameLength = 15;
     [SerializeField] private GameObject loadingImage;
 
-    [SerializeField] private TextMeshProUGUI personalEntryText;
+    [SerializeField] private TextMeshProUGUI personalRank;
+    [SerializeField] private TextMeshProUGUI personalScore;
 
     [SerializeField] private GameDataSO ScoreSO;
 
@@ -87,6 +88,10 @@ public class LeaderBoardManager : MonoBehaviour
 
     private void ErrorCallback(string error) => Debug.LogError(error);
 
-    private void OnPersonalEntryLoaded(Entry entry) => personalEntryText.text = $" Rank: {entry.RankSuffix()} \n Score: {entry.Score}";
+    private void OnPersonalEntryLoaded(Entry entry)
+    {
+        personalRank.text = $" Rank: {entry.RankSuffix()}";
+        personalScore.text = $" Score: {entry.Score}";
+    }
     #endregion  
 }

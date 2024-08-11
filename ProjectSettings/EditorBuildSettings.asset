@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Anna_MainMenu.unity
+    path: Assets/Scenes/00_MainMenu.unity
     guid: 7065488b1192c3443878f53da4f3134d
   - enabled: 0
     path: Assets/Scenes/00_MainMenu.unity
@@ -18,10 +18,10 @@ EditorBuildSettings:
     path: Assets/Scenes/01_Career.unity
     guid: b4e183e1eefed1e42b0ec0af50a295f7
   - enabled: 1
-    path: Assets/Scenes/02_Exhibition.unity
+    path: Assets/Scenes/Exhibition.unity
     guid: 0a94f9954540fbc44aa54e7a568aa51b
   - enabled: 1
-    path: Assets/Scenes/Musse_Gym.unity
+    path: Assets/Scenes/02_LeaderBoard.unity
     guid: 7dfd1e8c01c24524db9d7b9934301476
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 119e210ec23257546879a776c5ba1c51, type: 2}
