@@ -35,12 +35,14 @@ public class PaddleState : BaseState
 
     public override void HandlePaddlingRight(bool isPaddling)
     {
+        AudioManager.Instance.PlayAudio(player.paddleClip);
         paddleRight = isPaddling;
         timer = 0f;
     }
 
     public override void HandlePaddlingLeft(bool isPaddling)
     {
+        AudioManager.Instance.PlayAudio(player.paddleClip);
         paddleLeft = isPaddling;
         timer = 0f;
     }
