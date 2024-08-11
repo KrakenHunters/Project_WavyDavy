@@ -2622,7 +2622,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 50, y: 50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &886130775
 MonoBehaviour:
@@ -2712,7 +2712,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1b8ff7358976fd243a9a5798bda22158, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9dee4d0b5c27b9946bf9a5620aa06308, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2976,8 +2976,8 @@ MonoBehaviour:
   creditsMenu: {fileID: 336755629}
   controlsMenu: {fileID: 382226963}
   MuteButtonImage: {fileID: 886130776}
-  MuteSprite: {fileID: 21300000, guid: 1b8ff7358976fd243a9a5798bda22158, type: 3}
-  UnMuteSprite: {fileID: 21300000, guid: df79982dfec1b3b48919e05854779a83, type: 3}
+  MuteSprite: {fileID: 21300000, guid: 9dee4d0b5c27b9946bf9a5620aa06308, type: 3}
+  UnMuteSprite: {fileID: 21300000, guid: 3346ff1f201213646ab9d182b9bb7f2f, type: 3}
   menuClip: {fileID: 8300000, guid: 9863e8521844f384a9fa33f65a5ac1d3, type: 3}
   buttonClip: {fileID: 8300000, guid: 5629d8361b4ea9644b306241e49a0314, type: 3}
   _MasterAudioMixer: {fileID: 24100000, guid: 00063d96db24da64d8afe43ed66f5ee7, type: 2}
