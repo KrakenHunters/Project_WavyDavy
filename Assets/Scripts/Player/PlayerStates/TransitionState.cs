@@ -12,7 +12,6 @@ public class TransitionState : BaseState
         switch (player.currentGamePhase)
         {
             case GamePhase.Phase1:
-                inputManager.DisableAllInput();
                 targetPos = player.phase1StartPos.position;
                 player.normalSpeed = 3f;
                 break;

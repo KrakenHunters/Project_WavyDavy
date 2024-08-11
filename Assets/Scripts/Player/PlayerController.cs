@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
     {
         if (currentGamePhase == GamePhase.Phase1)
         {
-            finalPaddleSpeed = _paddleSpeed - _paddleSpeed * flow;
+            finalPaddleSpeed = _paddleSpeed - _paddleSpeed * (flow/2f);
         }
     }
 

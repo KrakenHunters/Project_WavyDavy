@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530a4a9863cf39b4b84e6cc763c5dc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationConvert: 0.05
+  animationConvert: 0.03
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &366786298
 GameObject:
@@ -1630,8 +1630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wavePrefab: {fileID: 946550667}
   obstaclePrefab: {fileID: 6563733163459200441, guid: c049d2567e78f8345bbb70509110f469, type: 3}
-  spawnRate: 3
-  maxSpawnInterval: 4
+  maxSpawnInterval: 5
   minSpawnInterval: 1
   randomRadius: 0
   topSpawnPos: {fileID: 1385221539}
@@ -1740,16 +1739,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  maxFlowPhase1: 0.8
+  maxFlowPhase1: 2
   maxFlowPhase2: 10
-  maxFlowPhase3: 25
+  maxFlowPhase3: 20
   minFlowPhase1: 0.1
-  minFlowPhase2: 1
+  minFlowPhase2: 2
   aboveThreshold: 0.9
   belowThreshold: 0.15
-  flowDecreaseSpeed1: 0.05
+  flowDecreaseSpeed1: 0.02
   flowDecreaseSpeed2: 0.05
-  flowDecreaseSpeed3: 0.05
+  flowDecreaseSpeed3: 0.08
   thresholdDuration: 3
   flowUIHandler: {fileID: 976024005}
 --- !u!4 &976024004
@@ -3003,7 +3002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530a4a9863cf39b4b84e6cc763c5dc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationConvert: 0.1
+  animationConvert: 0.05
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &1582674711
 GameObject:
@@ -3839,7 +3838,7 @@ Transform:
   m_GameObject: {fileID: 2076072334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.68, y: -0.28, z: 0}
+  m_LocalPosition: {x: -5.16, y: -0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4292,6 +4291,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: _paddleSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: windAnimator
       value: 
       objectReference: {fileID: 1765087916}
@@ -4645,7 +4648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7220600975530097801, guid: eee119f4d64187a42bc6176084600db0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -7.671814
+      value: -7.671875
       objectReference: {fileID: 0}
     - target: {fileID: 7891596509228238122, guid: eee119f4d64187a42bc6176084600db0, type: 3}
       propertyPath: m_Name

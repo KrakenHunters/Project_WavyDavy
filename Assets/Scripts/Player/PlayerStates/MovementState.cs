@@ -80,7 +80,7 @@ public class MovementState : BaseState
     {
         isPumping = false;
         speed = 0f;
-        player.animator.CrossFade(GetHit, 0.2f);
+        player.animator.Play(GetHit);
     }
 
     public override void HandleMovement(Vector2 dir)
@@ -120,7 +120,7 @@ public class MovementState : BaseState
 
             if (isPumping)
             {
-                if (player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Pump)
+                if (player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Pump && player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != GetHit)
                     player.animator.Play(Pump);
                 speed = Mathf.Lerp(speed, player.pumpSpeed, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineAngle * (speed / player.pumpSpeed), (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
@@ -135,7 +135,8 @@ public class MovementState : BaseState
         }
         else
         {
-            player.animator.CrossFade(Idle, 0.2f);
+            if (player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Idle && player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != GetHit)
+                player.animator.Play(Idle);
 
             if (startXPos < player.transform.position.x)
             {
