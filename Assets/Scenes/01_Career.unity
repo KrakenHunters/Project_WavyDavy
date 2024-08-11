@@ -4262,6 +4262,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[AudioManager]'
       objectReference: {fileID: 0}
+    - target: {fileID: 9136442684036107019, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: timeoutClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5197c2e1d20dcac4ebeb3ed6f0f9d59d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4290,6 +4294,14 @@ PrefabInstance:
       propertyPath: PaddleText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: paddleClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 74df2476eda3d4647b619a6b2f460710, type: 3}
+    - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+      propertyPath: speedPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: bec0974f55bfe4c468112ec109fb58ed, type: 3}
     - target: {fileID: 196520658530590776, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
       propertyPath: _paddleSpeed
       value: 0.3

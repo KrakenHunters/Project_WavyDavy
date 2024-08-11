@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
+  windAnimator: {fileID: 0}
   pumpSpeedPhase2: 7
   pumpSpeedPhase3: 18
   normalSpeedPhase2: 3
