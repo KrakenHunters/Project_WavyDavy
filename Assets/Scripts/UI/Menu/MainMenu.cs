@@ -12,6 +12,7 @@ public class MainMenu : Menu
     [SerializeField]
     private GameObject controlsMenu;
 
+
     [Header("Mute button")]
     [SerializeField] private Image MuteButtonImage;
     [SerializeField] private Sprite MuteSprite;
@@ -27,6 +28,7 @@ public class MainMenu : Menu
     [SerializeField, Tooltip("Audio Mixer form the Assets folder")]
     private AudioMixer _MasterAudioMixer;
 
+    public GameDataSO gameDataSO;
     
     private float _maxVolume = 1f;
 
@@ -38,12 +40,19 @@ public class MainMenu : Menu
 
     public void OnPlay_01() 
     {
+        gameDataSO.PlayedGame = true;
         SceneManager.LoadScene(1);
     } 
 
     public void playClickSound()
     {
         AudioManager.Instance.PlayAudio(buttonClip);
+    }
+
+    public void OnOpenLeaderboard()
+    {
+        gameDataSO.PlayedGame = false;
+        SceneManager.LoadScene(2);
     }
 
     public void OnToggleMute()

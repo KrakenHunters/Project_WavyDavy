@@ -7018,7 +7018,7 @@ MonoBehaviour:
   personalRank: {fileID: 1676439553}
   personalScore: {fileID: 891753538}
   ScoreSO: {fileID: 11400000, guid: d6686ff2c87c57545a91a1b541b06d2c, type: 2}
-  UIAnimator: {fileID: 1383492779}
+  uIAnimator: {fileID: 1383492779}
 --- !u!1 &1723141349
 GameObject:
   m_ObjectHideFlags: 0

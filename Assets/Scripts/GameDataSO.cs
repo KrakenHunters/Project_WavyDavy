@@ -6,4 +6,5 @@ public class GameDataSO : ScriptableObject
 {
     public int Score;
     public GameMode gameMode;
+    public bool PlayedGame;
 }

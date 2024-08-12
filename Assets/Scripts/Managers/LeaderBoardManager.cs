@@ -20,29 +20,45 @@ public class LeaderBoardManager : MonoBehaviour
 
     [SerializeField] private GameDataSO ScoreSO;
 
-    [SerializeField] private UIAnimator UIAnimator;
+    [SerializeField] private UIAnimator uIAnimator;
 
     private void OnEnable()
     {
-        UIAnimator.OnAnimateFinished.AddListener(() =>
-        { 
-            OnSubmit();
-        });
+        if (ScoreSO.PlayedGame)
+        {
+            uIAnimator.OnAnimateFinished.AddListener(() =>
+            {
+                OnSubmit();
+            });
+        }
     }
     private void OnDisable()
     {
-        UIAnimator.OnAnimateFinished.RemoveListener(() =>
+        if (ScoreSO.PlayedGame)
+        {
+            uIAnimator.OnAnimateFinished.RemoveListener(() =>
         {
             OnSubmit();
         });
+        }
     }
 
     private void Start()
     {
-        LeaderboardCreator.ResetPlayer();
+        if (!ScoreSO.PlayedGame)
+            LoadLeaderBoard();
+        else
+            LeaderboardCreator.ResetPlayer();
     }
 
     public void OnSubmit() => SendLeaderBoardEntry(userNameInput.text, ScoreSO.Score);
+
+    public void LoadLeaderBoard()
+    {
+        uIAnimator.MoveAnimate();
+        GetLeaderBoard();
+        SetEmptyPersonalScore();
+    }
 
     private void Update() => submitButton.interactable = userNameInput.text.Length > minNameLength && userNameInput.text.Length < maxNameLength;
 
@@ -69,7 +85,7 @@ public class LeaderBoardManager : MonoBehaviour
         ToggleLoadingPanel(true);
     }
 
-    private void ToggleLoadingPanel(bool state) 
+    private void ToggleLoadingPanel(bool state)
     {
         loadingImage.SetActive(!state);
         leaderBoardSpawnBox.SetActive(state);
@@ -86,7 +102,14 @@ public class LeaderBoardManager : MonoBehaviour
     }
     private void GetPersonalEntry() => LeaderboardCreator.GetPersonalEntry(publicLeaderBoardKey, OnPersonalEntryLoaded, ErrorCallback);
 
+    private void SetEmptyPersonalScore()
+    {
+        personalRank.text = "Rank: -";
+        personalScore.text = "Score: -";
+    }
+
     private void ErrorCallback(string error) => Debug.LogError(error);
+
 
     private void OnPersonalEntryLoaded(Entry entry)
     {
