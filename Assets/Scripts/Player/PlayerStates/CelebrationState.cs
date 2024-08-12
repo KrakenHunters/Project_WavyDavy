@@ -35,14 +35,16 @@ public class CelebrationState : BaseState
     public override void StateUpdate()
     {
         AnimatorStateInfo stateInfo = player.animator.GetCurrentAnimatorStateInfo(0);
-        if ((stateInfo.shortNameHash == TrickPeak || stateInfo.shortNameHash == TrickFailPeak) && !celebrationInvoked)
+        if ((stateInfo.shortNameHash == TrickEnd || stateInfo.shortNameHash == TrickFailEnd) && !celebrationInvoked)
         {
             if (stateInfo.normalizedTime >= 1.0f)
             {
+                Debug.Log("End");
                 celebrationInvoked = true;
-                //player.Event.OnTrickCelebration(trickManager);
+                player.Event.OnChangeGameState.Invoke(GamePhase.Phase3);
             }
         }
+
     }
 
     public override void FinishCelebration()
@@ -55,7 +57,6 @@ public class CelebrationState : BaseState
         {
             player.animator.Play(TrickFailEnd);
         }
-        player.Event.OnChangeGameState.Invoke(GamePhase.Phase3);
     }
 
     public override void HandleTransition()

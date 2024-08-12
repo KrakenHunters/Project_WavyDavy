@@ -13,6 +13,7 @@ public class PaddleState : BaseState
         inputManager.EnablePlayerPaddle(); // Start in first phase paddle
         lastPaddleDir = Paddle.None;
         player.animator.CrossFade(PaddleHopOn, 0.2f);
+        player.Event.OnPaddleLeft.Invoke();
 
     }
 
