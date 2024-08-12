@@ -2679,7 +2679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 0}
-  duration: 5
+  duration: 2
   ease: 3
   OnAnimateFinished:
     m_PersistentCalls:
