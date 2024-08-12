@@ -32,12 +32,12 @@ public class PaddleState : BaseState
     {
         stateInfo = player.animator.GetCurrentAnimatorStateInfo(0);
 
-        if (stateInfo.shortNameHash == PaddleLeft && stateInfo.normalizedTime >= 0.8f)
+        if (stateInfo.shortNameHash == PaddleLeft && stateInfo.normalizedTime >= 0.9f)
         {
             player.Event.OnPaddleLeft.Invoke();
         }
 
-        if (stateInfo.shortNameHash == PaddleRight && stateInfo.normalizedTime >= 0.8f)
+        if (stateInfo.shortNameHash == PaddleRight && stateInfo.normalizedTime >= 0.9f)
         {
             player.Event.OnPaddleRight.Invoke();
         }
@@ -83,7 +83,8 @@ public class PaddleState : BaseState
             player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed * multiplier);
 
             lastPaddleDir = Paddle.Right;
-            player.animator.speed *= (1 + player.currentFlow + 0.05f);
+            if (player.animator.speed <= 1.5f)
+                player.animator.speed *= (1 + player.currentFlow + 0.05f);
 
             AudioManager.Instance.PlayAudio(player.paddleClip);
 
@@ -108,7 +109,7 @@ public class PaddleState : BaseState
 
             lastPaddleDir = Paddle.Left;
 
-            if (player.animator.speed <= 2f)
+            if (player.animator.speed <= 1.5f)
                 player.animator.speed *= (1 + player.currentFlow + 0.05f);
 
             AudioManager.Instance.PlayAudio(player.paddleClip);

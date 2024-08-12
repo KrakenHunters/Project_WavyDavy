@@ -22,31 +22,31 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 21300000, guid: e3c03bdc7694db34ea38d2ac79d46fde, type: 3}
-    - time: 0.31666666
+    - time: 0.2
       value: {fileID: 21300000, guid: 2b9897772801c6e429f5ede0e20174da, type: 3}
-    - time: 0.73333335
+    - time: 0.46666667
       value: {fileID: 21300000, guid: 02f7c89f158638043b6ccf9579147f55, type: 3}
-    - time: 1.2166667
+    - time: 0.76666665
       value: {fileID: 21300000, guid: f64b1202afd9edf40802b6bfc2f4582f, type: 3}
-    - time: 1.6
+    - time: 1.0166667
       value: {fileID: 21300000, guid: e19b13840efa322448533af9dbde8631, type: 3}
-    - time: 1.9666667
+    - time: 1.25
       value: {fileID: 21300000, guid: d5dd2e43ef36e674bbefaf90deab7582, type: 3}
-    - time: 2.2666667
+    - time: 1.4333333
       value: {fileID: 21300000, guid: f941d7c20ff37324ba0bba1238932a45, type: 3}
-    - time: 2.6666667
+    - time: 1.6833333
       value: {fileID: 21300000, guid: b3526bf285d48b24f80055be2ea305b7, type: 3}
-    - time: 2.9666667
+    - time: 1.8833333
       value: {fileID: 21300000, guid: 93fb715a23c0903469c0b586cae449c5, type: 3}
-    - time: 3.3
+    - time: 2.0833333
       value: {fileID: 21300000, guid: 293e8897cee4fa54d9feeb706a2143c9, type: 3}
-    - time: 3.6666667
+    - time: 2.3166666
       value: {fileID: 21300000, guid: 379237d1b8b2e0f49903d8e09e4aa799, type: 3}
-    - time: 4
+    - time: 2.5333333
       value: {fileID: 21300000, guid: 0be0ae73b3f954442aad7fb4d4fa0e0a, type: 3}
-    - time: 4.3333335
+    - time: 2.75
       value: {fileID: 21300000, guid: 13c86dc80d81dd34d8db4c613a38712a, type: 3}
-    - time: 4.733333
+    - time: 3
       value: {fileID: 21300000, guid: a636eb3edd8301d4c837bc9cb944c6f0, type: 3}
     attribute: m_Sprite
     path: 
@@ -89,7 +89,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 4.75
+    m_StopTime: 3.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
