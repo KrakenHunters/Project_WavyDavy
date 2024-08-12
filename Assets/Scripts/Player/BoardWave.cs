@@ -12,6 +12,7 @@ public class BoardWave : MonoBehaviour
     [SerializeField] private GameObject BackWave;
 
     private Animator animator;
+    private Tween currentTween;
     private void OnEnable()
     {
         Event.OnChangeGameState.AddListener(EnableWave);
@@ -30,8 +31,12 @@ public class BoardWave : MonoBehaviour
     }
     private void ScaleAndSpeed(float flow)
     {
+        if (currentTween != null)
+            currentTween.Kill();
+
         float newScale = Mathf.Lerp(0.6f, 2.4f, flow / 20f);
-        transform.DOScale(new Vector3(newScale, newScale, newScale), 0.5f).SetEase(Ease);
+
+        currentTween = transform.DOScale(new Vector3(newScale, newScale, newScale), 0.5f).SetEase(Ease);
         float newSpeed = Mathf.Lerp(0.6f, 2.4f, flow / 20f);
         animator.speed = newSpeed;
     }

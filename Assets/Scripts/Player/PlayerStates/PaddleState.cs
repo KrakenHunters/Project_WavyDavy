@@ -37,7 +37,6 @@ public class PaddleState : BaseState
     public override void HandlePaddlingRight(bool isPaddling)
     {
         AudioManager.Instance.PlayAudio(player.paddleClip);
-        player.Event.OnPaddleRight.Invoke();
         paddleRight = isPaddling;
         timer = 0f;
     }
@@ -45,7 +44,6 @@ public class PaddleState : BaseState
     public override void HandlePaddlingLeft(bool isPaddling)
     {
         AudioManager.Instance.PlayAudio(player.paddleClip);
-        player.Event.OnPaddleLeft.Invoke();
         paddleLeft = isPaddling;
         timer = 0f;
     }
@@ -71,11 +69,13 @@ public class PaddleState : BaseState
 
                 }
             }
-            
+
             player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed * multiplier);
 
             lastPaddleDir = Paddle.Right;
             player.animator.speed *= (1 + player.currentFlow + 0.05f);
+
+            player.Event.OnPaddleRight.Invoke();
 
             player.animator.CrossFade(PaddleRight, 0.1f);
 
@@ -93,11 +93,13 @@ public class PaddleState : BaseState
                     multiplier = Mathf.Clamp(stateInfo.normalizedTime, 0f, 1f);
                 }
             }
-            
+
             player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed * multiplier);
 
             lastPaddleDir = Paddle.Left;
-            player.animator.speed *= (1 + player.currentFlow+0.05f);
+            player.animator.speed *= (1 + player.currentFlow + 0.05f);
+
+            player.Event.OnPaddleLeft.Invoke();
 
             player.animator.CrossFade(PaddleLeft, 0.1f);
 
