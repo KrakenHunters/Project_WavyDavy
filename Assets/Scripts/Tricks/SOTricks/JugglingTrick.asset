@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cab50c94343871e448f38bd519d594b3, type: 3}
-  m_Name: Trick 4
+  m_Name: JugglingTrick
   m_EditorClassIdentifier: 
-  TrickName: 
+  TrickName: JugglingTrick
   Icon: {fileID: 0}
-  Points: 10
-  trickCombo: 010000000200000001000000
-  animationController: {fileID: 22100000, guid: fbf527659b1bbd642a10d4d8d7eb2e38, type: 2}
+  Points: 30
+  trickCombo: 000000000100000001000000020000000300000000000000
+  animationController: {fileID: 22100000, guid: d7daeb5257b47f84fbb9e498474b893e, type: 2}
