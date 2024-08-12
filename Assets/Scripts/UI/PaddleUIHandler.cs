@@ -17,6 +17,8 @@ public class PaddleUIHandler : MonoBehaviour
     private void Awake()
     {
         paddleUIPanel.SetActive(false);
+        rightUI.SetActive(false);
+        leftUI.SetActive(false);
     }
 
     private void OnEnable()
