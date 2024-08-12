@@ -1405,6 +1405,17 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &511723082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3030937129534251356, guid: 8b1b0cc7c64fdba4083775d9b8dd0beb, type: 3}
+  m_PrefabInstance: {fileID: 2800333083428125293}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a819a64fd60252e49b151796d4bc2410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &603539915 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8808583109212543957, guid: c049d2567e78f8345bbb70509110f469, type: 3}
@@ -1768,9 +1779,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0114bb18cac0204a8f36f4c901c31ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PaddleUIPanel: {fileID: 2009885897}
-  RightUI: {fileID: 200979400}
-  LeftUI: {fileID: 300659726}
+  paddleUIPanel: {fileID: 2009885897}
+  rightUI: {fileID: 200979400}
+  leftUI: {fileID: 300659726}
+  inputManager: {fileID: 511723082}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1001 &897142065
 PrefabInstance:
