@@ -4997,6 +4997,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'FlowCanvas '
       objectReference: {fileID: 0}
+    - target: {fileID: 6867417682446698383, guid: 2edfa73388c8236469e23fed4e6251de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8561977793546199958, guid: 2edfa73388c8236469e23fed4e6251de, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -5015,11 +5019,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8736558892310212728, guid: 2edfa73388c8236469e23fed4e6251de, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.595
       objectReference: {fileID: 0}
     - target: {fileID: 8736558892310212728, guid: 2edfa73388c8236469e23fed4e6251de, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
