@@ -7,8 +7,8 @@ public class PaddleUIHandler : MonoBehaviour
 
     [SerializeField] private GameObject PaddleUIPanel;
 
-    [SerializeField] private GameObject RightAnimator;
-    [SerializeField] private GameObject LeftAnimator;
+    [SerializeField] private GameObject RightUI;
+    [SerializeField] private GameObject LeftUI;
 
     public GameEvent Event;
 
@@ -48,13 +48,13 @@ public class PaddleUIHandler : MonoBehaviour
 
     private void PaddleLeft()
     {
-        RightAnimator.gameObject.SetActive(true);
-        LeftAnimator.gameObject.SetActive(false);
+        RightUI.gameObject.SetActive(true);
+        LeftUI.gameObject.SetActive(false);
     }
     private void PaddleRight()
     {
-        RightAnimator.gameObject.SetActive(false);
-        LeftAnimator.gameObject.SetActive(true);
+        RightUI.gameObject.SetActive(false);
+        LeftUI.gameObject.SetActive(true);
     }
 
 }

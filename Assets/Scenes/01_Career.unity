@@ -2075,7 +2075,7 @@ GameObject:
   - component: {fileID: 884240992}
   - component: {fileID: 884240993}
   m_Layer: 0
-  m_Name: '[FlowManager] (1)'
+  m_Name: '[PaddleManager]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2109,8 +2109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PaddleUIPanel: {fileID: 2009885897}
-  RightAnimator: {fileID: 200979404}
-  LeftAnimator: {fileID: 300659730}
+  RightUI: {fileID: 200979400}
+  LeftUI: {fileID: 300659726}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1001 &897142065
 PrefabInstance:
