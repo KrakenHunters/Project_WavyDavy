@@ -15,14 +15,18 @@ public class BoardWave : MonoBehaviour
     private Tween currentTween;
     private void OnEnable()
     {
-        Event.OnChangeGameState.AddListener(EnableWave);
+        Event.OnChangeGameState.AddListener(DisableWave);
+        Event.OnFinishTransition.AddListener(EnableWave);
+
         Event.OnFlowChange.AddListener(ScaleAndSpeed);
     }
 
     private void OnDisable()
     {
-        Event.OnChangeGameState.AddListener(EnableWave);
-        Event.OnFlowChange.AddListener(ScaleAndSpeed);
+        Event.OnChangeGameState.RemoveListener(DisableWave);
+        Event.OnFinishTransition.RemoveListener(EnableWave);
+
+        Event.OnFlowChange.RemoveListener(ScaleAndSpeed);
     }
 
     private void Awake()
@@ -41,7 +45,7 @@ public class BoardWave : MonoBehaviour
         animator.speed = newSpeed;
     }
 
-    private void EnableWave(GamePhase gamePhase)
+    private void DisableWave(GamePhase gamePhase)
     {
         switch (gamePhase)
         {
@@ -50,9 +54,16 @@ public class BoardWave : MonoBehaviour
                 BackWave.SetActive(false);
                 break;
             default:
-                FrontWave.SetActive(true);
-                BackWave.SetActive(true);
                 break;
+        }
+    }
+
+    private void EnableWave()
+    {
+        if (GetComponentInParent<PlayerController>().currentGamePhase != GamePhase.Trick)
+        {
+            FrontWave.SetActive(true);
+            BackWave.SetActive(true);
         }
     }
 
