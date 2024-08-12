@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -19,15 +20,27 @@ public class InputManager : MonoBehaviour
             _movement = value;
         }
     }
+
+    //public bool IsController { }
+   
     void Awake()
     {
         _player = GetComponent<PlayerController>();
         _action = new PlayerInput();
     }
 
-    private void Update()
+
+   /* private bool IsControllerConnected()
     {
-    }
+        if (Gamepad.current != null)
+        {
+            return true;
+        }
+        InputDevice device = _action..control.device;
+
+
+        return true;
+    }*/
 
     public void EnablePlayerMovement()
     {

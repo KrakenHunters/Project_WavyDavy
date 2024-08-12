@@ -28,11 +28,19 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    public void PlayAudio(AudioClip clip, bool isBgMusic = false)
+    public void PlayAudio(AudioClip clip, bool isBgMusic = false,bool canPlayDuplicates = true)
     {
-        AudioSource audioSource = GetAvailableAudioSource();
+        if (!canPlayDuplicates)
+        {
+            foreach (AudioSource source in _audioSources)
+            {
+                if (source.clip == clip && source.isPlaying)
+                   return;
+            }
+        }
+         AudioSource audioSource = GetAvailableAudioSource();
 
-        if (audioSource)
+            if (audioSource)
         {
             audioSource.outputAudioMixerGroup = isBgMusic ? bgMusicGroup : sfxGroup;
             audioSource.loop = isBgMusic;
@@ -51,19 +59,23 @@ public class AudioManager : Singleton<AudioManager>
         if(!audioSource.isPlaying) audioSource.clip = null;
     }
 
+
     private AudioSource GetAvailableAudioSource()
     {
         foreach (AudioSource audioSource in _audioSources)
         {
             if (!audioSource.isPlaying)
             {
+                Debug.Log("Found available audio source");
                 return audioSource;
             }
         }
 
         AudioSource newAudioSource = Instantiate(speaker, transform);
+        _audioSources.Add(newAudioSource);
         return newAudioSource;
     }
+
 
     public void PauseBGAudio()
     {

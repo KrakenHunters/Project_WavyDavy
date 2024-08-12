@@ -36,14 +36,12 @@ public class PaddleState : BaseState
 
     public override void HandlePaddlingRight(bool isPaddling)
     {
-        AudioManager.Instance.PlayAudio(player.paddleClip);
         paddleRight = isPaddling;
         timer = 0f;
     }
 
     public override void HandlePaddlingLeft(bool isPaddling)
     {
-        AudioManager.Instance.PlayAudio(player.paddleClip);
         paddleLeft = isPaddling;
         timer = 0f;
     }
@@ -76,6 +74,7 @@ public class PaddleState : BaseState
             player.animator.speed *= (1 + player.currentFlow + 0.05f);
 
             player.Event.OnPaddleRight.Invoke();
+            AudioManager.Instance.PlayAudio(player.paddleClip);
 
             player.animator.CrossFade(PaddleRight, 0.1f);
 
@@ -102,6 +101,7 @@ public class PaddleState : BaseState
                 player.animator.speed *= (1 + player.currentFlow + 0.05f);
 
             player.Event.OnPaddleLeft.Invoke();
+            AudioManager.Instance.PlayAudio(player.paddleClip);
 
             player.animator.CrossFade(PaddleLeft, 0.1f);
 

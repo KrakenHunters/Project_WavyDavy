@@ -1,20 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PaddleUIHandler : MonoBehaviour
 {
 
-    [SerializeField] private GameObject PaddleUIPanel;
+    [SerializeField] private GameObject paddleUIPanel;
 
-    [SerializeField] private GameObject RightUI;
-    [SerializeField] private GameObject LeftUI;
+    [SerializeField] private GameObject rightUI;
+    [SerializeField] private GameObject leftUI;
+
+    [SerializeField] private InputManager inputManager;
+
+   // private bool isController => inputManager.IsController;
 
     public GameEvent Event;
 
     private void Awake()
     {
-        PaddleUIPanel.SetActive(false);
+        paddleUIPanel.SetActive(false);
     }
 
     private void OnEnable()
@@ -38,23 +40,23 @@ public class PaddleUIHandler : MonoBehaviour
     {
         if (phase == GamePhase.Phase1)
         {
-            PaddleUIPanel.SetActive(true);
+            paddleUIPanel.SetActive(true);
         }
         else
         {
-            PaddleUIPanel.SetActive(false);
+            paddleUIPanel.SetActive(false);
         }
     }
 
     private void PaddleLeft()
     {
-        RightUI.gameObject.SetActive(true);
-        LeftUI.gameObject.SetActive(false);
+        rightUI.SetActive(true);
+        leftUI.SetActive(false);
     }
     private void PaddleRight()
     {
-        RightUI.gameObject.SetActive(false);
-        LeftUI.gameObject.SetActive(true);
+        rightUI.SetActive(false);
+        leftUI.SetActive(true);
     }
 
 }
