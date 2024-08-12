@@ -2586,10 +2586,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6049675624886528440, guid: afbc1b1602a7c8244846e78b70673f0b, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 1351527174}
+    - target: {fileID: 6613215975640846340, guid: afbc1b1602a7c8244846e78b70673f0b, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 1351527174}
     - target: {fileID: 6681815272985950338, guid: afbc1b1602a7c8244846e78b70673f0b, type: 3}
       propertyPath: m_Name
       value: CameraManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6696109941401837999, guid: afbc1b1602a7c8244846e78b70673f0b, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 1351527174}
+    - target: {fileID: 8755531233509508250, guid: afbc1b1602a7c8244846e78b70673f0b, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 1351527174}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
