@@ -23,11 +23,19 @@ public class CameraManager : MonoBehaviour
     {
         switch (newPhase)
         {
+            case GamePhase.Phase1:
+                animator.Play("PaddleState");
+                break;
+            case GamePhase.Phase2:
+                animator.Play("Phase2State");
+                break;
+            case GamePhase.Phase3:
+                animator.Play("Phase3State");
+                break;
             case GamePhase.Trick:
                 animator.Play("TrickState");
                 break;
             default: 
-                animator.Play("BaseState");
                 break;
         }
     }

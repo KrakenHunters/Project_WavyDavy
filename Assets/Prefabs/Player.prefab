@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2770895184357057810
 Transform:
   m_ObjectHideFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 283220195219398997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.16, y: 0.25, z: 0}
+  m_LocalPosition: {x: -1.75, y: -0.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,15 +74,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c16db38f5214b934196d8ea86be8e046, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &5667568571697371813
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 283220195219398997}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b181b0fbea79fbf4db040e2718cc6510, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -204,7 +204,7 @@ Transform:
   m_GameObject: {fileID: 2914608582908112605}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8999999, y: 0.5, z: -2}
+  m_LocalPosition: {x: -1.8999999, y: 0.5, z: -0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -428,13 +428,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 77d7d524ffef2da4b8aa49470babb398, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 7.8, y: 6.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -504,7 +504,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 7.8, y: 6.5}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 7.8, y: 6.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -556,8 +556,8 @@ MonoBehaviour:
   scpart1Clip: {fileID: 8300000, guid: f4d9de53123cd3245bc5664976256f52, type: 3}
   scpart2Clip: {fileID: 8300000, guid: 83b7b1c4209e1ed419afb701dc864b05, type: 3}
   hitSand: {fileID: 8300000, guid: 7d5a95e7583baf44f89036d3bc05bf57, type: 3}
-  speedPlayer: {fileID: 8300000, guid: bec0974f55bfe4c468112ec109fb58ed, type: 3}
-  paddleClip: {fileID: 8300000, guid: 74df2476eda3d4647b619a6b2f460710, type: 3}
+  speedPlayer: {fileID: 8300000, guid: 18157a7f259dcb44bbf7077f50ab0fc9, type: 3}
+  paddleClip: {fileID: 8300000, guid: bec0974f55bfe4c468112ec109fb58ed, type: 3}
 --- !u!114 &4642518729882892256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,11 +636,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 511356407554789842, guid: 49057b33ea71fbb4da4e8f02a8db9f28, type: 3}
       propertyPath: lengthInSec
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 511356407554789842, guid: 49057b33ea71fbb4da4e8f02a8db9f28, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 511356407554789842, guid: 49057b33ea71fbb4da4e8f02a8db9f28, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 511356407554789842, guid: 49057b33ea71fbb4da4e8f02a8db9f28, type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4033412786151888120, guid: 49057b33ea71fbb4da4e8f02a8db9f28, type: 3}
       propertyPath: looping
