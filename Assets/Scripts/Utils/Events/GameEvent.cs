@@ -34,6 +34,10 @@ public class GameEvent : ScriptableObject
     public UnityAction<float> OnSetGameTimer;
     public UnityAction<float> OnUpdateGameTimer;
 
+
+    public UnityAction OnPaddleLeft;
+    public UnityAction OnPaddleRight;
+
     public UnityAction<TrickCombo> OnPlayerInput;
 
     public UnityAction<List<TrickSO>> OnTrickInput;
@@ -47,7 +51,7 @@ public class GameEvent : ScriptableObject
     public UnityAction<PlayerTrickHandler> OnTrickCelebration;
     public UnityAction OnFinishCelebration;
 
-   
+
 }
 
 

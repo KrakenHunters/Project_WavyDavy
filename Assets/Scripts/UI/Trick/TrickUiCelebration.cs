@@ -44,6 +44,7 @@ public class TrickUiCelebration : MonoBehaviour
     }
     public void ShowCelebration(PlayerTrickHandler trickHandler)
     {
+        Debug.Log("Celebration ...............................");
         result = trickHandler.CurrentResult;
         crowdUIAnimator.MoveAnimate();
         if (result == TrickResult.Complete)
@@ -60,7 +61,6 @@ public class TrickUiCelebration : MonoBehaviour
             //play boo sound
         }
         timer.Start();
-        Debug.Log("Progress: " + timer.Progress);
     }
 
     public void HideCelebration()
@@ -70,7 +70,6 @@ public class TrickUiCelebration : MonoBehaviour
         crowdUIAnimator.MoveAnimate();
         //timer.Reset();
         Event.OnFinishCelebration?.Invoke();
-        Debug.Log("Celebration Ended");
     }
 
     private void Update()
