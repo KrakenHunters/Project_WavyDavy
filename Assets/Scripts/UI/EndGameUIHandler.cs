@@ -31,7 +31,7 @@ public class EndGameUIHandler : MonoBehaviour
 
     private void SceneTransition()
     {
-        SceneManager.LoadScene("Musse_Gym");
+        SceneManager.LoadScene(2);
     }
 
 }

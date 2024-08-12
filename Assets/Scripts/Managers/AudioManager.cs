@@ -87,6 +87,17 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
+    public void StopAllBGAudio()
+    {
+        foreach (AudioSource audioSource in _audioSources)
+        {
+            if (audioSource.outputAudioMixerGroup == bgMusicGroup)
+            {
+                audioSource.Stop();
+            }
+        }
+    }
+
     public void StopAllAudio()
     {
         foreach (AudioSource audioSource in _audioSources)
@@ -97,6 +108,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayTimeoutSound()
     {
+        StopAllBGAudio();
         PlayAudio(timeoutClip);
     }
 

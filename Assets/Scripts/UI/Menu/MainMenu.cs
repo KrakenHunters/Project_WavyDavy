@@ -38,13 +38,8 @@ public class MainMenu : Menu
 
     public void OnPlay_01() 
     {
-        SceneManager.LoadScene("01_Career");
+        SceneManager.LoadScene(1);
     } 
-    public void OnPlay_02() 
-    {
-        SceneManager.LoadScene("02_Exhibition");
-    }
-
 
     public void playClickSound()
     {
