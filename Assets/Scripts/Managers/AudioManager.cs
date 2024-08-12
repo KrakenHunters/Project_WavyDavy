@@ -66,7 +66,6 @@ public class AudioManager : Singleton<AudioManager>
         {
             if (!audioSource.isPlaying)
             {
-                Debug.Log("Found available audio source");
                 return audioSource;
             }
         }
