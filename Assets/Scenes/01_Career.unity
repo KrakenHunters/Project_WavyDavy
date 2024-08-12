@@ -2299,7 +2299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wavePrefab: {fileID: 946550667}
   obstaclePrefab: {fileID: 6563733163459200441, guid: c049d2567e78f8345bbb70509110f469, type: 3}
-  maxSpawnInterval: 4
+  maxSpawnInterval: 2
   minSpawnInterval: 1
   randomRadius: 0
   topSpawnPos: {fileID: 1385221539}
@@ -2522,7 +2522,7 @@ MonoBehaviour:
   aboveThreshold: 0.9
   belowThreshold: 0.15
   flowDecreaseSpeed1: 0.02
-  flowDecreaseSpeed2: 0.05
+  flowDecreaseSpeed2: 0.03
   flowDecreaseSpeed3: 0.08
   thresholdDuration: 3
   flowUIHandler: {fileID: 976024005}
