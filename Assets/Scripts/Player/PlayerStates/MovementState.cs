@@ -14,7 +14,7 @@ public class MovementState : BaseState
     float timeToMaxSpeed;
     float timeToReturnSpeed;
     float timeToReturnAngle;
-    float timeToNoSpeed = 0.2f;
+    float timeToNoSpeed = 0.6f;
     float resetTimer;
     float targetAngle;
     float currentAngle;
@@ -166,10 +166,11 @@ public class MovementState : BaseState
         float resetDelay = 0.2f;
         if (playerHeight >= maxHeight)
         {
-            HandleMaxHeight(playerHeight);
+            HandleMaxHeight(resetTimer);
         }
         else
         {
+
             if (speed > player.normalSpeed && _direction.x < 0f && !speeding)
             {
                 AudioManager.Instance.PlayAudio(player.speedPlayer);
@@ -191,16 +192,17 @@ public class MovementState : BaseState
         player.transform.position = new Vector3(XPos, player.transform.position.y, originalPosition.z);  // Move back to original x position
     }
 
-    private void HandleMaxHeight(float playerHeight)
+    private void HandleMaxHeight(float resetT)
     {
+
         if (speed > player.normalSpeed && player.canTrick)
         {
             player.Event.OnChangeGameState.Invoke(GamePhase.Trick);
         }
         else
         {
-            speed = 0f;
-            targetAngle = 0f;
+            speed = -Mathf.Abs(speed);
+            targetAngle = Mathf.Lerp(targetAngle, 0f, (resetT) / timeToNoSpeed);
         }
     }
 

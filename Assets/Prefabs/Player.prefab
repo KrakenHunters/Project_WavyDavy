@@ -548,8 +548,8 @@ MonoBehaviour:
   _phase3StartPos: {fileID: 0}
   _trickStartPos: {fileID: 0}
   _paddleSpeed: 0.3
-  _phase2MaxHeight: -0.5
-  _phase3MaxHeight: 1.7
+  _phase2MaxHeight: -1
+  _phase3MaxHeight: 1.5
   _maxInclineAngle: 10
   _maxInclineBoostAngle: 40
   _inclineSpeed: 20
