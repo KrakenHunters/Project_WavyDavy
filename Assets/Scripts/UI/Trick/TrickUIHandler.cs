@@ -18,6 +18,9 @@ public class TrickUIHandler : MonoBehaviour
     [SerializeField] private Ease ease = Ease.Linear;
     [SerializeField] private CanvasGroup trickUICanvasGroup;
 
+    [Header("Trick Can Do")]
+    [SerializeField] private UIAnimator canDoTrick;
+
     private Tween tween;
     private Dictionary<TrickSO, TrickUISetup> trickDictionary = new();
 
@@ -38,7 +41,11 @@ public class TrickUIHandler : MonoBehaviour
 
         Event.OnTrickHalfTime += StartFadingOG;
 
+        Event.OnIsTrickPossible += UpdateCanDoTrickUI;
+
     }
+
+
 
     private void OnDisable()
     {
@@ -48,6 +55,14 @@ public class TrickUIHandler : MonoBehaviour
         Event.OnTrickRunning -= UpdateTimer;
         Event.OnTrickFinish -= ToggleUIOffPanel;
         Event.OnTrickHalfTime -= StartFadingOG;
+        Event.OnIsTrickPossible -= UpdateCanDoTrickUI;
+    }
+
+    private void UpdateCanDoTrickUI(bool show)
+    {
+        canDoTrick.gameObject.SetActive(show);
+        if(show)
+            canDoTrick.FadeAnimate();
     }
 
     private void UpdateTimer(float timer)
