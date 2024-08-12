@@ -8,6 +8,7 @@ public class PauseMenu : Menu
     public UnityEvent OnResume;
 
     [SerializeField] private AudioClip pauseClip;
+    [SerializeField] private AudioClip buttonClickClip;
 
     private bool _isPaused;
     private float _initialTimeScale;
@@ -18,22 +19,30 @@ public class PauseMenu : Menu
        
     }
 
+    public void OnButtonClick()
+    {
+        AudioManager.Instance.PlayAudio(buttonClickClip);
+    }
+   
     public void OnTogglePauseMenu()
     {
         _isPaused = !_isPaused;
         _currentMenu.gameObject.SetActive(_isPaused); 
+        
 
         AudioManager.Instance.PlayAudio(pauseClip);
 
         if (_isPaused)
         {
             _initialTimeScale = Time.timeScale;
+            AudioManager.Instance.PauseBGAudio();
             Time.timeScale = 0; 
             OnPause.Invoke(); 
         }
         else
         {
             Time.timeScale = _initialTimeScale;
+            AudioManager.Instance.ResumeBGAudio();
             OnResume.Invoke(); 
         }
 

@@ -220,7 +220,7 @@ public class MovementState : BaseState
     {
         if (speed > player.normalSpeed && !isPumping && _direction.x < 0)
         {
-            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 2f * Time.fixedDeltaTime);
+            player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 1.5f * Time.fixedDeltaTime);
         }
 
         player.transform.position += new Vector3(0, -_direction.x, 0) * speed * Time.fixedDeltaTime;

@@ -567,6 +567,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2060601000}
+        m_TargetAssemblyTypeName: EndMenu, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &206014136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2191,6 +2203,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2060601000}
+        m_TargetAssemblyTypeName: EndMenu, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1428377769}
         m_TargetAssemblyTypeName: UIAnimator, Assembly-CSharp
         m_MethodName: RotateAnimate
@@ -2681,6 +2705,9 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0}
   duration: 2
   ease: 3
+  OnAnimateStarted:
+    m_PersistentCalls:
+      m_Calls: []
   OnAnimateFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -5415,6 +5442,9 @@ MonoBehaviour:
   targetPos: {x: 2020, y: 0}
   duration: 0
   ease: 22
+  OnAnimateStarted:
+    m_PersistentCalls:
+      m_Calls: []
   OnAnimateFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -5699,6 +5729,9 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0}
   duration: 0
   ease: 34
+  OnAnimateStarted:
+    m_PersistentCalls:
+      m_Calls: []
   OnAnimateFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -6096,6 +6129,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502454738}
   m_CullTransparentMesh: 1
+--- !u!1001 &1509694982
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4652505904026396117, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.5734935
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652505904026396117, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.8273354
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652505904026396117, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1788108
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652505904026396117, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652505904026396117, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652505904026396117, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652505904026396117, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652505904026396117, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652505904026396117, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652505904026396117, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580647018365675355, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_Name
+      value: '[AudioManager]'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
 --- !u!1 &1515769023
 GameObject:
   m_ObjectHideFlags: 0
@@ -8305,6 +8395,7 @@ MonoBehaviour:
   _startActive: 1
   _currentMenu: {fileID: 1957424160}
   blackScreenUIAnimator: {fileID: 860150725}
+  buttonClickClip: {fileID: 8300000, guid: 5629d8361b4ea9644b306241e49a0314, type: 3}
 --- !u!4 &2060601001
 Transform:
   m_ObjectHideFlags: 0
@@ -8504,3 +8595,4 @@ SceneRoots:
   - {fileID: 1957424164}
   - {fileID: 1716592554}
   - {fileID: 2060601001}
+  - {fileID: 1509694982}

@@ -64,7 +64,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         foreach (AudioSource audioSource in _audioSources)
         {
-            if (!audioSource.isPlaying)
+            if (!audioSource.isPlaying && audioSource.outputAudioMixerGroup != bgMusicGroup)
             {
                 Debug.Log("Found available audio source");
                 return audioSource;
@@ -93,7 +93,7 @@ public class AudioManager : Singleton<AudioManager>
         {
             if (audioSource.outputAudioMixerGroup == bgMusicGroup)
             {
-                audioSource.Play();
+                audioSource.UnPause();
                 audioSource.pitch = 1;
             }
         }

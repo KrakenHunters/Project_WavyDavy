@@ -76,7 +76,7 @@ public class Spawner : MonoBehaviour
 
     private void AdjustSpawnRateBasedOnFlow(float currentFlow)
     {
-        spawnRate = Mathf.Lerp(maxSpawnInterval, minSpawnInterval, currentFlow / 25f); 
+        spawnRate = Mathf.Lerp(maxSpawnInterval, minSpawnInterval, currentFlow / 20f); 
     }
 
     private void SetGamePhase(GamePhase newPhase)

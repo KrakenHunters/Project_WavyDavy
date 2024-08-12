@@ -231,11 +231,11 @@ public class FlowManager : MonoBehaviour
     {
         if(trickHandler.CurrentResult == Tricks.TrickResult.Complete)
         {
-            AddFlow(-(maxFlow-minFlow) /2f);
+            AddFlow(-(maxFlow-minFlow) * 0.7f);
         }
         else
         {
-            AddFlow(-(maxFlow - minFlow) / 1.5f);
+            AddFlow(-(maxFlow - minFlow) * 0.9f);
         }
     }
 
