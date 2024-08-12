@@ -30,6 +30,17 @@ public class PaddleState : BaseState
     public override void StateUpdate()
     {
         stateInfo = player.animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.shortNameHash == PaddleLeft && stateInfo.normalizedTime >= 0.8f)
+        {
+            player.Event.OnPaddleLeft.Invoke();
+        }
+
+        if (stateInfo.shortNameHash == PaddleRight && stateInfo.normalizedTime >= 0.8f)
+        {
+            player.Event.OnPaddleRight.Invoke();
+        }
+
         GoPaddle();
 
     }
@@ -73,7 +84,6 @@ public class PaddleState : BaseState
             lastPaddleDir = Paddle.Right;
             player.animator.speed *= (1 + player.currentFlow + 0.05f);
 
-            player.Event.OnPaddleRight.Invoke();
             AudioManager.Instance.PlayAudio(player.paddleClip);
 
             player.animator.CrossFade(PaddleRight, 0.1f);
@@ -100,7 +110,6 @@ public class PaddleState : BaseState
             if (player.animator.speed <= 2f)
                 player.animator.speed *= (1 + player.currentFlow + 0.05f);
 
-            player.Event.OnPaddleLeft.Invoke();
             AudioManager.Instance.PlayAudio(player.paddleClip);
 
             player.animator.CrossFade(PaddleLeft, 0.1f);
