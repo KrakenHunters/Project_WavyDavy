@@ -53,20 +53,13 @@ public class AudioManager : Singleton<AudioManager>
             Debug.LogWarning("No available audio sources");
         }
     }
-
-    private void PoolAudio(AudioSource audioSource)
-    {
-        if(!audioSource.isPlaying) audioSource.clip = null;
-    }
-
-
+ 
     private AudioSource GetAvailableAudioSource()
     {
         foreach (AudioSource audioSource in _audioSources)
         {
             if (!audioSource.isPlaying && audioSource.outputAudioMixerGroup != bgMusicGroup)
             {
-                Debug.Log("Found available audio source");
                 return audioSource;
             }
         }

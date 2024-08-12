@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 100
   gameMode: 0
+  PlayedGame: 0
