@@ -97,7 +97,9 @@ public class PaddleState : BaseState
             player.Event.OnIncreaseFlow.Invoke(player.finalPaddleSpeed * multiplier);
 
             lastPaddleDir = Paddle.Left;
-            player.animator.speed *= (1 + player.currentFlow + 0.05f);
+
+            if (player.animator.speed <= 2f)
+                player.animator.speed *= (1 + player.currentFlow + 0.05f);
 
             player.Event.OnPaddleLeft.Invoke();
 
