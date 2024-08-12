@@ -154,7 +154,8 @@ public class MovementState : BaseState
         speed = 0f;
         targetAngle = 0f;
         player.Event.OnIncreaseFlow.Invoke(-0.5f);
-        AudioManager.Instance.PlayAudio(player.speedPlayer);
+       
+        AudioManager.Instance.PlayAudio(player.hitSand);// fix sound playing more than once
 
     }
 

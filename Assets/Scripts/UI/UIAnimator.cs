@@ -19,6 +19,7 @@ public class UIAnimator : MonoBehaviour
     private bool isScaleChanged;
     private bool isFadeChanged;
 
+    public UnityEvent OnAnimateStarted;
     public UnityEvent OnAnimateFinished;
 
     private void Awake()
@@ -35,6 +36,8 @@ public class UIAnimator : MonoBehaviour
     {
         if (currentTween.IsActive())
             return;
+
+        OnAnimateStarted.Invoke();
 
         if (isPosChanged)
             currentTween = rectTransform.DOAnchorPos(startPos, duration).SetEase(ease);
@@ -53,6 +56,7 @@ public class UIAnimator : MonoBehaviour
     {
         if (currentTween.IsActive())
             return;
+        OnAnimateStarted.Invoke();
 
         if (isScaleChanged)
             currentTween = rectTransform.DOScale(Vector3.zero, duration).SetEase(ease);
