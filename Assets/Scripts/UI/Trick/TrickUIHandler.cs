@@ -20,6 +20,7 @@ public class TrickUIHandler : MonoBehaviour
 
     [Header("Trick Can Do")]
     [SerializeField] private UIAnimator canDoTrick;
+    [SerializeField] private ParticleSystem arrowOnPlayer;
 
     [Header("Trick Arrows color")]
     [SerializeField] private Color LitColor;
@@ -69,8 +70,12 @@ public class TrickUIHandler : MonoBehaviour
     private void UpdateCanDoTrickUI(bool show)
     {
         canDoTrick.gameObject.SetActive(show);
-        if(show)
+        arrowOnPlayer.gameObject.SetActive(show);
+        if (show)
+        {
             canDoTrick.FadeAnimate();
+        }
+
     }
 
     private void UpdateTimer(float timer)
@@ -85,6 +90,7 @@ public class TrickUIHandler : MonoBehaviour
         foreach (TrickSO trick in trickManager.tricks)
         {
             SpawnTrickUIBox(trick);
+            
         }
         maxTimer = trickManager.MaxTrickTime;
         trickTimeSlider.maxValue = maxTimer;
@@ -114,6 +120,7 @@ public class TrickUIHandler : MonoBehaviour
             {
                 trickDictionary.Add(trickSO, trickUISetup);
                 trickUISetup.SetupTrick(trickSO, unlitColor);
+                trickUISetup.gameObject.SetActive(true);
             }
         }
     }

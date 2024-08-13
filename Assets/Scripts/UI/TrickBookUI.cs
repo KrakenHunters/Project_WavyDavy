@@ -10,7 +10,6 @@ public class TrickBookUI : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("TrickBookMenu Start");
         foreach (TrickSO trick in tricks)
         {
             TrickUISetup trickUI = Instantiate(trickUIPrefab, trickBoxPanel.transform);

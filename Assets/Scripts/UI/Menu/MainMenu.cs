@@ -40,7 +40,6 @@ public class MainMenu : Menu
 
     public void OnPlay_01() 
     {
-        gameDataSO.PlayedGame = true;
         SceneManager.LoadScene(1);
     } 
 

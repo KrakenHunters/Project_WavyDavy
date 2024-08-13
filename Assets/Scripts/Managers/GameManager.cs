@@ -10,8 +10,6 @@ public class GameManager : Singleton<GameManager>
     public GameDataSO gameDataSO;
     public GameEvent Event;
 
-    [SerializeField] private AudioClip gameMusic;
-
     private CountdownTimer countdownTimer;
 
     private void OnEnable()
@@ -30,6 +28,7 @@ public class GameManager : Singleton<GameManager>
         countdownTimer = new CountdownTimer(GameTime);
         Event.OnChangeGameState.Invoke(GamePhase.Phase1);
         countdownTimer.OnTimerStop += EndGame;
+        gameDataSO.PlayedGame = true;
     }
 
     private void EndGame()
@@ -40,7 +39,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        AudioManager.Instance.PlayAudio(gameMusic, true);
 
         if (gameDataSO.gameMode == GameMode.Career)
         {
