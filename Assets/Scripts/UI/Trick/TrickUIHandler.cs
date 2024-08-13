@@ -21,6 +21,11 @@ public class TrickUIHandler : MonoBehaviour
     [Header("Trick Can Do")]
     [SerializeField] private UIAnimator canDoTrick;
 
+    [Header("Trick Arrows color")]
+    [SerializeField] private Color LitColor;
+    [SerializeField] private Color unlitColor;
+
+
     private Tween tween;
     private Dictionary<TrickSO, TrickUISetup> trickDictionary = new();
 
@@ -107,7 +112,7 @@ public class TrickUIHandler : MonoBehaviour
             if (trickUISetup != null)
             {
                 trickDictionary.Add(trickSO, trickUISetup);
-                trickUISetup.SetupTrick(trickSO);
+                trickUISetup.SetupTrick(trickSO, unlitColor);
             }
         }
     }
@@ -136,9 +141,9 @@ public class TrickUIHandler : MonoBehaviour
         foreach (KeyValuePair<TrickSO, TrickUISetup> trickValues in trickDictionary)
         {
             if (possibleTricks.Contains(trickValues.Key))
-                trickValues.Value.gameObject.SetActive(true);
+                trickValues.Value.HighLightArrows(possibleTricks.Count, LitColor);
             else
-                trickValues.Value.gameObject.SetActive(false);
+                trickValues.Value.UnHighLightAllArrows(unlitColor);
         }
     }
 
@@ -146,7 +151,7 @@ public class TrickUIHandler : MonoBehaviour
     {
         foreach (TrickUISetup trickUISetup in trickDictionary.Values)
         {
-            trickUISetup.gameObject.SetActive(true);
+            trickUISetup.UnHighLightAllArrows(unlitColor);
         }
     }
 }

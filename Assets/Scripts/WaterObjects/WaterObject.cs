@@ -10,7 +10,6 @@ public class WaterObject : MonoBehaviour, IHitable
 
 
     [SerializeField] private AudioClip hitClip;
-    [SerializeField] private AudioClip worriedCrowd;
 
     public GameEvent Event;
 
@@ -73,7 +72,6 @@ public class WaterObject : MonoBehaviour, IHitable
     public virtual void OnHit()
     {
         AudioManager.Instance.PlayAudio(hitClip);
-        AudioManager.Instance.PlayAudio(worriedCrowd);
         Event.OnHitObject.Invoke(flow);
         Event.OnReachDeadZone.Invoke(this);
     }
