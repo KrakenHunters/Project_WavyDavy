@@ -32,6 +32,12 @@ public class MovementState : BaseState
         base.EnterState();
         inputManager.EnablePlayerMovement();
         originalPosition = player.transform.position;
+
+        if (player.TrickUPTutorial)
+        {
+            player.TrickUPTutorialUI.SetActive(false);
+        }
+
         InitializeGamePhaseSettings();
     }
     private void InitializeGamePhaseSettings()
@@ -75,6 +81,8 @@ public class MovementState : BaseState
             player.windAnimator.SetActive(false);
 
         }
+
+
     }
 
     public override void StateUpdate() 
@@ -87,6 +95,7 @@ public class MovementState : BaseState
         {
             player.MovementControlUI.FadeInAnimate(false);
         }
+
 
     }
 

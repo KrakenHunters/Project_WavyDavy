@@ -15,6 +15,7 @@ public class TrickState : BaseState
         trickManager.StartTrick();
         calledHalfTime = false;
 
+        player.TrickUPTutorial = true;
         AudioManager.Instance.PlayAudio(player.scpart1Clip);
         AudioManager.Instance.SlowDownBGMusic(0.5f);
 

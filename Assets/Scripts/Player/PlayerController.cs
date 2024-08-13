@@ -13,8 +13,12 @@ public class PlayerController : MonoBehaviour
     public Animator animator { get; set; }
     public BaseState currentState { get; private set; }
     public bool MovementTutorial { get; set; }
+    public bool TrickUPTutorial { get; set; }
+
     public UIAnimator shorebreakAnimator { get; private set; }
     [SerializeField] private UIAnimator movementControlUI;
+    [SerializeField] private GameObject trickUPTutorialUI;
+
 
 
     private static readonly int Crash = Animator.StringToHash("Crash");
@@ -50,6 +54,8 @@ public class PlayerController : MonoBehaviour
     public Transform trickStartPos { get => _trickStartPos; private set => _trickStartPos = value; }
 
     public UIAnimator MovementControlUI { get => movementControlUI; private set => movementControlUI = value; }
+    public GameObject TrickUPTutorialUI { get => trickUPTutorialUI; private set => trickUPTutorialUI = value; }
+
     public float finalPaddleSpeed { get; private set; }
     public float phase2MaxHeight { get => _phase2MaxHeight; private set => _phase2MaxHeight = value; }
     public float phase3MaxHeight { get => _phase3MaxHeight; private set => _phase3MaxHeight = value; }
