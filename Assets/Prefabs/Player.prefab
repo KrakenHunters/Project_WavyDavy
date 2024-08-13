@@ -770,7 +770,7 @@ MonoBehaviour:
   scpart1Clip: {fileID: 8300000, guid: f4d9de53123cd3245bc5664976256f52, type: 3}
   scpart2Clip: {fileID: 8300000, guid: 83b7b1c4209e1ed419afb701dc864b05, type: 3}
   hitSand: {fileID: 8300000, guid: 7d5a95e7583baf44f89036d3bc05bf57, type: 3}
-  speedPlayer: {fileID: 8300000, guid: 18157a7f259dcb44bbf7077f50ab0fc9, type: 3}
+  speedPlayer: {fileID: 8300000, guid: 1963523855b2fc2499dd26cecde25ad2, type: 3}
   paddleClip: {fileID: 8300000, guid: bec0974f55bfe4c468112ec109fb58ed, type: 3}
 --- !u!114 &4642518729882892256
 MonoBehaviour:
@@ -809,6 +809,7 @@ MonoBehaviour:
   possibleTrickCombos: []
   trickUIHandler: {fileID: 0}
   trickCompleted: {fileID: 8300000, guid: bd88c9a6d25af5c4bb62f3fb92c45b3b, type: 3}
+  clickSound: {fileID: 8300000, guid: 54995d8538b9bc1429a06e2e143bc277, type: 3}
   trickFailed: {fileID: 8300000, guid: 1377dc6d7fe17714fb1a351fd9fcf85f, type: 3}
 --- !u!95 &8428178596282315737
 Animator:

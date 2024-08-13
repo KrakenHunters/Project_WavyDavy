@@ -22,6 +22,7 @@ public class PlayerTrickHandler : MonoBehaviour
     private TrickUIHandler trickUIHandler;
 
     [SerializeField] private AudioClip trickCompleted;
+    [SerializeField] private AudioClip clickSound;
     [SerializeField] private AudioClip trickFailed;
 
     private void OnEnable()
@@ -64,6 +65,7 @@ public class PlayerTrickHandler : MonoBehaviour
     public void AddButton(TrickCombo move)
     {
         playerPressedCombo.Add(move);
+        AudioManager.Instance.PlayAudio(clickSound);
         trickUIHandler.PlayerInputCount = playerPressedCombo.Count - 1;
         CheckMatchCombos();
         //CheckMatchingCombos();
