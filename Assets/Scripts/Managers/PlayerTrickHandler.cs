@@ -56,12 +56,15 @@ public class PlayerTrickHandler : MonoBehaviour
         }
 
         playerPressedCombo.Clear();
+        trickUIHandler.PlayerInputCount = playerPressedCombo.Count - 1;
+
         Event.OnTrickCelebration?.Invoke(this);
     }
 
     public void AddButton(TrickCombo move)
     {
         playerPressedCombo.Add(move);
+        trickUIHandler.PlayerInputCount = playerPressedCombo.Count - 1;
         CheckMatchCombos();
         //CheckMatchingCombos();
         Event.OnTrickInput?.Invoke(this.possibleTrickCombos);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ public class TrickUISetup : MonoBehaviour
     public void SetupTrick(TrickSO trick,Color color)
     {
        trickIcon.sprite = trick.Icon;
+        _images = new Image[trick.trickCombo.Count];
        for (int i = 0; i < trick.trickCombo.Count; i++)
        {
            switch (trick.trickCombo[i])

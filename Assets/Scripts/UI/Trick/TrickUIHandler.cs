@@ -25,6 +25,7 @@ public class TrickUIHandler : MonoBehaviour
     [SerializeField] private Color LitColor;
     [SerializeField] private Color unlitColor;
 
+    public int PlayerInputCount { get; set; }
 
     private Tween tween;
     private Dictionary<TrickSO, TrickUISetup> trickDictionary = new();
@@ -141,7 +142,7 @@ public class TrickUIHandler : MonoBehaviour
         foreach (KeyValuePair<TrickSO, TrickUISetup> trickValues in trickDictionary)
         {
             if (possibleTricks.Contains(trickValues.Key))
-                trickValues.Value.HighLightArrows(possibleTricks.Count, LitColor);
+                trickValues.Value.HighLightArrows(PlayerInputCount, LitColor);
             else
                 trickValues.Value.UnHighLightAllArrows(unlitColor);
         }

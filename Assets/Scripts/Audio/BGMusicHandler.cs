@@ -45,7 +45,6 @@ public class BGMusicHandler : Singleton<BGMusicHandler>
 
     private void ChangeState(GamePhase phase)
     {
-                Debug.LogWarning("Invalid Game Phase");
         switch (phase)
         {
             case GamePhase.Phase1:

@@ -5123,8 +5123,8 @@ MonoBehaviour:
   ease: 2
   trickUICanvasGroup: {fileID: 232862963}
   canDoTrick: {fileID: 415415655}
-  LitColor: {r: 0, g: 0, b: 0, a: 0}
-  unlitColor: {r: 0, g: 0, b: 0, a: 0}
+  LitColor: {r: 0.3019608, g: 0.70980394, b: 0.36862746, a: 1}
+  unlitColor: {r: 0.3529412, g: 0.6156863, b: 0.6901961, a: 1}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!114 &1985677270
 MonoBehaviour:
@@ -6262,7 +6262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3338790888018559677, guid: eee119f4d64187a42bc6176084600db0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4554357568603867008, guid: eee119f4d64187a42bc6176084600db0, type: 3}
       propertyPath: m_AnchorMax.y
