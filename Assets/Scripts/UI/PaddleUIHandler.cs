@@ -17,8 +17,6 @@ public class PaddleUIHandler : MonoBehaviour
     private void Awake()
     {
         paddleUIPanel.SetActive(false);
-        rightUI.SetActive(false);
-        leftUI.SetActive(false);
     }
 
     private void OnEnable()
@@ -52,13 +50,13 @@ public class PaddleUIHandler : MonoBehaviour
 
     private void PaddleLeft()
     {
-        rightUI.SetActive(true);
-        leftUI.SetActive(false);
+        rightUI.GetComponent<UIAnimator>().FadeInAnimate(true);
+        leftUI.GetComponent<UIAnimator>().FadeInAnimate(false);
     }
     private void PaddleRight()
     {
-        rightUI.SetActive(false);
-        leftUI.SetActive(true);
+        rightUI.GetComponent<UIAnimator>().FadeInAnimate(false);
+        leftUI.GetComponent<UIAnimator>().FadeInAnimate(true);
     }
 
 }

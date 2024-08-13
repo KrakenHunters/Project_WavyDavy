@@ -1034,11 +1034,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tricks:
-  - {fileID: 11400000, guid: a0f7b261562fc4f43908048611185c12, type: 2}
-  - {fileID: 11400000, guid: 26a55eee9cf8bf5438f930084bb483bd, type: 2}
   - {fileID: 11400000, guid: 33d6b8537a2c2a44c94818b6356fa0f5, type: 2}
   - {fileID: 11400000, guid: b3a3a998df7cf334a9cd0da8d1dd15f9, type: 2}
+  - {fileID: 11400000, guid: a0f7b261562fc4f43908048611185c12, type: 2}
   - {fileID: 11400000, guid: aac48245669fc214eaab82f97dfea901, type: 2}
+  - {fileID: 11400000, guid: 26a55eee9cf8bf5438f930084bb483bd, type: 2}
   - {fileID: 11400000, guid: 5d3cba091b10a7040bd929d332449201, type: 2}
   trickBoxPanel: {fileID: 1426884723}
   trickUIPrefab: {fileID: 1136925430}

@@ -91,6 +91,26 @@ public class UIAnimator : MonoBehaviour
 
     }
 
+    public void FadeInAnimate(bool fade)
+    {
+        if (currentTween.IsActive())
+            return;
+
+        if (fade)
+            currentTween = canvasGroup.DOFade(1, duration).SetEase(ease);
+        else
+            currentTween = canvasGroup.DOFade(0, duration).SetEase(ease);
+
+        currentTween.OnComplete(() =>
+        {
+            currentTween.Kill();
+            isFadeChanged = fade;
+            OnAnimateFinished.Invoke();
+        });
+
+    }
+
+
     public void FadeBack()
     {
         if (currentTween.IsActive())

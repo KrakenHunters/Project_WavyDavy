@@ -30,18 +30,6 @@ public class InputManager : MonoBehaviour
     }
 
 
-   /* private bool IsControllerConnected()
-    {
-        if (Gamepad.current != null)
-        {
-            return true;
-        }
-        InputDevice device = _action..control.device;
-
-
-        return true;
-    }*/
-
     public void EnablePlayerMovement()
     {
         DisablePlayerPaddle();
