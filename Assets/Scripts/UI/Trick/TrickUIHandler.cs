@@ -24,6 +24,8 @@ public class TrickUIHandler : MonoBehaviour
     [Header("Trick Arrows color")]
     [SerializeField] private Color LitColor;
     [SerializeField] private Color unlitColor;
+    [SerializeField] private Color fadedColor;
+
 
     public int PlayerInputCount { get; set; }
 
@@ -93,7 +95,6 @@ public class TrickUIHandler : MonoBehaviour
     public void ToggleOnUIPanel(PlayerTrickHandler x)
     {
         trickUI.SetActive(true);
-        Event.OnTrickInput += StartBlinking;
 
     }
 
@@ -101,7 +102,6 @@ public class TrickUIHandler : MonoBehaviour
     {
         StopBlinking();
         trickUI.SetActive(false);
-        Event.OnTrickInput -= StartBlinking;
     }
 
     public void SpawnTrickUIBox(TrickSO trickSO)
@@ -129,8 +129,6 @@ public class TrickUIHandler : MonoBehaviour
         tween = trickUICanvasGroup.DOFade(finalFadeAmount, fadeDuration).SetEase(ease);
     }
 
-    public void StartBlinking(List<TrickSO> so) => StartFadingOG();
-
     public void StopBlinking()
     {
         tween.Kill();
@@ -144,7 +142,7 @@ public class TrickUIHandler : MonoBehaviour
             if (possibleTricks.Contains(trickValues.Key))
                 trickValues.Value.HighLightArrows(PlayerInputCount, LitColor);
             else
-                trickValues.Value.UnHighLightAllArrows(unlitColor);
+                trickValues.Value.UnHighLightAllArrows(fadedColor);
         }
     }
 

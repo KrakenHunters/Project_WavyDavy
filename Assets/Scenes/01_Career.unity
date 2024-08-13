@@ -5118,13 +5118,14 @@ MonoBehaviour:
   trickUIParent: {fileID: 1826593972}
   trickTime: {fileID: 1380894218}
   trickTimeSlider: {fileID: 218841031}
-  fadeDuration: 1.25
+  fadeDuration: 3
   finalFadeAmount: 0.25
   ease: 2
   trickUICanvasGroup: {fileID: 232862963}
   canDoTrick: {fileID: 415415655}
   LitColor: {r: 0.3019608, g: 0.70980394, b: 0.36862746, a: 1}
   unlitColor: {r: 0.3529412, g: 0.6156863, b: 0.6901961, a: 1}
+  fadedColor: {r: 0.2603773, g: 0.2603773, b: 0.2603773, a: 1}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!114 &1985677270
 MonoBehaviour:
