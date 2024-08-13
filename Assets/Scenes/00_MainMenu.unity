@@ -865,7 +865,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 0}
+  m_SizeDelta: {x: 960, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &363529658
 MonoBehaviour:
@@ -1042,6 +1042,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d3cba091b10a7040bd929d332449201, type: 2}
   trickBoxPanel: {fileID: 1426884723}
   trickUIPrefab: {fileID: 1136925430}
+  color: {r: 0.1254902, g: 0.7294118, b: 0.8745099, a: 1}
 --- !u!1 &396739124
 GameObject:
   m_ObjectHideFlags: 0
@@ -4095,7 +4096,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 15
+  m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
