@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        MovementTutorial = false;
         inputManager = GetComponent<InputManager>();
         trickManager = GetComponent<PlayerTrickHandler>();
         animator = GetComponent<Animator>();

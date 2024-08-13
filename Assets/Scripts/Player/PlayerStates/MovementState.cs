@@ -57,7 +57,10 @@ public class MovementState : BaseState
         }
     }
 
-    public override void ExitState() { }
+    public override void ExitState() 
+    {
+        player.shorebreakAnimator.FadeInAnimate(false);
+    }
 
     public override void StateFixedUpdate()
     {
@@ -79,6 +82,10 @@ public class MovementState : BaseState
         if (!player.MovementTutorial)
         {
             player.MovementControlUI.FadeAnimate();
+        }
+        else
+        {
+            player.MovementControlUI.FadeInAnimate(false);
         }
 
     }
