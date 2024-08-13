@@ -1040,7 +1040,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b3a3a998df7cf334a9cd0da8d1dd15f9, type: 2}
   - {fileID: 11400000, guid: aac48245669fc214eaab82f97dfea901, type: 2}
   - {fileID: 11400000, guid: 5d3cba091b10a7040bd929d332449201, type: 2}
-  - {fileID: 11400000, guid: bcaaffb30c8730a48ab8739b3759bbb9, type: 2}
   trickBoxPanel: {fileID: 1426884723}
   trickUIPrefab: {fileID: 1136925430}
 --- !u!1 &396739124
@@ -2548,8 +2547,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: CREDITS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d82596eaf161e3c47b913d429ad8b8ce, type: 2}
-  m_sharedMaterial: {fileID: -2502503738201660767, guid: d82596eaf161e3c47b913d429ad8b8ce, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3ad2255e4671f454bb481671be8b4d0c, type: 2}
+  m_sharedMaterial: {fileID: -2502503738201660767, guid: 3ad2255e4671f454bb481671be8b4d0c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

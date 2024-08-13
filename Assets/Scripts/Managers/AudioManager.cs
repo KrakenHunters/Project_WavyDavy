@@ -19,6 +19,7 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioClip timeoutClip;
 
     private List<AudioSource> _audioSources = new();
+    private AudioSource[] _mainBGSources = new AudioSource[3];
 
     private void Awake()
     {
@@ -28,19 +29,19 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    public void PlayAudio(AudioClip clip, bool isBgMusic = false,bool canPlayDuplicates = true)
+    public void PlayAudio(AudioClip clip, bool isBgMusic = false, bool canPlayDuplicates = true)
     {
         if (!canPlayDuplicates)
         {
             foreach (AudioSource source in _audioSources)
             {
                 if (source.clip == clip && source.isPlaying)
-                   return;
+                    return;
             }
         }
-         AudioSource audioSource = GetAvailableAudioSource();
+        AudioSource audioSource = GetAvailableAudioSource();
 
-            if (audioSource)
+        if (audioSource)
         {
             audioSource.outputAudioMixerGroup = isBgMusic ? bgMusicGroup : sfxGroup;
             audioSource.loop = isBgMusic;
@@ -53,7 +54,39 @@ public class AudioManager : Singleton<AudioManager>
             Debug.LogWarning("No available audio sources");
         }
     }
- 
+
+    public void PlayPhaseBGAudio(AudioClip clip, GamePhase phase)
+    {
+
+
+        switch (phase)
+        {
+            case GamePhase.Phase1:
+                MutePhaseBG();
+
+                break;
+            case GamePhase.Phase2:
+                MutePhaseBG();
+                break;
+            case GamePhase.Phase3:
+                MutePhaseBG();
+                break;
+        }
+
+       void UnMutePhaseBG(AudioClip clip)
+        {
+           //.mute = false;
+        }
+
+        void MutePhaseBG()
+        {
+            foreach (AudioSource source in _mainBGSources)
+            {
+                source.mute = true;
+            }
+        }
+    }
+
     private AudioSource GetAvailableAudioSource()
     {
         foreach (AudioSource audioSource in _audioSources)

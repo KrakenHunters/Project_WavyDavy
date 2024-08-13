@@ -3249,7 +3249,9 @@ MonoBehaviour:
   <GameTime>k__BackingField: 120
   gameDataSO: {fileID: 11400000, guid: d6686ff2c87c57545a91a1b541b06d2c, type: 2}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
-  gameMusic: {fileID: 8300000, guid: 3d9fd20002edf384399aec756532fb24, type: 3}
+  gameMusicPhase1: {fileID: 0}
+  gameMusicPhase2: {fileID: 0}
+  gameMusicPhase3: {fileID: 0}
 --- !u!4 &1281558507
 Transform:
   m_ObjectHideFlags: 0

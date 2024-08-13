@@ -4065,8 +4065,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: LEADERBOARD
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d82596eaf161e3c47b913d429ad8b8ce, type: 2}
-  m_sharedMaterial: {fileID: -2502503738201660767, guid: d82596eaf161e3c47b913d429ad8b8ce, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3ad2255e4671f454bb481671be8b4d0c, type: 2}
+  m_sharedMaterial: {fileID: -2502503738201660767, guid: 3ad2255e4671f454bb481671be8b4d0c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5751,6 +5751,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[AudioManager]'
       objectReference: {fileID: 0}
+    - target: {fileID: 7583506166462034818, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 17630e8be4dfaf748bde48dff7fd8ede, type: 3}
+    - target: {fileID: 7583506166462034818, guid: 89a8d48de7b3499409215e995a20e6a9, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 5808030355165173312, guid: 00063d96db24da64d8afe43ed66f5ee7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
