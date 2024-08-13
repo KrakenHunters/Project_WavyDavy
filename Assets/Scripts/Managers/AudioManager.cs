@@ -15,11 +15,13 @@ public class AudioManager : Singleton<AudioManager>
     [Header("Audio Sources")]
     [SerializeField] private AudioSource speaker;
 
+    [Header("Main BG Audio Sources")]
+    [SerializeField] private List<AudioSource> _mainBGSources = new();
+
     [Header("Audio Clips")]
     [SerializeField] private AudioClip timeoutClip;
 
     private List<AudioSource> _audioSources = new();
-    private AudioSource[] _mainBGSources = new AudioSource[3];
 
     private void Awake()
     {
@@ -55,38 +57,7 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    public void PlayPhaseBGAudio(AudioClip clip, GamePhase phase)
-    {
-
-
-        switch (phase)
-        {
-            case GamePhase.Phase1:
-                MutePhaseBG();
-
-                break;
-            case GamePhase.Phase2:
-                MutePhaseBG();
-                break;
-            case GamePhase.Phase3:
-                MutePhaseBG();
-                break;
-        }
-
-       void UnMutePhaseBG(AudioClip clip)
-        {
-           //.mute = false;
-        }
-
-        void MutePhaseBG()
-        {
-            foreach (AudioSource source in _mainBGSources)
-            {
-                source.mute = true;
-            }
-        }
-    }
-
+ 
     private AudioSource GetAvailableAudioSource()
     {
         foreach (AudioSource audioSource in _audioSources)

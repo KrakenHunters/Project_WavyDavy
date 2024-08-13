@@ -9,13 +9,14 @@ public class TrickUISetup : MonoBehaviour
     [SerializeField] private Image trickIcon;
     [SerializeField] private GameObject comboBox;
 
-    [Header("Trick Arrows")]
+    [Header("Trick Arrows Image")]
     [SerializeField] private Image trickUP;
     [SerializeField] private Image trickDOWN;
     [SerializeField] private Image trickLEFT;
     [SerializeField] private Image trickRIGHT;
 
-    public void SetupTrick(TrickSO trick)
+    private Image[] _images;
+    public void SetupTrick(TrickSO trick,Color color)
     {
        trickIcon.sprite = trick.Icon;
        for (int i = 0; i < trick.trickCombo.Count; i++)
@@ -23,18 +24,35 @@ public class TrickUISetup : MonoBehaviour
            switch (trick.trickCombo[i])
            {
                case TrickCombo.UP:
-                   Instantiate(trickUP, comboBox.transform);
+                   _images[i] = Instantiate(trickUP, comboBox.transform);
                    break;
                case TrickCombo.DOWN:
-                   Instantiate(trickDOWN, comboBox.transform);
+                    _images[i] = Instantiate(trickDOWN, comboBox.transform);
                    break;
                case TrickCombo.LEFT:
-                   Instantiate(trickLEFT, comboBox.transform);
+                    _images[i] = Instantiate(trickLEFT, comboBox.transform);
                    break;
                case TrickCombo.RIGHT:
-                   Instantiate(trickRIGHT, comboBox.transform);
+                    _images[i] = Instantiate(trickRIGHT, comboBox.transform);
                    break;
            }
+            _images[i].color = color;
        }
+    }
+
+    public void HighLightArrows(int index,Color litColor)
+    {
+        for(int i= index; i >= 0; i--)
+        {
+            _images[i].color = litColor;
+        }
+    }
+
+    public void UnHighLightAllArrows(Color unlitColor)
+    {
+        foreach (Image image in _images)
+        {
+            image.color = unlitColor;
+        }
     }
 }
