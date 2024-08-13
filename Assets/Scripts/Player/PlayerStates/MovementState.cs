@@ -74,7 +74,14 @@ public class MovementState : BaseState
         }
     }
 
-    public override void StateUpdate() { }
+    public override void StateUpdate() 
+    {
+        if (!player.MovementTutorial)
+        {
+            player.MovementControlUI.FadeAnimate();
+        }
+
+    }
 
     public override void HitObject()
     {
@@ -126,6 +133,15 @@ public class MovementState : BaseState
                 targetAngle = Mathf.Lerp(currentAngle, -player.maxInclineAngle * (speed / player.pumpSpeed), (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 targetPosition.x = Mathf.Lerp(startXPos, originalPosition.x + possibleXMovement, (buttonHoldTime - timeToMaxSpeed) / timeToMaxPump);
                 player.transform.position = targetPosition;
+                if (playerHeight <= minHeight + 1.5f)
+                {
+                    player.shorebreakAnimator.FadeInAnimate(true);
+                }
+
+            }
+            else
+            {
+                player.shorebreakAnimator.FadeInAnimate(false);
             }
 
             if (playerHeight <= minHeight)
@@ -135,6 +151,8 @@ public class MovementState : BaseState
         }
         else
         {
+            player.shorebreakAnimator.FadeInAnimate(false);
+
             if (player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Idle && player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != GetHit && player.animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Crash)
                 player.animator.Play(Idle);
 
@@ -223,6 +241,12 @@ public class MovementState : BaseState
         if (speed > player.normalSpeed && !isPumping && _direction.x < 0)
         {
             player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 1.5f * Time.fixedDeltaTime);
+            if (!player.MovementTutorial)
+            {
+                player.MovementTutorial = true;
+                player.MovementControlUI.FadeInAnimate(false);
+            }
+
         }
 
         player.transform.position += new Vector3(0, -_direction.x, 0) * speed * Time.fixedDeltaTime;
