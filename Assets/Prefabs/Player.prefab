@@ -591,7 +591,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aac48245669fc214eaab82f97dfea901, type: 2}
   - {fileID: 11400000, guid: 5d3cba091b10a7040bd929d332449201, type: 2}
   - {fileID: 11400000, guid: 26a55eee9cf8bf5438f930084bb483bd, type: 2}
-  trickBeginTime: 5
+  trickBeginTime: 3
   currentPhase: 0
   possibleTrickCombos: []
   trickUIHandler: {fileID: 0}

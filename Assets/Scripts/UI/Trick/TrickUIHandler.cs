@@ -76,7 +76,7 @@ public class TrickUIHandler : MonoBehaviour
     private void UpdateTimer(float timer)
     {
         float remainingTime = timer * maxTimer;
-        trickTime.text = ((int)remainingTime).ToString();
+        trickTime.text = remainingTime <= 0.1f ? 0f.ToString() : Mathf.Ceil(remainingTime).ToString();
         trickTimeSlider.value = remainingTime;
     }
 
@@ -89,7 +89,7 @@ public class TrickUIHandler : MonoBehaviour
         maxTimer = trickManager.MaxTrickTime;
         trickTimeSlider.maxValue = maxTimer;
         trickTimeSlider.value = trickManager.MaxTrickTime; // Initialize slider to max value
-        trickTime.text = ((int)trickManager.MaxTrickTime).ToString();
+        trickTime.text = Mathf.Ceil(trickManager.MaxTrickTime).ToString();
     }
 
     public void ToggleOnUIPanel(PlayerTrickHandler x)
