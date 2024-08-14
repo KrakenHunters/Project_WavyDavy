@@ -8,12 +8,14 @@ public class WaterObject : MonoBehaviour, IHitable
     [SerializeField] private float flow;
     [SerializeField] private float deadZone = -25f;
 
+    [SerializeField] private GameObject BubblePop;
 
     [SerializeField] private AudioClip hitClip;
 
     public GameEvent Event;
 
     private Collider2D Collider;
+    private SpriteRenderer sprite;
 
     public float Flow
     {
@@ -23,6 +25,7 @@ public class WaterObject : MonoBehaviour, IHitable
 
     private void Awake()
     {
+        sprite = GetComponent<SpriteRenderer>();
         Collider = GetComponent<Collider2D>();
     }
     private void OnEnable()
@@ -30,6 +33,7 @@ public class WaterObject : MonoBehaviour, IHitable
         Event.OnFlowChange.AddListener(FlowChange);
         Event.OnChangeGameState.AddListener(SinkObject);
         Collider.enabled = true;
+        sprite.enabled = true;
     }
 
     private void OnDisable()
@@ -47,9 +51,9 @@ public class WaterObject : MonoBehaviour, IHitable
     private void SinkObject(GamePhase phase)
     {
         Collider.enabled = false;
-        //Have an animation on the object that gets "submersed" in the water, sinking in the water
-        //After animation is done:
-        Event.OnReachDeadZone.Invoke(this);
+        Instantiate(BubblePop, this.transform);
+        sprite.enabled = false;
+
     }
 
     private void FixedUpdate()
@@ -61,7 +65,10 @@ public class WaterObject : MonoBehaviour, IHitable
 
     private void Update()
     {
-        transform.Translate(Vector3.left * objSpeed * Time.deltaTime);
+        if (Collider.enabled)
+        {
+            transform.Translate(Vector3.left * objSpeed * Time.deltaTime);
+        }
         if (transform.position.x < deadZone)
         {
             Event.OnReachDeadZone.Invoke(this);

@@ -1172,6 +1172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SharkFinObstacle Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 9104629944440244149, guid: a7c09b5f30d933f4f8dd4cf53c9c5853, type: 3}
+      propertyPath: BubblePop
+      value: 
+      objectReference: {fileID: 7219495782890895046, guid: 534e745150c2a8f4dbc1248907db0919, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2988,6 +2992,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.42
       objectReference: {fileID: 0}
+    - target: {fileID: 7273701563582142176, guid: 3df3555315ca1f3438e954281941acf1, type: 3}
+      propertyPath: BubblePop
+      value: 
+      objectReference: {fileID: 7219495782890895046, guid: 534e745150c2a8f4dbc1248907db0919, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3140,6 +3148,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5902671385033155527, guid: a070891c6653aa144b79f04031218a3e, type: 3}
+      propertyPath: BubblePop
+      value: 
+      objectReference: {fileID: 7219495782890895046, guid: 534e745150c2a8f4dbc1248907db0919, type: 3}
     - target: {fileID: 8125566276097736107, guid: a070891c6653aa144b79f04031218a3e, type: 3}
       propertyPath: m_Name
       value: CrabObstacle Variant
@@ -3197,6 +3209,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 885877210049069335, guid: eadc518f0b75c5348b18a5b45fb5b5db, type: 3}
+      propertyPath: BubblePop
+      value: 
+      objectReference: {fileID: 7219495782890895046, guid: 534e745150c2a8f4dbc1248907db0919, type: 3}
     - target: {fileID: 2854436002591295459, guid: eadc518f0b75c5348b18a5b45fb5b5db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3810,6 +3826,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.42
       objectReference: {fileID: 0}
+    - target: {fileID: 2571026636542898184, guid: 2651ac927a279244689472cec22073ce, type: 3}
+      propertyPath: BubblePop
+      value: 
+      objectReference: {fileID: 7219495782890895046, guid: 534e745150c2a8f4dbc1248907db0919, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6286,6 +6306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BananaSkinObstacle Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4183389514677951634, guid: 36cafee2acac8c843a053fa84d271281, type: 3}
+      propertyPath: BubblePop
+      value: 
+      objectReference: {fileID: 7219495782890895046, guid: 534e745150c2a8f4dbc1248907db0919, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
