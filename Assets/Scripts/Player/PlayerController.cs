@@ -150,6 +150,7 @@ public class PlayerController : MonoBehaviour
 
     private void FlowChange(float flow)
     {
+        currentFlow = flow;
         if (currentGamePhase == GamePhase.Phase1)
         {
             finalPaddleSpeed = _paddleSpeed - _paddleSpeed * (flow/2f);

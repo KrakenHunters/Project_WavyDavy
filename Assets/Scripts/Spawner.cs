@@ -8,7 +8,6 @@ public class Spawner : MonoBehaviour
 {
 
     [Header("Prefabs")]
-    [SerializeField] private WaterObject wavePrefab;
     [SerializeField] private WaterObject obstaclePrefab;
 
     [Header("Spawn Settings")]
@@ -27,7 +26,6 @@ public class Spawner : MonoBehaviour
 
     public GameEvent Event;
 
-    private List<WaterObject> availableWaves = new();
     private List<WaterObject> availableObstacles = new();
     //private List<WaterObject> activeObjects = new();
 
@@ -147,21 +145,6 @@ public class Spawner : MonoBehaviour
         //return new Vector3 (topPos.position.x, Random.Range(bottomPos.position.y, topPos.position.y),topPos.position.z);
     }
 
-    private WaterObject GetWaveObject()
-    {
-        WaterObject waveObject;
-        if (availableWaves.Count > 0)
-        {
-            waveObject = availableWaves[0];
-            availableWaves.RemoveAt(0);
-        }
-        else
-        {
-            waveObject = Instantiate(wavePrefab);
-            waveObject.gameObject.SetActive(false);
-        }
-        return waveObject;
-    }
     private WaterObject GetObstacleObject()
     {
         WaterObject obstacleObject;
@@ -177,12 +160,6 @@ public class Spawner : MonoBehaviour
         }
         return obstacleObject;
     }
-
-    private void ReturnWaveObject(WaterObject waveObject)
-    {
-        waveObject.gameObject.SetActive(false);
-        availableWaves.Add(waveObject);
-    }
     private void ReturnObstacleObject(WaterObject obstacleObject)
     {
         obstacleObject.gameObject.SetActive(false);
@@ -196,11 +173,7 @@ public class Spawner : MonoBehaviour
 
     private void SortObject(WaterObject waterObject)
     {
-        if (waterObject.Flow > 0)
-        {
-            ReturnWaveObject(waterObject);
-        }
-        else if (waterObject.Flow < 0)
+        if (waterObject.Flow < 0)
         {
             ReturnObstacleObject(waterObject);
         }

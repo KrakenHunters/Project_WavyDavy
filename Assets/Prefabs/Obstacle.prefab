@@ -137,5 +137,4 @@ MonoBehaviour:
   flow: -0.05
   deadZone: -25
   hitClip: {fileID: 8300000, guid: 39d605b926fcfae43bf1c0337c25f518, type: 3}
-  worriedCrowd: {fileID: 8300000, guid: ee27ee9f719fd1c49b09bc7c3c4909a6, type: 3}
   Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}

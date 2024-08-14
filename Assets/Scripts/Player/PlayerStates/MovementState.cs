@@ -257,7 +257,7 @@ public class MovementState : BaseState
         if (speed > player.normalSpeed && !isPumping && _direction.x < 0)
         {
             player.Event.OnIncreaseFlow.Invoke((speed - player.normalSpeed) * 1.5f * Time.fixedDeltaTime);
-            if (!player.MovementTutorial)
+            if (!player.MovementTutorial && player.currentFlow > 7f)
             {
                 player.MovementTutorial = true;
                 player.MovementControlUI.FadeInAnimate(false);
