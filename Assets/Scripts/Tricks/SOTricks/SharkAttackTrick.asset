@@ -16,4 +16,4 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Points: 30
   trickCombo: 020000000000000001000000000000000200000001000000
-  animationController: {fileID: 22100000, guid: fbf527659b1bbd642a10d4d8d7eb2e38, type: 2}
+  animationController: {fileID: 22100000, guid: 1610a564582026947bf50cbef6218c13, type: 2}
