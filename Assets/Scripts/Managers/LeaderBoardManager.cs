@@ -2,6 +2,7 @@ using Dan.Main;
 using Dan.Models;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class LeaderBoardManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class LeaderBoardManager : MonoBehaviour
 
     [SerializeField] private TMP_InputField userNameInput;
     [SerializeField] private Button submitButton;
+    [SerializeField] private Button backButton;
     [SerializeField] private int minNameLength = 3;
     [SerializeField] private int maxNameLength = 15;
     [SerializeField] private GameObject loadingImage;
@@ -22,6 +24,8 @@ public class LeaderBoardManager : MonoBehaviour
 
     [SerializeField] private UIAnimator uIAnimator;
 
+    [SerializeField] private EventSystem eventSystem;
+
     private void OnEnable()
     {
         if (ScoreSO.PlayedGame)
@@ -32,6 +36,19 @@ public class LeaderBoardManager : MonoBehaviour
             });
         }
     }
+
+    private GameObject GetMenusButton() 
+    {
+        if (ScoreSO.PlayedGame)
+        {
+            return userNameInput.gameObject;
+        }
+        else
+        {
+            return backButton.gameObject;
+        }
+    }
+
     private void OnDisable()
     {
         if (ScoreSO.PlayedGame)
@@ -49,6 +66,9 @@ public class LeaderBoardManager : MonoBehaviour
             LoadLeaderBoard();
         else
             LeaderboardCreator.ResetPlayer();
+
+
+        eventSystem.SetSelectedGameObject(GetMenusButton());
     }
 
     public void OnSubmit() => SendLeaderBoardEntry(userNameInput.text, ScoreSO.Score);
