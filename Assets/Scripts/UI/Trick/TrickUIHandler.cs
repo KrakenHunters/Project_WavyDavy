@@ -73,10 +73,12 @@ public class TrickUIHandler : MonoBehaviour
     private void UpdateCanDoTrickUI(bool show)
     {
         arrowOnPlayer.gameObject.SetActive(show);
+        canDoTrick.MoveInAnimate(show);
+
         if (show)
         {
-            canDoTrick.MoveInAnimate(show);
             canDoTrickBGImage.FadeAnimate();
+            canDoTrickImage.GetComponent<CanvasGroup>().alpha = canDoTrickBGImage.GetComponent<CanvasGroup>().alpha;
         }
 
     }
