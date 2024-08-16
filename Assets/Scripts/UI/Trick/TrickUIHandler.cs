@@ -20,6 +20,9 @@ public class TrickUIHandler : MonoBehaviour
 
     [Header("Trick Can Do")]
     [SerializeField] private UIAnimator canDoTrick;
+    [SerializeField] private UIAnimator canDoTrickBGImage;
+    [SerializeField] private UIAnimator canDoTrickImage;
+
     [SerializeField] private ParticleSystem arrowOnPlayer;
 
     [Header("Trick Arrows color")]
@@ -69,11 +72,12 @@ public class TrickUIHandler : MonoBehaviour
 
     private void UpdateCanDoTrickUI(bool show)
     {
-        canDoTrick.gameObject.SetActive(show);
         arrowOnPlayer.gameObject.SetActive(show);
         if (show)
         {
-            canDoTrick.FadeAnimate();
+            canDoTrick.MoveInAnimate(show);
+            canDoTrickBGImage.FadeAnimate();
+            canDoTrickImage.FadeAnimate();
         }
 
     }
@@ -101,6 +105,10 @@ public class TrickUIHandler : MonoBehaviour
     public void ToggleOnUIPanel(PlayerTrickHandler x)
     {
         trickUI.SetActive(true);
+        canDoTrick.MoveInAnimate(false);
+        canDoTrickBGImage.FadeInAnimate(false);
+        canDoTrickImage.FadeInAnimate(false);
+
 
     }
 
@@ -108,6 +116,7 @@ public class TrickUIHandler : MonoBehaviour
     {
         StopBlinking();
         trickUI.SetActive(false);
+
     }
 
     public void SpawnTrickUIBox(TrickSO trickSO)

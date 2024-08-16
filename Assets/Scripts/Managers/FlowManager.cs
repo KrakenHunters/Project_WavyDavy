@@ -197,6 +197,8 @@ public class FlowManager : MonoBehaviour
                 previousPhase = null;
                 nextPhase = GamePhase.Phase2;
                 flowDecreaseSpeed = flowDecreaseSpeed1;
+                flowUIHandler.CheckUIFow(false);
+
                 break;
             case GamePhase.Phase2:
                 maxFlow = maxFlowPhase2;
@@ -205,6 +207,7 @@ public class FlowManager : MonoBehaviour
                 previousPhase = GamePhase.Phase1;
                 nextPhase = GamePhase.Phase3;
                 flowDecreaseSpeed = flowDecreaseSpeed2;
+                flowUIHandler.CheckUIFow(true);
                 break;
             case GamePhase.Phase3:
                 maxFlow = maxFlowPhase3;
@@ -214,14 +217,16 @@ public class FlowManager : MonoBehaviour
                 previousPhase = GamePhase.Phase2;
                 nextPhase = GamePhase.Trick;
                 flowDecreaseSpeed = flowDecreaseSpeed3;
+                flowUIHandler.CheckUIFow(true);
                 break;
             case GamePhase.Trick:
                 //Disable UI
+                flowUIHandler.CheckUIFow(false);
                 wasPhaseTrick = true;
                 previousPhase = GamePhase.Phase3;
                 break;
         }
-        flowUIHandler.SetMinMax(minFlow, maxFlow);
+        flowUIHandler.SetMinMax(minFlowPhase2, maxFlowPhase3);
 
         //Update UI here
 

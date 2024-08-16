@@ -52,6 +52,27 @@ public class UIAnimator : MonoBehaviour
         });
     }
 
+    public void MoveInAnimate(bool check)
+    {
+        if (currentTween.IsActive())
+            return;
+
+        OnAnimateStarted.Invoke();
+
+        if (!check)
+            currentTween = rectTransform.DOAnchorPos(startPos, duration).SetEase(ease);
+        else
+            currentTween = rectTransform.DOAnchorPos(targetPos, duration).SetEase(ease);
+
+        currentTween.OnComplete(() =>
+        {
+            currentTween.Kill();
+            isPosChanged = !isPosChanged;
+            OnAnimateFinished.Invoke();
+        });
+    }
+
+
     public void GrowAnimate()
     {
         if (currentTween.IsActive())
