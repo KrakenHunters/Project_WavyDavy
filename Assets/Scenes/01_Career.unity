@@ -178,7 +178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &19430957
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6007,7 +6007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.94080675, g: 0.990566, b: 0.4812656, a: 1}
+  m_Color: {r: 0.98823535, g: 0.82745105, b: 0.90196085, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7533,7 +7533,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -1739, y: 0}
-  m_SizeDelta: {x: 283, y: 202}
+  m_SizeDelta: {x: 193, y: 154}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &460875613
 MonoBehaviour:
@@ -7618,6 +7618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ed3f46c0e5e43449a6d42e682fed3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 19430959}
 --- !u!1 &461539649
 GameObject:
   m_ObjectHideFlags: 0
@@ -11742,7 +11743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 0}
-  duration: 1
+  duration: 0.5
   ease: 1
   OnAnimateStarted:
     m_PersistentCalls:

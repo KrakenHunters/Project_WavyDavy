@@ -77,7 +77,6 @@ public class TrickUIHandler : MonoBehaviour
         {
             canDoTrick.MoveInAnimate(show);
             canDoTrickBGImage.FadeAnimate();
-            canDoTrickImage.FadeAnimate();
         }
 
     }

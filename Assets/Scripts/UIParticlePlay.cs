@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class UIParticlePlay : MonoBehaviour
 {
+    [SerializeField]
     private ParticleSystem _particleSystem;
     private void Start()
     {
-        _particleSystem = GetComponentInChildren<ParticleSystem>();
+        _particleSystem.gameObject.SetActive(true);
     }
     void Update()
     {
