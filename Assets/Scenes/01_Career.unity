@@ -6045,7 +6045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 0}
-  duration: 1
+  duration: 0.5
   ease: 1
   OnAnimateStarted:
     m_PersistentCalls:
@@ -7399,7 +7399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPos: {x: 368, y: 0}
-  duration: 1
+  duration: 0.5
   ease: 5
   OnAnimateStarted:
     m_PersistentCalls:
@@ -7586,7 +7586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 0}
-  duration: 1
+  duration: 0.5
   ease: 1
   OnAnimateStarted:
     m_PersistentCalls:
