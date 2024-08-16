@@ -80,6 +80,10 @@ public class TrickUIHandler : MonoBehaviour
             canDoTrickBGImage.FadeAnimate();
             canDoTrickImage.GetComponent<CanvasGroup>().alpha = canDoTrickBGImage.GetComponent<CanvasGroup>().alpha;
         }
+        else
+        {
+            canDoTrickBGImage.FadeInAnimate(false);
+        }
 
     }
 
