@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChillingTrick
   m_EditorClassIdentifier: 
   TrickName: ChillingTrick
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 0bb3a2527373ca9479ae8f12b003b122, type: 3}
   Points: 20
   trickCombo: 0200000001000000010000000000000002000000
   animationController: {fileID: 22100000, guid: 729e3dba021d86a4fb809f6a1e53a7a6, type: 2}

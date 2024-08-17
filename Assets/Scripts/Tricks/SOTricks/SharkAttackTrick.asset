@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SharkAttackTrick
   m_EditorClassIdentifier: 
   TrickName: SharkAttack
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: a5dd984013794ce46a71fe6614575c36, type: 3}
   Points: 30
   trickCombo: 020000000000000001000000000000000200000001000000
   animationController: {fileID: 22100000, guid: 1610a564582026947bf50cbef6218c13, type: 2}

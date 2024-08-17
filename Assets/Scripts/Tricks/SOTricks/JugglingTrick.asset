@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: JugglingTrick
   m_EditorClassIdentifier: 
   TrickName: JugglingTrick
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: f9cb770db87f696479d722089763c096, type: 3}
   Points: 30
   trickCombo: 000000000100000001000000020000000300000000000000
   animationController: {fileID: 22100000, guid: d7daeb5257b47f84fbb9e498474b893e, type: 2}
