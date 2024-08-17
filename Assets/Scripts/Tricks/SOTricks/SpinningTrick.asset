@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cab50c94343871e448f38bd519d594b3, type: 3}
-  m_Name: EasyTrick1
+  m_Name: SpinningTrick
   m_EditorClassIdentifier: 
-  TrickName: EasyTrick1
+  TrickName: SpinningTrick
   Icon: {fileID: 0}
   Points: 10
-  trickCombo: 01000000010000000100000000000000
+  trickCombo: 02000000030000000200000000000000
   animationController: {fileID: 22100000, guid: fbf527659b1bbd642a10d4d8d7eb2e38, type: 2}
