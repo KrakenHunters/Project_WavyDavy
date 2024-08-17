@@ -34,6 +34,9 @@ public class GameManager : Singleton<GameManager>
     private void EndGame()
     {
         Event.OnUpdateGameTimer.Invoke(0);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         Event.OnGameEnd.Invoke();
     }
 

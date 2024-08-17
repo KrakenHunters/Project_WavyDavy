@@ -16,7 +16,8 @@ public class PauseMenu : Menu
     {
         _isPaused = false;
        _startActive = false;
-       
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void OnButtonClick()
@@ -31,6 +32,9 @@ public class PauseMenu : Menu
         
 
         AudioManager.Instance.PlayAudio(pauseClip);
+
+        Cursor.lockState = _isPaused? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = _isPaused;
 
         if (_isPaused)
         {
