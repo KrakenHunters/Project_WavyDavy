@@ -65,7 +65,7 @@ public class FlowManager : MonoBehaviour
 
     private void OnDisable()
     {
-        Event.OnChangeGameState.RemoveListener(ResetFlow);
+        Event.OnChangeGameState.AddListener(ResetFlow);
         Event.OnHitObject.RemoveListener(AddFlow);
         Event.OnIncreaseFlow.RemoveListener(AddFlow);
         Event.OnGameEnd -= DisableFlow;

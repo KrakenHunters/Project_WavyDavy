@@ -66,6 +66,8 @@ public class MovementState : BaseState
     public override void ExitState() 
     {
         player.shorebreakAnimator.FadeInAnimate(false);
+        player.MovementControlUI.FadeInAnimate(false);
+
     }
 
     public override void StateFixedUpdate()

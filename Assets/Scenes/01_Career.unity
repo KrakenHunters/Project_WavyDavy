@@ -5390,6 +5390,7 @@ GameObject:
   - component: {fileID: 58463084}
   - component: {fileID: 58463085}
   - component: {fileID: 58463086}
+  - component: {fileID: 58463087}
   m_Layer: 0
   m_Name: SideWave
   m_TagString: Untagged
@@ -5406,7 +5407,7 @@ Transform:
   m_GameObject: {fileID: 58463083}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.37, y: -1.68, z: -1}
+  m_LocalPosition: {x: 1, y: -2, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5453,7 +5454,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: da86ccca193859647af47f56df366d2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b2fc7bd8ab42904caf5a1585e92c1ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5485,6 +5486,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &58463087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58463083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5de4d1a4306ee441b05abbcd7b1aa4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: eae5664d36b392046ae2dc157a7626be, type: 2}
 --- !u!1 &61172121
 GameObject:
   m_ObjectHideFlags: 0
@@ -9902,7 +9916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 0}
   duration: 1
-  ease: 6
+  ease: 1
   OnAnimateStarted:
     m_PersistentCalls:
       m_Calls: []

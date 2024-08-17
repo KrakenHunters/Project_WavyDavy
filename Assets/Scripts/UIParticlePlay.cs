@@ -69,6 +69,10 @@ public class UIParticlePlay : MonoBehaviour
         {
             GetComponent<UIAnimator>().FadeInAnimate(true);
         }
+        if (!stateCheck)
+        {
+            GetComponent<UIAnimator>().FadeInAnimate(false);
+        }
     }
 }
  

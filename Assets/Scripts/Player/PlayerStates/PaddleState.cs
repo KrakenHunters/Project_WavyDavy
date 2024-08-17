@@ -12,6 +12,9 @@ public class PaddleState : BaseState
         base.EnterState();
         inputManager.EnablePlayerPaddle(); // Start in first phase paddle
         lastPaddleDir = Paddle.None;
+        player.shorebreakAnimator.FadeInAnimate(false);
+        player.MovementControlUI.FadeInAnimate(false);
+
         player.animator.CrossFade(PaddleHopOn, 0.2f);
         player.Event.OnPaddleLeft.Invoke();
 
