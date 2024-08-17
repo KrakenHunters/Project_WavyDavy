@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cab50c94343871e448f38bd519d594b3, type: 3}
-  m_Name: Mediumtrick2
+  m_Name: ChillingTrick
   m_EditorClassIdentifier: 
-  TrickName: Mediumtrick2
+  TrickName: ChillingTrick
   Icon: {fileID: 0}
   Points: 20
   trickCombo: 0200000001000000010000000000000002000000
-  animationController: {fileID: 22100000, guid: fbf527659b1bbd642a10d4d8d7eb2e38, type: 2}
+  animationController: {fileID: 22100000, guid: 729e3dba021d86a4fb809f6a1e53a7a6, type: 2}
